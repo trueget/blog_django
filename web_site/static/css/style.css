@@ -2,27 +2,125 @@ html{
     box-sizing: border-box;
 }
 
-*, *::before, *::after{
-    box-sizing: inherit;
-}
-
 html, body{
     height: 100%;
 }
 
+ul, li{
+    margin: 0;
+    padding: 0;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+input[type="search"]{
+    color: #000;
+}
+
+input::-moz-placeholder { color: black; }
+input::-webkit-input-placeholder { color: black; }
+
 body{
+    margin: 0px;
+    padding: 50px 0 0 0 ;
     font-size: 16px;
     min-width: 320px;
     position: relative;
     line-height: 1.65;
     overflow-x: hidden;
     opacity: 1;
-    background-color: rgba(0, 0, 0, .1);
-    font-family: DejaVu Sans Mono, monospace;
+    background-color: aliceblue;
+    font-family: Andale Mono, monospace;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #6b8e23;
 }
 
 .wrapper-header, .nav{
     display: flex;
 }
 
-/* #0DC75D  цвет хедера*/
+.wrapper-header{
+    padding: 10px 0px;
+    align-items: center;
+}
+
+.nav{
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+
+.nav li{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav li a{
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+    transition: 0.5s;
+}
+
+.nav li a:hover{
+    color: #8c2d2d;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.logo-home{
+    display: flex;
+    align-items: center;
+}
+
+.form-control, .btn-login{
+    border: 1px solid #8c2d2d;
+    border-radius: 0.375rem;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 10px 10px;
+    
+
+}
+
+.btn-login{
+    transition: 0.5s;
+    background-color: aliceblue;
+}
+
+.btn-login:hover{
+    background-color: #6b8e23;
+}
+
+.btn-login{
+    display: flex;
+}
+
+.form-control{
+    width: auto;
+    display: flex;
+    background-color: #6b8e23;
+}
+
+.input-search{
+    font-weight: 800;
+    outline: none;
+    margin-right: 10px;
+}

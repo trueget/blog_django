@@ -3,49 +3,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Base.html{% endblock title %}</title>
-    
+    <title>{% block title %}шаблон{% endblock title %}</title>
 </head>
 <body>
+
     <header>
+      {% block header %}
         <div class="container">
           <div class="wrapper-header">
-            <a href="/" class="logo-home"><img src="{% static 'images/logo.png' %}" alt=""></a>
+            <!-- <a href="/" class="logo-home"><img src="{% static 'images/logo.png' %}" height="40" width="40" alt=""></a> -->
             <ul class="nav">
+              <li>
+                <a href="/" class="logo-home"><img src="{% static 'images/logo.png' %}" height="40" width="40" alt=""></a>
+              </li>
               <li><a href="#">Домой</a></li>
-              <li><a href="#">Features</a></li>
-              <li><a href="#">Pricing</a></li>
-              <li><a href="#">FAQs</a></li>
-              <li><a href="#">About</a></li>
+              <li><a href="#">Функции</a></li>
+              <li><a href="#">Цены</a></li>
+              <li><a href="#">Помощь</a></li>
+              <li><a href="#"> О нас</a></li>
             </ul>
     
-            <form class="" role="search">
-              <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search">
+            <form class="input-search" role="search">
+              <input type="search" class="form-control" placeholder="Поиск по тексту..." aria-label="Search">
             </form>
     
-            <div class="btns">
-              <button href="#" class="btn">Войти</button>
-              <button href="#" class="btn">Зарегистрироваться</button>
+            <div class="btn">
+              <button href="#" class="btn-login">Войти</button>
             </div>
           </div>
         </div>
+      {% endblock header %}
      </header>
-
-
-
-
-
-    <h1>{% block header %}Заголовок с base.html{% endblock header %}</h1>
-
+     <div>
+        <h1>Заголовок</h1>
+      </div>
     <aside>
         {% block sidebar %}
-        <p>sidebar1</p>
-        <p>sidebar2</p>
-        <p>sidebar3</p>
+        <p>Какой-то sidebar1</p>
+        <p>Какой-то sidebar2</p>
+        <p>Какой-то sidebar3</p>
         {% endblock sidebar %}
     </aside>
 
