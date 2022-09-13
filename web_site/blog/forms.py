@@ -3,7 +3,8 @@ from ipaddress import collapse_addresses
 from django import forms
 
 
-class PublishState(forms.Form):
+class CreateArticle(forms.Form):
     nick_name = forms.CharField(label='Ваше имя', required=False, max_length=30)
-    img_field = forms.ImageField(label='Выберите изображение для статьи')
-    text_state = forms.CharField(label='Текст статьи', widget=forms.Textarea)
+    name_article = forms.CharField(label='Название статьи', required=False)
+    img_article = forms.ImageField(label='Выберите изображение для статьи')
+    text_article = forms.CharField(label='Текст статьи', widget=forms.Textarea)

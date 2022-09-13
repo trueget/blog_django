@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block print_state %}
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+        {{ create_article }}
+        </table>
+        <input type="submit" value="Опубликовать">
+    </form>
+{% endblock print_state %}
