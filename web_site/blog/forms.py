@@ -1,10 +1,31 @@
-from cProfile import label
-from ipaddress import collapse_addresses
-from django import forms
+from distutils.command.upload import upload
+from pkgutil import ImpLoader
+from tkinter import Image
+from .models import Articles
+from django.forms import ModelForm, TextInput, Textarea, ClearableFileInput
 
 
-class CreateArticle(forms.Form):
-    nick_name = forms.CharField(label='Ваше имя', required=False, max_length=30)
-    name_article = forms.CharField(label='Название статьи', required=False)
-    img_article = forms.ImageField(label='Выберите изображение для статьи')
-    text_article = forms.CharField(label='Текст статьи', widget=forms.Textarea)
+
+
+class ArticlesForm(ModelForm):
+    class Meta:
+        model = Articles
+        fields = ['nick_name', 'name_article', 'img_article', 'text_article']
+
+        widgets = {
+            'nick_name': TextInput(attrs={
+                'class': 'form_article',
+                'placeholder': 'Ваш ник'
+            }),
+            'name_article': TextInput(attrs={
+                'class': 'form_article',
+                'placeholder': 'Название статьи'
+            }),
+            'img_article': ClearableFileInput(attrs={
+                'class': 'form_article '
+            }),
+            'text_article': Textarea(attrs={
+                'class': 'form_text_article',
+                'placeholder': 'Текст статьи'
+            }),
+        }

@@ -1,11 +1,20 @@
 {% extends 'blog/base.html' %}
 
-{% block print_state %}
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-        {{ create_article }}
-        </table>
-        <input type="submit" value="Опубликовать">
-    </form>
-{% endblock print_state %}
+{% block title %}
+страца создания статьи
+{% endblock title %}
+
+{% block create_state %}
+    <div class="window-bot">
+        <h2>Форма  по добавлению статьи</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.nick_name }}<br>
+            {{ form.name_article }}<br>
+            {{ form.img_article }}<br>
+            {{ form.text_article }}<br>
+            <span>{{ error }}</span>
+            <button type="submit">Опубликовать</button><br>
+        </form>
+    </div>
+{% endblock create_state %}

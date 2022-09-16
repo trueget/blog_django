@@ -1,0 +1,39 @@
+<!-- все статьи которые храняться в бд -->
+{% extends 'blog/base.html' %}
+
+{% block title %}
+страница все статьи
+{% endblock title %}
+
+
+{% block print_state %}
+    {% if all_articles.count > 0 %}
+        {% for article in all_articles %}
+            <div class="window-bot">
+                <div id="{{ article.id }}" class="articles-list">
+                <div class="avtor-date">
+                    <a href="#"><p class="avtor">{% block avtor %}{{ article.nick_name }}{% endblock avtor %}</p></a>
+                    <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
+                </div>
+                <a href="#" class="name-stat"><h2>{% block name-state %}{{ article.name_article }}{% endblock name-state %}</h2></a>
+                </div>
+
+                <div>
+                    {% block image_article %}
+                    <img src="{{ article.img_article }}">
+                    
+                    {% endblock image_article %}
+                </div>
+
+                <div>
+                    {% block article_text %}{{ article.text_article }}{% endblock article_text %}
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="window-bot">
+            <h2>статтей пока нет!</h2>
+        </div>
+    {% endif %}
+{% endblock print_state %}

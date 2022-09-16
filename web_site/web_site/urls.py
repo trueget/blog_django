@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from blog.views import index_page, create_article, news_page
+from blog.views import index_page, create_article, news_page, articles
 
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('', index_page),
     path('create_article/', create_article),
     path('news/', news_page),
+    path('articles/', articles),
 ]
