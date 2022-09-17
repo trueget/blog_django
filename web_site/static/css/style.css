@@ -193,3 +193,8 @@ hr {
 .form_text_article{
     height: 200px;
 }
+
+image .form_article{
+    font-size: large;
+    width: 100%;
+}

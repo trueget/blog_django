@@ -1,6 +1,3 @@
-from distutils.command.upload import upload
-from pkgutil import ImpLoader
-from tkinter import Image
 from .models import Articles
 from django.forms import ModelForm, TextInput, Textarea, ClearableFileInput
 
@@ -22,10 +19,10 @@ class ArticlesForm(ModelForm):
                 'placeholder': 'Название статьи'
             }),
             'img_article': ClearableFileInput(attrs={
-                'class': 'form_article '
+                'class': 'form_article'
             }),
             'text_article': Textarea(attrs={
-                'class': 'form_text_article',
+                'class': 'form_article form_text_article',
                 'placeholder': 'Текст статьи'
             }),
         }
