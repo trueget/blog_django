@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from .forms import ArticlesForm
 from .models import Articles
 
@@ -37,5 +38,15 @@ def create_article(request):
         'form': form,
         'error': error
     }
-
     return render(request, 'blog/create_article.html', data)
+
+
+'''удаление данных из бд'''
+def delete(request, id):
+    try:
+        article = Articles.objects.get(id=id)
+        article.delete()
+        # return HttpResponseRedirect('/')
+        return render(request, 'blog/index.html')
+    except Articles.DoesNotExist:
+        return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
