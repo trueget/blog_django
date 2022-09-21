@@ -11,6 +11,9 @@ urlpatterns = [
     path('news/', views.news_page),
     path('articles/', views.articles),
     path(r'articles/delete/<int:id>', views.delete),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 '''path('admin/', views.admin.site.urls),'''
