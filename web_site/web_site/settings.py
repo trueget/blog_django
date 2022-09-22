@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'users',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+'''ссылка на стили форм'''
+CRISPY_TEMPLATE_PACK = 'uni-form'
+'''uni-form, bootstrap4'''
+
+
+'''email с которого будет приходить код для подтверждения регистрации'''
+EMAIL_HOST_USER = 'blog-django@mail.ru'
+EMAIL_HOST_PASSORD = os.getenv('EMAIL_HOST_PASSORD')
