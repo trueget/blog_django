@@ -33,6 +33,15 @@
             <div class="btn">
               <a href="{% url 'register' %}"><button class="btn-login">Войти</button></a>
             </div>
+
+            {% if user.is_authenticated %}
+              {% block user %}
+                <div>
+                  <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Logout</a></li>
+                </div>
+              {% endblock user %}
+            {% endif %}
+
           </div>
         </div>
       {% endblock header %}
@@ -40,30 +49,29 @@
 
      <main>
       <div class="container">
-        <div class="window-top">
-          <div class="container-window-top">
-            <ul class="nav navi">
-              <li><a href="/articles">СТАТЬИ</a></li>
-              <li><a href="#">АВТОРЫ</a></li>
-              <li><a href="{% url 'news' %}">НОВОСТИ</a></li>
-              <li><a href="#">МОИ ПУБЛИКАЦИИ</a></li>
-            </ul>
-            <ul class="nav navi">
-              <li><a href="/create_article">ОПУБЛИКОВАТЬ СТАТЬЮ</a></li>
-            </ul>
+        {% block window-top %}
+          <div class="window-top">
+            <div class="container-window-top">
+              <ul class="nav navi">
+                <li><a href="/articles">СТАТЬИ</a></li>
+                <li><a href="#">АВТОРЫ</a></li>
+                <li><a href="{% url 'news' %}">НОВОСТИ</a></li>
+                <li><a href="#">МОИ ПУБЛИКАЦИИ</a></li>
+              </ul>
+              <ul class="nav navi">
+                <li><a href="/create_article">ОПУБЛИКОВАТЬ СТАТЬЮ</a></li>
+              </ul>
+            </div>
+            <hr>
           </div>
-          <hr>
-        </div>
+        {% endblock window-top %}
 
         {% block print_state %}{% endblock print_state %}
 
         {% block create_state %}{% endblock create_state %}
 
-        {% block register %}{% endblock register %}
+        {% block register_login_logout_email %}{% endblock register_login_logout_email %}
 
-        {% block login %}{% endblock login %}
-
-        {% block email %}{% endblock email %}
         
       </div>
      </main>

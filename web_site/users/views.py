@@ -12,14 +12,14 @@ from django.contrib.auth.forms import AuthenticationForm
 '''регистрация'''
 def register_user(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.FPOST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
 
             '''подтверждение мыла'''
-            htmly = get_template('user/email.html')
+            htmly = get_template('register/email.html')
             d = {'username': username}
             subject, from_email, to = 'welcome', EMAIL_HOST_USER, email
             html_content = htmly.render(d)
@@ -31,7 +31,7 @@ def register_user(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
-        return render(request, 'register/register.html', {'form': form, 'title':'register here'})
+    return render(request, 'register/register.html', {'form': form, 'title':'зарегистрироваться'})
 
 
 '''авторизация'''
@@ -46,6 +46,6 @@ def login(request):
             messages.success(request, f' Добро пожаловать, {username} !!')
             return redirect('index')
         else:
-            messages.info(request, f'account done not exit plz sign in')
+            messages.info(request, f'нет такой учетной записи!')
     form = AuthenticationForm()
-    return render(request, 'user/login.html', {'form':form, 'title':'log in'})
+    return render(request, 'register/login.html', {'form':form, 'title':'войти'})

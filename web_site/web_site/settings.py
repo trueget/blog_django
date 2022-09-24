@@ -127,10 +127,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 '''ссылка на стили форм'''
-CRISPY_TEMPLATE_PACK = 'uni-form'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 '''uni-form, bootstrap4'''
 
 
+'''email'''
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_EMAIL_VERIFICATION = "none"
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = 8000
+EMAIL_USE_TLS = False
+
+
 '''email с которого будет приходить код для подтверждения регистрации'''
-EMAIL_HOST_USER = 'blog-django@mail.ru'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSORD = os.getenv('EMAIL_HOST_PASSORD')

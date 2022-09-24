@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class Profile(models.Model):
-    nick_name = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(default='imgusers/avatar.jpg', upload_to='imgusers/')
+# class Profile(models.Model):
+#     nick_name = models.OneToOneField(User, on_delete=models.CASCADE)
+#     avatar = models.ImageField(default='imgusers/avatar.jpg', upload_to='imgusers/')
 
-    def __str__(self):
-        return self.nick_name
+#     def __str__(self):
+#         return self.nick_name
