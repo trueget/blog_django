@@ -35,7 +35,7 @@ def register_user(request):
 
 
 '''авторизация'''
-def login(request):
+def Login(request):
     if request.method == 'POST':
 
         username = request.POST['username']
@@ -44,7 +44,7 @@ def login(request):
         if user is not None:
             form = login(request, user)
             messages.success(request, f' Добро пожаловать, {username} !!')
-            return redirect('index')
+            return redirect('/')
         else:
             messages.info(request, f'нет такой учетной записи!')
     form = AuthenticationForm()

@@ -29,19 +29,17 @@
             <form class="input-search" role="search">
               <input type="search" class="form-control" placeholder="Поиск по тексту..." aria-label="Search">
             </form>
-    
-            <div class="btn">
-              <a href="{% url 'register' %}"><button class="btn-login">Войти</button></a>
-            </div>
-
             {% if user.is_authenticated %}
               {% block user %}
-                <div>
-                  <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Logout</a></li>
+                <div class="btn">
+                  <a href="{% url 'logout' %}"><button class="btn-login"></>Выйти</button></a>
                 </div>
               {% endblock user %}
+            {% else %}
+              <div class="btn">
+                <a href="{% url 'login' %}"><button class="btn-login" >Войти</button></a>
+              </div>
             {% endif %}
-
           </div>
         </div>
       {% endblock header %}
