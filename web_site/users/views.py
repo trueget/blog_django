@@ -1,3 +1,4 @@
+import imp
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.template.loader import get_template
@@ -6,7 +7,14 @@ from django.core.mail import EmailMultiAlternatives
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+import random
 # Create your views here.
+
+
+'''код подтверждения'''
+def generate_code():
+    random.seed()
+    return str(random.randint(10000,99999))
 
 
 '''регистрация'''
