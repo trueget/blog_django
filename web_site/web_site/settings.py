@@ -132,13 +132,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 '''email'''
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_EMAIL_VERIFICATION = "none"
-EMAIL_HOST = '127.0.0.1'
-EMAIL_PORT = 8000
-EMAIL_USE_TLS = False
-
-
-'''email с которого будет приходить код для подтверждения регистрации'''
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+# EMAIL_PORT = 465
+EMAIL_PORT = 2525
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSORD = os.getenv('EMAIL_HOST_PASSORD')
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')

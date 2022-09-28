@@ -19,8 +19,6 @@ urlpatterns = [
     path('login/', user_views.Login, name='login'),
     path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
     path('activation', blog_views.index_page, name='activation'),
-    
-
 ]
 
 if settings.DEBUG:

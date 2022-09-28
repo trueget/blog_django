@@ -3,11 +3,13 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.template.loader import get_template
 from web_site.settings import EMAIL_HOST_USER
-from django.core.mail import EmailMultiAlternatives
+# from django.core.mail import EmailMultiAlternatives
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 import random
+
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -26,14 +28,23 @@ def register_user(request):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
 
-            '''подтверждение мыла'''
-            htmly = get_template('register/email.html')
-            d = {'username': username}
-            subject, from_email, to = 'welcome', EMAIL_HOST_USER, email
-            html_content = htmly.render(d)
-            msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
-            msg.attach_alternative(html_content, "text/html")
-            msg.send()
+            '''отправка сообщения на мыло'''
+            # htmly = get_template('register/email.html')
+            # d = {'username': username}
+            # subject, from_email, to = 'welcome', EMAIL_HOST_USER, email
+            code = generate_code()
+            # html_content = htmly.render(d)
+            # msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
+            # msg.attach_alternative(html_content, "text/html")
+            # msg.send()
+
+            send_mail(
+            'Вы успешно зарагистрировались!',
+            f'Здравствуйте, {username}!\nКод для проверки - {code}',
+            EMAIL_HOST_USER,
+            [email],
+            fail_silently=False,
+            )
 
             messages.success(request, 'Ваш акаунт создан! Теперь Вы можете войти!')
             return redirect('login')
