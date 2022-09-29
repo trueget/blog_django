@@ -39,8 +39,8 @@ def register_user(request):
             # msg.send()
 
             send_mail(
-            'Вы успешно зарагистрировались!',
-            f'Здравствуйте, {username}!\nКод для проверки - {code}',
+            'Регистрация на blog-django',
+            f'Здравствуйте, {username}!\nКод для подтверждения регистрации - {code}',
             EMAIL_HOST_USER,
             [email],
             fail_silently=False,
