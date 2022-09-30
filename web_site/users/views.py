@@ -1,4 +1,3 @@
-import imp
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.template.loader import get_template
@@ -29,15 +28,7 @@ def register_user(request):
             email = form.cleaned_data.get('email')
 
             '''отправка сообщения на мыло'''
-            # htmly = get_template('register/email.html')
-            # d = {'username': username}
-            # subject, from_email, to = 'welcome', EMAIL_HOST_USER, email
             code = generate_code()
-            # html_content = htmly.render(d)
-            # msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
-            # msg.attach_alternative(html_content, "text/html")
-            # msg.send()
-
             send_mail(
             'Регистрация на blog-django',
             f'Здравствуйте, {username}!\nКод для подтверждения регистрации - {code}',
