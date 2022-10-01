@@ -211,3 +211,14 @@ image .form_article{
 .footer{
     height: 100px;
 }
+
+.activation{
+    font-size: 25px;
+    letter-spacing: 10px;
+    width: 150px; 
+    height: 30px; 
+    color: #425b76;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
