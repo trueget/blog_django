@@ -14,5 +14,14 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2', 'phone_no']
 
 
-class ConfirForm(forms.Form):
-    pass
+class ActivationCodeForm(forms.Form):
+
+    code = forms.CharField(required=True, max_length=50, label='Код подтвержения', widget=forms.PasswordInput(attrs={'class': 'form-control'}),  error_messages={'required': 'Введите код!','max_length': 'Максимальное количество символов 50'})
+
+    def save(self, commit=True):
+        profile = super(ActivationCodeForm, self).save(commit=False)
+        profile.code = self.cleaned_data['code_on_page']
+
+        if commit:
+            profile.save()
+        return profile
