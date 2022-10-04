@@ -30,7 +30,9 @@ def register_user(request):
                 my_password1 = form.cleaned_data.get('password1')
                 email = form.cleaned_data.get('email')
 
-                u_f = User.objects.get(username=username, email=email, is_active=False)
+                u_f = User.objects.get(username=username, email=email)
+                u_f.is_active = False
+                u_f.save()
                 code = generate_code()
                 if Profile.objects.filter(code=code):
                     # for p in Profile.objects.filter(code=code):
@@ -56,7 +58,7 @@ def register_user(request):
                     return redirect('index')
                 else:
                     form.add_error(None, 'Аккаунт не активирован')
-                    return redirect('/activation/')
+                    return redirect('activation')
 
             else:
                 return render(request, 'register/register.html', {'form': form})
@@ -84,31 +86,64 @@ def Login(request):
     return render(request, 'register/login.html', {'form':form, 'title':'войти'})
 
 
-'''активация аакаунта'''
+'''активация аккаунта'''
+# def activation_user(request):
+#     if  request.user.is_authenticated:
+#         return redirect('index')
+#     else:
+#         if request.method == 'POST':
+#             form = ActivationCodeForm(request.POST)
+#             if form.is_valid():
+#                 code_page = str(form.cleaned_data.get("code_page"))
+#                 if Profile.objects.filter(code=code_page):
+#                     profile = Profile.objects.get(code=code_page)
+#                 else:
+#                     form.add_error(None, "Код подтверждения не совпадает.")
+#                     return render(request, 'register/activation.html', {'form': form})
+#                 if profile.user.is_active == False:
+#                     profile.user.is_active = True
+#                     profile.user.save()
+#                     login(request, profile.user)
+#                     profile.delete()
+#                     return redirect('index')
+#                 else:
+#                     form.add_error(None, 'Неизвестный или отключенный аккаунт')
+#                     return render(request, 'register/activation.html', {'form': form})
+#             else:
+#                 return render(request, 'register/activation.html', {'form': form})
+#         else:
+#             form = ActivationCodeForm()
+#             return render(request, 'register/activation.html', {'form': form})
+
+
+
 def activation_user(request):
-    if  request.user.is_authenticated:
-        return redirect('/index/')
-    else:
-        if request.method == 'POST':
-            form = ActivationCodeForm(request.POST)
-            if form.is_valid():
-                code_page = form.cleaned_data.get("code_page")
-                if Profile.objects.filter(code=code_page):
-                    profile = Profile.objects.get(code=code_page)
-                else:
-                    form.add_error(None, "Код подтверждения не совпадает.")
-                    return render(request, 'registration/activation_code_form.html', {'form': form})
-                if profile.user.is_active == False:
-                    profile.user.is_active = True
-                    profile.user.save()
-                    login(request, profile.user)
-                    profile.delete()
-                    return redirect('/')
-                else:
-                    form.add_error(None, 'Неизвестный или отключенный аккаунт')
-                    return render(request, 'register/activation.html', {'form': form})
+
+    if request.method == 'POST':
+        print('метод пост')
+        form = ActivationCodeForm(request.POST)
+        if form.is_valid():
+            print('форма валидна')
+            # code_page = form.cleaned_data.get('code_on_page')
+            code_page = request.POST.get('code_on_page')
+            print(f'code_page - {code_page}, type - {type(code_page)}')
+            if Profile.objects.filter(code=code_page):
+                profile = Profile.objects.get(code=code_page)
             else:
+                form.add_error(None, "Код подтверждения не совпадает.")
+                return render(request, 'register/activation.html', {'form': form})
+            if profile.user.is_active == False:
+                profile.user.is_active = True
+                profile.user.save()
+                login(request, profile.user)
+                profile.delete()
+                return redirect('index')
+            else:
+                form.add_error(None, 'Неизвестный или отключенный аккаунт')
                 return render(request, 'register/activation.html', {'form': form})
         else:
-            form = ActivationCodeForm()
-            return render(request, 'registration/activation_code_form.html', {'form': form})
+            print('форма не валидна')
+            return render(request, 'register/activation.html', {'form': form})
+    else:
+        form = ActivationCodeForm()
+        return render(request, 'register/activation.html', {'form': form})
