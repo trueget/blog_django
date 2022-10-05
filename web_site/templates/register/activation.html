@@ -19,12 +19,7 @@
                     {% csrf_token %}
                     <center><input name="code_on_page" class="activation" type="number"></center>
                     <center><button type="submit">отправить</button></center>
-                    <!-- <center><p style="font-size:15.5px;font-weight: bold;margin-top:40px;">Привет, {{username}}. Мы отправили код на указанную Вами почту.</p></center> -->
-                    {% if code %}
-                        <center><p style="font-size:15.5px;font-weight: bold;margin-top:40px;">{{ code }}</p></center>
-                    {% else %}
-                        <center><p style="font-size:15.5px;font-weight: bold;margin-top:40px;">Вы пока ничего не ввели</p></center>
-                    {% endif %}
+                    <center><p style="font-size:15.5px;font-weight: bold;margin-top:40px;">Введите код подтверждения</p></center>
                 </form>
             </section>
         </div>

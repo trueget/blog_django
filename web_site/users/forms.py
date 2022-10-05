@@ -16,7 +16,7 @@ class UserRegisterForm(UserCreationForm):
 
 class ActivationCodeForm(forms.Form):
 
-    code = forms.ImageField(required=True, max_length=50, label='Код подтвержения', widget=forms.PasswordInput(attrs={'class': 'form-control'}),  error_messages={'required': 'Введите код!','max_length': 'Максимальное количество символов 50'})
+    code = forms.CharField(required=True, max_length=6, label='Код подтвержения', widget=forms.PasswordInput(attrs={'class': 'form-control'}),  error_messages={'required': 'Введите код!','max_length': 'Максимальное количество символов 50'})
 
     def save(self, commit=True):
         profile = super(ActivationCodeForm, self).save(commit=False)
