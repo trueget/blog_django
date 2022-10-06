@@ -1,6 +1,10 @@
+from cProfile import label
+from dataclasses import fields
+from queue import Empty
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
@@ -16,12 +20,15 @@ class UserRegisterForm(UserCreationForm):
 
 class ActivationCodeForm(forms.Form):
 
-    code = forms.CharField(required=True, max_length=6, label='Код подтвержения', widget=forms.PasswordInput(attrs={'class': 'form-control'}),  error_messages={'required': 'Введите код!','max_length': 'Максимальное количество символов 50'})
+    code = forms.IntegerField(required=True, label=False)
 
-    def save(self, commit=True):
-        profile = super(ActivationCodeForm, self).save(commit=False)
-        profile.code = self.cleaned_data['code_on_page']
+    class Meta:
+        model = Profile
 
-        if commit:
-            profile.save()
-        return profile
+    # def save(self, commit=True):
+    #     profile = super(ActivationCodeForm, self).save(commit=False)
+    #     profile.code = self.cleaned_data['code_on_page']
+
+    #     if commit:
+    #         profile.save()
+    #     return profile

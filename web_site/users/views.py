@@ -7,7 +7,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 import random
-import datetime
 
 from django.core.mail import send_mail
 # Create your views here.
@@ -30,20 +29,12 @@ def register_user(request):
                 my_password1 = form.cleaned_data.get('password1')
                 email = form.cleaned_data.get('email')
 
-                u_f = User.objects.get(username=username, email=email)
-                u_f.is_active = False
-                u_f.save()
+                user_active = User.objects.get(username=username, email=email)
+                user_active.is_active = False
+                user_active.save()
                 code = generate_code()
-                if Profile.objects.filter(code=code):
-                    # for p in Profile.objects.filter(code=code):
-                    #     p.delete()
-                    code = generate_code()
 
-
-                user = authenticate(username=username, password=my_password1)
-                now = datetime.datetime.now()
-
-                Profile.objects.create(user=u_f, code=code, date=now)
+                user = authenticate(request, username=username, password=my_password1)
 
                 send_mail(
                 'Регистрация на сайте blog-django',
@@ -52,14 +43,12 @@ def register_user(request):
                 [email],
                 fail_silently=False,
                 )
-
                 if user and user.is_active:
                     login(request, user)
                     return redirect('index')
                 else:
                     form.add_error(None, 'Аккаунт не активирован')
                     return redirect('activation')
-
             else:
                 return render(request, 'register/register.html', {'form': form})
         else:
@@ -87,41 +76,16 @@ def Login(request):
 
 
 '''активация аккаунта'''
-# def activation_user(request):
-#     if  request.user.is_authenticated:
-#         return redirect('index')
-#     else:
-#         if request.method == 'POST':
-#             form = ActivationCodeForm(request.POST)
-#             if form.is_valid():
-#                 code_page = str(form.cleaned_data.get("code_page"))
-#                 if Profile.objects.filter(code=code_page):
-#                     profile = Profile.objects.get(code=code_page)
-#                 else:
-#                     form.add_error(None, "Код подтверждения не совпадает.")
-#                     return render(request, 'register/activation.html', {'form': form})
-#                 if profile.user.is_active == False:
-#                     profile.user.is_active = True
-#                     profile.user.save()
-#                     login(request, profile.user)
-#                     profile.delete()
-#                     return redirect('index')
-#                 else:
-#                     form.add_error(None, 'Неизвестный или отключенный аккаунт')
-#                     return render(request, 'register/activation.html', {'form': form})
-#             else:
-#                 return render(request, 'register/activation.html', {'form': form})
-#         else:
-#             form = ActivationCodeForm()
-#             return render(request, 'register/activation.html', {'form': form})
-
-
-
-def activation_user(request, user_id):
+def activation_user(request):
 
     if request.method == 'POST':
-        code = request.POST.get('code_on_page')
-        print(code, type(code))
-        return render(request, 'register/activation.html')
-    else:
-        return render(request, 'register/activation.html')
+        form = ActivationCodeForm(request.POST)
+        if form.is_valid():
+            # form.save()
+            code_on_page = form.cleaned_data.get('code')
+            print(f'валидна - {code_on_page}, тип поля - {type(code_on_page)}')
+        else:
+            print('не валидна')
+
+    form = ActivationCodeForm()
+    return render(request, 'register/activation.html', {'form': form})
