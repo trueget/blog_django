@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, ActivationCodeForm
-from .models import Profile
+from .forms import UserRegisterForm
 from web_site.settings import EMAIL_HOST_USER
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -25,16 +24,16 @@ def register_user(request):
             form = UserRegisterForm(request.POST)
             if form.is_valid():
                 form.save()
+
                 username = form.cleaned_data.get('username')
                 my_password1 = form.cleaned_data.get('password1')
                 email = form.cleaned_data.get('email')
+                code = generate_code()
 
+                '''ставим пользователя неактивным'''
                 user_active = User.objects.get(username=username, email=email)
                 user_active.is_active = False
                 user_active.save()
-                code = generate_code()
-
-                user = authenticate(request, username=username, password=my_password1)
 
                 send_mail(
                 'Регистрация на сайте blog-django',
@@ -43,10 +42,19 @@ def register_user(request):
                 [email],
                 fail_silently=False,
                 )
+
+                '''логинимся и делаем проверку'''
+                user = authenticate(request, username=username, password=my_password1)
+
                 if user and user.is_active:
                     login(request, user)
                     return redirect('index')
                 else:
+                    '''сохраняем переменные в сессии'''
+                    request.session['code'] = code
+                    request.session['username'] = username
+                    request.session['password'] = my_password1
+
                     form.add_error(None, 'Аккаунт не активирован')
                     return redirect('activation')
             else:
@@ -71,21 +79,40 @@ def Login(request):
         else:
             messages.info(request, f'нет такой учетной записи!')
             return render(request, 'register/login.html')
-    form = AuthenticationForm()
-    return render(request, 'register/login.html', {'form':form, 'title':'войти'})
+    else:
+        form = AuthenticationForm()
+        return render(request, 'register/login.html', {'form':form, 'title':'войти'})
 
 
 '''активация аккаунта'''
 def activation_user(request):
 
+    form = 'Введите код подтверждения'
     if request.method == 'POST':
-        form = ActivationCodeForm(request.POST)
-        if form.is_valid():
-            # form.save()
-            code_on_page = form.cleaned_data.get('code')
-            print(f'валидна - {code_on_page}, тип поля - {type(code_on_page)}')
-        else:
-            print('не валидна')
+        code = request.POST.get('code_on_page')
 
-    form = ActivationCodeForm()
-    return render(request, 'register/activation.html', {'form': form})
+        '''получаем данные из сессии'''
+        code_session = request.session.get('code', ' ')
+        user_session = request.session.get('username', ' ')
+        pass_session = request.session.get('password', ' ')
+
+        '''активируем юзера'''
+        if code == code_session:
+            user_active = User.objects.get(username=user_session)
+            user_active.is_active = True
+            user_active.save()
+
+            user = authenticate(request, username=user_session, password=pass_session)
+            if user:
+                login(request, user)
+                return render(request, 'register/activation.html')
+            else:
+                form = 'Пользователь не найден'
+                return render(request, 'register/activation.html', {'form': form})
+
+        else:
+            form = 'Неверный код!'
+            return render(request, 'register/activation.html', {'form': form})
+
+    else:
+        return render(request, 'register/activation.html', {'form': form})

@@ -13,15 +13,18 @@
         <br>
         <div style="width: 90%;max-width:600px;margin: 20px auto;background: #ffffff;">
             <section style="margin: 0 15px;color:#425b76;">
-                <center><h2 style="margin: 40px 30px;text-align: center;">Страница подтверждения регистрации</h2></center>
-                <hr style="border:0;border-top: 1px solid rgba(66,91,118,0.3);max-width: 50%">
-                <form method="POST">
-                    {% csrf_token %}
-                    <!-- <center><input name="code_on_page" class="activation" type="number"></center> -->
-                    <center>{{ form }}</center>
-                    <center><button type="submit">отправить</button></center>
-                    <center><p style="font-size:15.5px;font-weight: bold;margin-top:40px;">Введите код подтверждения</p></center>
-                </form>
+                {% if user.is_authenticated %}
+                    <center><h2 style="margin: 40px 30px;text-align: center;">Регистрация прошла успешно!</h2></center>
+                {% else %}
+                    <center><h2 style="margin: 40px 30px;text-align: center;">Страница подтверждения регистрации</h2></center>
+                    <hr style="border:0;border-top: 1px solid rgba(66,91,118,0.3);max-width: 50%">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <center><input name="code_on_page" class="activation" type="number"></center>
+                        <center><button type="submit">отправить</button></center>
+                        <center><p style="font-size:15.5px;font-weight: bold;margin-top:40px;">{{ form }}</p></center>
+                    </form>
+                {% endif %}
             </section>
         </div>
     </div>

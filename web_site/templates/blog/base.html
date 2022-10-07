@@ -47,8 +47,8 @@
 
      <main>
       <div class="container">
-        {% block window-top %}
-          <div class="window-top">
+      {% block window-top %}
+        <div class="window-top">
             <div class="container-window-top">
               <ul class="nav navi">
                 <li><a href="/articles">СТАТЬИ</a></li>
@@ -62,18 +62,18 @@
             </div>
             <hr>
           </div>
-        {% endblock window-top %}
+          {% endblock window-top %}
 
-        {% block print_state %}{% endblock print_state %}
+          {% block print_state %}{% endblock print_state %}
 
-        {% block create_state %}{% endblock create_state %}
+          {% block create_state %}{% endblock create_state %}
 
-        {% block register_login_logout_email %}{% endblock register_login_logout_email %}
+          {% block register_login_logout_email %}{% endblock register_login_logout_email %}
+          
+          {% block success_register %}{% endblock success_register %}
+
         
-        {% block success_register %}{% endblock success_register %}
-
-        
-      </div>
+        </div>
      </main>
       
 
