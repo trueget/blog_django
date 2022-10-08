@@ -222,3 +222,11 @@ image .form_article{
 
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
+
+.username_main{
+    font-size: 20px;
+    padding: 0px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 20px;
+}

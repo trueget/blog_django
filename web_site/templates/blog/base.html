@@ -25,7 +25,9 @@
               <li><a href="#">ПОМОЩЬ</a></li>
               <li><a href="#"> О НАС</a></li>
             </ul>
-    
+            {% if user.is_authenticated %}
+              <p class="username_main">{{ user }}</p>
+            {% endif %}
             <form class="input-search" role="search">
               <input type="search" class="form-control" placeholder="Поиск по тексту..." aria-label="Search">
             </form>
@@ -64,12 +66,16 @@
           </div>
           {% endblock window-top %}
 
+          <!-- блок распечатки статтей -->
           {% block print_state %}{% endblock print_state %}
 
+          <!-- блок создания статьи -->
           {% block create_state %}{% endblock create_state %}
 
+          <!-- блок подтверждения регистрации, самой регистрации, аутентификации -->
           {% block register_login_logout_email %}{% endblock register_login_logout_email %}
-          
+
+          <!-- блок подтверждения успешной регистрации -->
           {% block success_register %}{% endblock success_register %}
 
         
