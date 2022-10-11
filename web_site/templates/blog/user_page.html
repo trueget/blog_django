@@ -1,5 +1,20 @@
+<!-- страница данных пользователя -->
 {% extends 'blog/base.html' %}
 
 {% block title %}
 {{ user }}
 {% endblock title %}
+
+
+{% block data_user %}
+<div class="window-bot">
+    <h2>Ваши персональные данные!</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form }}<br>
+
+        {{ profile_form. }}<br>
+        <button type="submit">Сохранить изменения!</button><br>
+    </form>
+</div>
+{% endblock data_user %}

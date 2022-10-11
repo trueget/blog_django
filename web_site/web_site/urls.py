@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path
 from blog import views as blog_views
 from users import views as user_views
+from user_page import views as user_page_views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth
@@ -21,7 +22,7 @@ urlpatterns = [
     path('login/', user_views.Login, name='login'),
     path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
     path('activation/', user_views.activation_user, name='activation'),
-
+    path('user_page/', user_page_views.update_profile, name='user_page'),
 ]
 
 if settings.DEBUG:
