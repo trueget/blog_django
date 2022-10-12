@@ -26,7 +26,7 @@
               <li><a href="#"> О НАС</a></li>
             </ul>
             {% if user.is_authenticated %}
-              <p class="username_main">{{ user }}</p>
+              <a href="user_page" class="username_main">{{ user }}</a>
             {% endif %}
             <form class="input-search" role="search">
               <input type="search" class="form-control" placeholder="Поиск по тексту..." aria-label="Search">

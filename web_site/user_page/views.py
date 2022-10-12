@@ -9,18 +9,15 @@ from django.contrib import messages
 @transaction.atomic
 def update_profile(request):
     if request.method == 'POST':
-        user_form = UserProfileForm(request.POST, instance=request.user.profile)
-        # profile_form = ProfileForm(request.POST, instance=request.user)
-        if user_form.is_valid():
-            user_form.save()
-            # profile_form.save()
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
             messages.success(request, 'Ваш профиль был успешно обновлен!')
             return redirect('user_page')
         else:
             messages.error(request, 'Пожалуйста, исправьте ошибки.')
     else:
-        user_form = UserProfileForm(instance=request.user.profile)
-        # profile_form = ProfileForm(instance=request.user)
+        form = UserProfileForm(instance=request.user)
     return render(request, 'blog/user_page.html', {
-        'user_form': user_form
+        'form': form
     })

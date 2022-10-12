@@ -8,13 +8,12 @@
 
 {% block data_user %}
 <div class="window-bot">
-    <h2>Ваши персональные данные!</h2>
-    <form method="POST" enctype="multipart/form-data">
+    <center><h2>Ваши персональные данные!</h2></center>
+    <center><form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ user_form }}<br>
-
-        {{ profile_form. }}<br>
+        <p>{{ form.user_avatar }}</p>
+        <p>{{ form.about_me }}</p>
         <button type="submit">Сохранить изменения!</button><br>
-    </form>
+    </form></center>
 </div>
 {% endblock data_user %}
