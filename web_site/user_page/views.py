@@ -1,23 +1,21 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from .forms import UserProfileForm
-from django.contrib import messages
 
 # Create your views here.
 @login_required
 @transaction.atomic
 def update_profile(request):
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=request.user)
+        form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Ваш профиль был успешно обновлен!')
-            return redirect('user_page')
+            print('Ваш профиль был успешно обновлен!')
+            return render(request, 'blog/user_page.html', {'form': form})
         else:
-            messages.error(request, 'Пожалуйста, исправьте ошибки.')
+            print('Форма не валидна')
+            return render(request, 'blog/user_page.html', {'form': form})
     else:
-        form = UserProfileForm(instance=request.user)
-    return render(request, 'blog/user_page.html', {
-        'form': form
-    })
+        form = UserProfileForm()
+        return render(request, 'blog/user_page.html', {'form': form})
