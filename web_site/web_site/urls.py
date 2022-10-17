@@ -1,4 +1,3 @@
-from tempfile import template
 from django.contrib import admin
 from django.urls import path
 from blog import views as blog_views
@@ -23,9 +22,8 @@ urlpatterns = [
     path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
     path('activation/', user_views.activation_user, name='activation'),
     path('user_page/', user_page_views.update_profile, name='user_page'),
+
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-'''path('admin/', views.admin.site.urls),'''

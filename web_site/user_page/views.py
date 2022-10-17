@@ -1,4 +1,3 @@
-import profile
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -28,11 +27,11 @@ def update_profile(request):
             return render(request, 'blog/user_page.html', {'form': form})
     else:
         form = UserProfileForm()
-        return render(request, 'blog/user_page.html', {'form': form})
-
-
-def my_profile(request):
-    my_data = UserProfile.objects.get(user=request.user.username)
-    print(my_data)
-    form = {'avatar': my_data.user_avatar, 'info': my_data.about_me}
-    return render(request, 'blog/user_page.html', {'form': form})
+        user = User.objects.get(username=request.user.username)
+        if UserProfile.objects.get(user=user.id):
+            print('профиль')
+            data_user = UserProfile.objects.get(user=user.id)
+        else:
+            print('непрофиль')
+            data_user = None
+        return render(request, 'blog/user_page.html', {'form': form, 'data_user': data_user, 'user': user})

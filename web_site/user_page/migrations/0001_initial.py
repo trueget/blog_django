@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user_avatar', models.ImageField(default='imgusers/avatar.jpg', upload_to='imgusers/')),
+                ('user_avatar', models.ImageField(null=True, upload_to='imgusers/')),
                 ('about_me', models.TextField(blank=True, null=True)),
                 ('user_name', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],

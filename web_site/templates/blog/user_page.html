@@ -8,11 +8,31 @@
 
 {% block data_user %}
 <div>
-    <img>{{ avatar }}</img>
-    <p>{{ info }}</p>
+    <!-- <img>{{ avatar }}</img> -->
+    <p>{{ data_user.user }}</p>
 </div>
 <div class="window-bot">
     <center><h2>Ваши персональные данные!</h2></center>
+    <div class="data_user">
+        <div class="left-data-user">
+            <p>Ваша фотография</p>
+            {% if data_user.user_avatar %}
+                <img class="user_avatar" src="/media/imgusers/{{ data_user.user_avatar }}">
+            {% else %}
+                <img class="user_avatar" src="/media/imgusers/avatar.jpg">
+            {% endif %}
+        </div>
+        <div class="right-data-user">
+            <p>Мой ник - {{ data_user.user }}</p>
+            <p>{{ user.date_joined }} был зарегистрирован</p>
+            <p>Моё имя - {{ user.first_name }}</p>
+            <p>Моя фамилия - {{ user.last_name }}</p>
+            <p>Мой email - {{ user.email }}</p>
+            <p>Мой номер телефона - {{ user.phone_no }}</p>
+            <p>Обо мне - {{ data_user.about_me }}</p>
+        </div>
+    </div>
+    <br>
     <center><form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <p>{{ form.user_avatar }}</p>
