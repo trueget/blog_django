@@ -7,17 +7,13 @@
 
 
 {% block data_user %}
-<div>
-    <!-- <img>{{ avatar }}</img> -->
-    <p>{{ data_user.user }}</p>
-</div>
 <div class="window-bot">
     <center><h2>Ваши персональные данные!</h2></center>
     <div class="data_user">
         <div class="left-data-user">
             <p>Ваша фотография</p>
             {% if data_user.user_avatar %}
-                <img class="user_avatar" src="/media/imgusers/{{ data_user.user_avatar }}">
+                <img class="user_avatar" src="{{ data_user.user_avatar.url }}">
             {% else %}
                 <img class="user_avatar" src="/media/imgusers/avatar.jpg">
             {% endif %}

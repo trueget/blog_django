@@ -239,3 +239,7 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;} */
 .user_avatar{
     width: 300px;
 }
+
+.left-data-user{
+    margin-right: 50px;
+}

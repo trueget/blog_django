@@ -40,7 +40,7 @@ def create_article(request):
     return render(request, 'blog/create_article.html', data)
 
 
-'''удаление данных из бд'''
+'''удаление статтей из бд'''
 def delete(request, id):
     try:
         article = Articles.objects.get(id=id)
