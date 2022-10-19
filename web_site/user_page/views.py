@@ -7,6 +7,7 @@ from django.db import transaction
 
 # Create your views here.
 @login_required
+@transaction.atomic
 def update_profile(request):
     error = ''
     if request.method == 'POST':
@@ -26,8 +27,5 @@ def update_profile(request):
     else:
         form = UserProfileForm()
         user = User.objects.get(username=request.user.username)
-        if UserProfile.objects.get(user=user.id):
-            data_user = UserProfile.objects.get(user=user.id)
-        else:
-            data_user = None
+        data_user, created = UserProfile.objects.get_or_create(user=user)
         return render(request, 'blog/user_page.html', {'form': form, 'data_user': data_user, 'user': user,  'error': error })

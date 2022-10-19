@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'user_page',
+    'news',
 ]
 
 # AUTH_USER_MODEL = 'users.Profile'
