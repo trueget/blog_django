@@ -243,3 +243,31 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 .left-data-user{
     margin-right: 50px;
 }
+
+.img-news{
+    width: 150px;
+}
+
+.news-block{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.news-block-text{
+    max-width: 80%;
+}
+
+.rg-ru{
+    color: #1017dc;
+}
+
+.news-block-change{
+    display: flex;
+    justify-content: space-around;
+}
+
+.img_news{
+    width: 100%;
+}

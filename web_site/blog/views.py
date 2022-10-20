@@ -15,11 +15,6 @@ def index_page(request):
     return render(request, 'blog/index.html')
 
 
-'''страница новостей'''
-def news_page(request):
-    return render(request, 'blog/index.html')
-
-
 '''запись данных из формы в бд'''
 def create_article(request):
     error = ''
