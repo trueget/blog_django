@@ -56,11 +56,15 @@
                 <li><a href="{% url 'articles' %}">СТАТЬИ</a></li>
                 <li><a href="#">АВТОРЫ</a></li>
                 <li><a href="{% url 'news' %}">НОВОСТИ</a></li>
-                <li><a href="#">МОИ ПУБЛИКАЦИИ</a></li>
+                {% if user.is_authenticated %}
+                  <li><a href="#">МОИ ПУБЛИКАЦИИ</a></li>
+                {% endif %}
               </ul>
-              <ul class="nav navi">
-                <li><a href="{% url 'create_article' %}">ОПУБЛИКОВАТЬ СТАТЬЮ</a></li>
-              </ul>
+              {% if user.is_authenticated %}
+                <ul class="nav navi">
+                  <li><a href="{% url 'create_article' %}">ОПУБЛИКОВАТЬ СТАТЬЮ</a></li>
+                </ul>
+              {% endif %}
             </div>
             <hr>
           </div>
