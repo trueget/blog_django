@@ -46,7 +46,7 @@ header{
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: #6b8e23;
+    background-color: #7dab1f;
 }
 
 .wrapper-header, .nav{
@@ -115,7 +115,7 @@ a:hover{
     font-family: inherit;
     font-size: 15px;
     padding: 10px 10px;
-    background-color: #DCDCDC;
+    background-color: white;
 
 }
 
@@ -124,7 +124,7 @@ a:hover{
 }
 
 .btn-login:hover{
-    background-color: #6b8e23;
+    background-color: #DCDCDC;
 }
 
 .btn-login{
@@ -215,9 +215,9 @@ image .form_article{
 .activation{
     font-size: 25px;
     letter-spacing: 10px;
-    width: 150px; 
-    height: 30px; 
-    color: #425b76;
+    width: 50%!important; 
+    color: black;
+    margin-left: auto;
 }
 
 input[type='number']::-webkit-outer-spin-button,
@@ -274,12 +274,12 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 
 .p-register{
     margin: 0;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 18px;
     color: #111;
     font-family: Arial,sans-serif;
     font-weight: 600;
-    margin-top: 20px;
+    margin-top: 15px;
     padding-left: 2px;
 }
 
@@ -291,15 +291,15 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 }
 
 .input-register>input:focus{
-    border: 1px solid #90c525;
-    box-shadow: 0px 0px 3px 2px #90c525;
+    border: 1px solid #7dab1f;
+    box-shadow: 0px 0px 3px 2px #7dab1f;
 }
 
 .btn-register{
     margin-top: 15px;
     width: 300px;
     height: 30px;
-    background-color: #90c525;
+    background-color: #7dab1f;
     border: 1px solid #a6a6a6;
     border-radius: 2px;
 }
@@ -316,13 +316,14 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
     border-radius: 4px;
     position: relative;
     padding: 14px 18px;
-    border: 1px solid #a6a6a6;
+    border: 1px solid #7dab1f;
     margin: 0 auto;
 }
 
 .title-register-form{
     margin: 0;
     font-size: 30px;
+    text-align: center;
 }
 
 .register-login{
@@ -331,4 +332,22 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 
 .register-text-login{
     font-size: 12px;
+}
+
+.register-lofin-lable{
+    display: flex;
+    justify-content: center;
+}
+
+.text-lable{
+    margin: 0;
+    font-size: 30px;
+}
+
+.text-lable-left{
+    margin-right: 10px;
+}
+
+.text-lable-middle{
+    margin-right: 2px;
 }
