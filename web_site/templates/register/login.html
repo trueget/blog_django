@@ -12,16 +12,16 @@
 
 {% block register_login_logout_email %}
     <div class="register-lofin-lable">
-        <p class="text-lable text-lable-left">My</p>
+        <p class="text-lable text-lable-left p-register">My</p>
         <div><img class="text-lable-middle" src="{% static 'images/logo-green.png' %}" height="40" width="40" alt=""></div>
-        <p class="text-lable">log</p>
+        <p class="text-lable p-register">log</p>
     </div>
     <div class="authenticate">
             <form method="POST">
             {% csrf_token %}
                 <div class="item-register-form">
                     <div class="register-form">
-                        <p class="title-register-form">Войти</p>
+                        <p class="title-register-form p-register">Войти</p>
                         <p class="p-register">Ник</p>
                         <div class="input-register">{{ form.username }}</div>
                         <p class="p-register">Пароль</p>

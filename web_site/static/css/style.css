@@ -37,7 +37,8 @@ body{
     overflow-x: hidden;
     opacity: 1;
     background-color: #DCDCDC;
-    font-family: Fira Sans,sans-serif;
+    /* font-family: sans-serif; */
+    font-family: Arial,sans-serif;
     letter-spacing: 0.5px;
     /* font-family: Andale Mono, monospace; */
 }
@@ -81,7 +82,7 @@ h2{
 }
 
 a:hover{
-    color: #8c2d2d;
+    color: #1017dc;
 }
 
 .nav li a{
@@ -92,11 +93,7 @@ a:hover{
 }
 
 .nav li a:hover{
-    color: #8c2d2d;
-}
-
-.navi li a:hover{
-    color: #8c2d2d;
+    color: #1017dc;
 }
 
 .container{
@@ -110,7 +107,7 @@ a:hover{
 }
 
 .form-control, .btn-login{
-    border: 1px solid #8c2d2d;
+    border: 1px solid #1017dc;
     border-radius: 0.375rem;
     font-family: inherit;
     font-size: 15px;
@@ -155,7 +152,7 @@ main{
 
 hr {
     border: none; /* Убираем границу */
-    background-color: #000; /* Цвет линии */
+    background-color: #1017dc; /* Цвет линии */
     color: #000; /* Цвет линии для IE6-7 */
     height: 2px; /* Толщина линии */
    }
@@ -173,7 +170,7 @@ hr {
 }
 
 .avtor:hover{
-    color: #8c2d2d;
+    color: #1017dc;
 }
 
 .avtor-date{
@@ -274,10 +271,10 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 
 .p-register{
     margin: 0;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 18px;
     color: #111;
-    font-family: Arial,sans-serif;
+    font-family: "Gill Sans", sans-serif;
     font-weight: 600;
     margin-top: 15px;
     padding-left: 2px;
@@ -322,7 +319,7 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 
 .title-register-form{
     margin: 0;
-    font-size: 30px;
+    font-size: 24px;
     text-align: center;
 }
 
@@ -332,6 +329,7 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 
 .register-text-login{
     font-size: 12px;
+    font-style: italic;
 }
 
 .register-lofin-lable{
@@ -342,6 +340,7 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 .text-lable{
     margin: 0;
     font-size: 30px;
+    margin-top: 15px;
 }
 
 .text-lable-left{
@@ -350,4 +349,21 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 
 .text-lable-middle{
     margin-right: 2px;
+}
+
+.i-png{
+    width: 14px;
+}
+
+.mini-text-i-png{
+    margin: 0;
+    margin-top: 2px;
+}
+
+.wrapper-i{
+    display: flex;
+}
+
+.wrapper-activation{
+    margin-top: auto;
 }

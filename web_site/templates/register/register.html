@@ -11,9 +11,9 @@
 
 {% block register_login_logout_email %}
     <div class="register-lofin-lable">
-        <p class="text-lable text-lable-left">My</p>
+        <p class="text-lable text-lable-left p-register">My</p>
         <div><img class="text-lable-middle" src="{% static 'images/logo-green.png' %}" height="40" width="40" alt=""></div>
-        <p class="text-lable">log</p>
+        <p class="text-lable p-register">log</p>
     </div>
     <div class="authenticate">
         <div>
@@ -21,13 +21,17 @@
             {% csrf_token %}
                 <div class="item-register-form">
                     <div class="register-form">
-                        <p class="title-register-form">Регистрация</p>
+                        <p class="title-register-form p-register">Регистрация</p>
                         <p class="p-register">Ник</p>
                         <div class="input-register">{{ form.username }}</div>
                         <p class="p-register">Email</p>
                         <div class="input-register">{{ form.email }}</div>
                         <p class="p-register">Пароль</p>
                         <div class="input-register">{{ form.password1 }}</div>
+                        <div class="wrapper-i">
+                            <img class="i-png" src="{% static 'images/i.png' %}" alt="">
+                            <p class="mini-text-i-png register-text-login">не менее 6 символов</p>
+                        </div>
                         <p class="p-register">Повторите пароль</p>
                         <div class="input-register">{{ form.password2 }}</div>
                     </div>
