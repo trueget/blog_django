@@ -8,14 +8,19 @@
 
 {% block news_page %}
 
-    <a class="rg-ru" href="https://rg.ru/"><center><h2>Все данные новостей были взяты с портала rg.ru</h2></center></a>
     {% for news in data %}
     <div class="window-bot">
 
         <div class="news-block">
             <div class="news-block-text">
-                <p>{{ news.0 }}</p>
-                <a href="{{ news.2 }}"><h3>{{ news.1 }}</h3></a>
+                <div class="wrapper-i">
+                    <p class="date">{{ news.0 }}</p>
+                    <div class="wrapper-i">
+                        <img class="i-png" src="{% static 'images/i.png' %}" alt="">
+                        <p class="mini-text-i-png register-text-login">Все данные были взяты с новостного портала <a class="register-login" href="{% url 'login' %}">rg.ru</a></p>
+                    </div>
+                </div>
+                <a href="{{ news.2 }}"><p class="article-title" >{{ news.1 }}</p></a>
             </div>
             <div class="news-block-img">
                 {% if news.3 %}

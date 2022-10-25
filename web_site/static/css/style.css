@@ -81,8 +81,12 @@ h2{
     margin-bottom: 0px;
 }
 
-a:hover{
+.main-word a:hover{
     color: #1017dc;
+}
+
+a:hover{
+    color: #0066c0;
 }
 
 .nav li a{
@@ -148,6 +152,8 @@ main{
     border: 1px solid #dedede;
     background-color: #fff;
     margin-bottom: 15px;
+    border: 1px solid #7dab1f;
+    border-radius: 4px;
 }
 
 hr {
@@ -169,8 +175,13 @@ hr {
     color: #000;
 }
 
+.date{
+    color: #777;
+    font-size: 14px;
+}
+
 .avtor:hover{
-    color: #1017dc;
+    color: #0066c0;
 }
 
 .avtor-date{
@@ -226,6 +237,7 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
     margin-bottom: 0;
     margin-top: 0;
     margin-right: 20px;
+    color: #1017dc
 }
 
 .data_user{
@@ -257,7 +269,7 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 }
 
 .rg-ru{
-    color: #1017dc;
+    color: #0066c0;
 }
 
 .news-block-change{
@@ -366,4 +378,9 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 
 .wrapper-activation{
     margin-top: auto;
+}
+.article-title{
+    font-family: Monospace;
+    font-size: 20px;
+    font-weight: 600;
 }

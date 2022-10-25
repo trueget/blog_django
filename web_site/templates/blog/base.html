@@ -19,11 +19,11 @@
               <li>
                 <a href="/" class="logo-home"><img src="{% static 'images/logo.png' %}" height="40" width="40" alt=""></a>
               </li>
-              <li><a href="/">Домой</a></li>
-              <li><a href="#">ФУНКЦИИ</a></li>
-              <li><a href="#">ЦЕНЫ</a></li>
-              <li><a href="#">ПОМОЩЬ</a></li>
-              <li><a href="#"> О НАС</a></li>
+              <li><a class="main-word" href="/">Домой</a></li>
+              <li><a class="main-word" href="#">Функции</a></li>
+              <li><a class="main-word" href="#">Помощь</a></li>
+              <li><a class="main-word" href="#"></a></li>
+              <li><a class="main-word" href="#"></a></li>
             </ul>
             {% if user.is_authenticated %}
               <a href="{% url 'user_page' %}" class="username_main">{{ user }}</a>
@@ -34,7 +34,7 @@
             {% if user.is_authenticated %}
               {% block user %}
                 <div class="btn">
-                  <a href="{% url 'logout' %}"><button class="btn-login"></>Выйти</button></a>
+                  <a href="{% url 'logout' %}"><button class="btn-login">Выйти</button></a>
                 </div>
               {% endblock user %}
             {% else %}
@@ -53,16 +53,16 @@
         <div class="window-top">
             <div class="container-window-top">
               <ul class="nav navi">
-                <li><a href="{% url 'articles' %}">СТАТЬИ</a></li>
-                <li><a href="#">АВТОРЫ</a></li>
-                <li><a href="{% url 'news' %}">НОВОСТИ</a></li>
+                <li><a class="main-word" href="{% url 'articles' %}">Статьи</a></li>
+                <li><a class="main-word" href="#">Авторы</a></li>
+                <li><a class="main-word" href="{% url 'news' %}">Новости</a></li>
                 {% if user.is_authenticated %}
-                  <li><a href="#">МОИ ПУБЛИКАЦИИ</a></li>
+                  <li><a class="main-word" href="#">Мои публикации</a></li>
                 {% endif %}
               </ul>
               {% if user.is_authenticated %}
                 <ul class="nav navi">
-                  <li><a href="{% url 'create_article' %}">ОПУБЛИКОВАТЬ СТАТЬЮ</a></li>
+                  <li><a class="c" href="{% url 'create_article' %}">Опубликовать статью</a></li>
                 </ul>
               {% endif %}
             </div>
