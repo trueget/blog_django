@@ -9,7 +9,6 @@
         <h2>Форма  по добавлению статьи</h2>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.nick_name }}<br>
             {{ form.name_article }}<br>
             {{ form.img_article }}<br>
             {{ form.text_article }}<br>

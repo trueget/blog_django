@@ -27,7 +27,7 @@ def register_user(request):
                 form.save()
 
                 username = form.cleaned_data.get('username')
-                my_password1 = form.cleaned_data.get('password1')
+                my_password = form.cleaned_data.get('password1')
                 email = form.cleaned_data.get('email')
                 code = generate_code()
 
@@ -45,7 +45,7 @@ def register_user(request):
                 )
 
                 '''логинимся и делаем проверку'''
-                user = authenticate(request, username=username, password=my_password1)
+                user = authenticate(request, username=username, password=my_password)
 
                 if user and user.is_active:
                     login(request, user)
@@ -54,7 +54,7 @@ def register_user(request):
                     '''сохраняем переменные в сессии'''
                     request.session['code'] = code
                     request.session['username'] = username
-                    request.session['password'] = my_password1
+                    request.session['password'] = my_password
 
                     form.add_error(None, 'Аккаунт не активирован')
                     return redirect('activation')

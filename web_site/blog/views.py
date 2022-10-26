@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import ArticlesForm
 from .models import Articles
+from django.contrib.auth.models import User
 
 
 '''страница статтей
@@ -17,11 +18,20 @@ def index_page(request):
 
 '''запись данных из формы в бд'''
 def create_article(request):
+    user = User.objects.get(username=request.user.username)
+    print(user)
     error = ''
     if request.method == 'POST':
         form = ArticlesForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            made_article = Articles.objects.create(username=user)
+            made_article.name_article = form.cleaned_data['name_article']
+            made_article.img_article = form.cleaned_data['img_article']
+            made_article.text_article = form.cleaned_data['text_article']
+            made_article.save()
+            # form.username = user
+            # print(form.username)
+            # form.save()
             return redirect('/')
         else:
             error = 'Форма была неверной!'
@@ -44,3 +54,8 @@ def delete(request, id):
         return render(request, 'blog/index.html')
     except Articles.DoesNotExist:
         return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
+
+
+'''мои публикации'''
+# def my_articles(request, username):
+#     my_article = Articles.objects.all(username=username)

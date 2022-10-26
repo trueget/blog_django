@@ -7,13 +7,9 @@ from django.forms import ModelForm, TextInput, Textarea, ClearableFileInput
 class ArticlesForm(ModelForm):
     class Meta:
         model = Articles
-        fields = ['nick_name', 'name_article', 'img_article', 'text_article']
+        fields = ['name_article', 'img_article', 'text_article']
 
         widgets = {
-            'nick_name': TextInput(attrs={
-                'class': 'form_article',
-                'placeholder': 'Ваш ник'
-            }),
             'name_article': TextInput(attrs={
                 'class': 'form_article',
                 'placeholder': 'Название статьи'

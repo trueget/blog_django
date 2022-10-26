@@ -1,8 +1,8 @@
-<!-- все статьи которые храняться в бд -->
+<!-- все мои публикации -->
 {% extends 'blog/base.html' %}
 
 {% block title %}
-статьи
+мои публикации
 {% endblock title %}
 
 
@@ -12,7 +12,7 @@
             <div class="window-bot">
                 <div id="{{ article.id }}" class="articles-list">
                 <div class="avtor-date">
-                    <a href="#"><p class="avtor">{% block avtor %}{{ article.username }}{% endblock avtor %}</p></a>
+                    <a href="#"><p class="avtor">{% block avtor %}{{ article.nick_name }}{% endblock avtor %}</p></a>
                     <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
                     <div class="delete_article">
                         <a href="delete/{{ article.id }}">Удалить статью</a>
