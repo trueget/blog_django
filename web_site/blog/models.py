@@ -13,4 +13,8 @@ class Articles(models.Model):
     create_date = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __str__(self):
-        return self.username
+        return self.name_article
+
+    class Meta:
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
