@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import ArticlesForm
 from .models import Articles
 from django.contrib.auth.models import User
+from user_page.models import UserProfile
 
 
 '''страница статтей
@@ -29,9 +30,6 @@ def create_article(request):
             made_article.img_article = form.cleaned_data['img_article']
             made_article.text_article = form.cleaned_data['text_article']
             made_article.save()
-            # form.username = user
-            # print(form.username)
-            # form.save()
             return redirect('/')
         else:
             error = 'Форма была неверной!'
@@ -50,12 +48,14 @@ def delete(request, id):
     try:
         article = Articles.objects.get(id=id)
         article.delete()
-        # return HttpResponseRedirect('/')
         return render(request, 'blog/index.html')
     except Articles.DoesNotExist:
         return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
 
 
 '''мои публикации'''
-# def my_articles(request, username):
-#     my_article = Articles.objects.all(username=username)
+def my_articles(request):
+    user = User.objects.get(username=request.user.username)
+    user_profile = UserProfile.objects.get(user=user)
+    articles = Articles.objects.filter(username=user)
+    return render(request, 'blog/my_articles.html', {'my_articles': articles, 'img': user_profile.user_avatar})

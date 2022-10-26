@@ -24,11 +24,18 @@
                         <p class="title-register-form p-register">Войти</p>
                         <p class="p-register">Ник</p>
                         <div class="input-register">{{ form.username }}</div>
+                        {% if error %}
+                            <div class="wrapper-i">
+                                <img class="i-png" src="{% static 'images/i.png' %}" alt="">
+                                <p class="mini-text-i-png register-text-login register-text-login-nick">{{ error }}</p>
+                            </div>
+                            <p class="register-text-login "></p>
+                        {% endif %}
                         <p class="p-register">Пароль</p>
                         <div class="input-register">{{ form.password }}</div>
                     </div>
                     <button class="btn-register" type="submit" >Войти</button>
-                    <p class="register-text-login">У вас ещё нет аккаунта? <a class="register-login" href="{% url 'register' %}">Зарегистрироваться</a></p>
+                        <p class="register-text-login">У вас ещё нет аккаунта? <a class="register-login" href="{% url 'register' %}">Зарегистрироваться</a></p>
                 </div>
             </form>
     </div>

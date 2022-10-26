@@ -1,3 +1,11 @@
+h1, h2, h3, h4, h5, h6, p, ul[class], ol, li, figure, figcaption, blockquote, dl, dd, a {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
 html{
     box-sizing: border-box;
 }
@@ -6,10 +14,6 @@ html, body{
     height: 100%;
 }
 
-ul, li{
-    margin: 0;
-    padding: 0;
-}
 
 *, ::after, ::before {
     box-sizing: border-box;
@@ -57,6 +61,12 @@ header{
 .wrapper-header{
     padding: 10px 0px;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapperheader-right{
+    display: flex;
 }
 
 .nav{
@@ -384,3 +394,13 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
     font-size: 20px;
     font-weight: 600;
 }
+
+p.register-text-login-nick{
+    margin: 0;
+    color: #0066c0;
+    margin-top: 2px;
+}
+
+/* .user-avatar-article{
+    width: 30px;
+} */

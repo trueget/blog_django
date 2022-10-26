@@ -25,23 +25,25 @@
               <li><a class="main-word" href="#"></a></li>
               <li><a class="main-word" href="#"></a></li>
             </ul>
-            {% if user.is_authenticated %}
-              <a href="{% url 'user_page' %}" class="username_main">{{ user }}</a>
-            {% endif %}
-            <form class="input-search" role="search">
-              <input type="search" class="form-control" placeholder="Поиск по тексту..." aria-label="Search">
-            </form>
-            {% if user.is_authenticated %}
-              {% block user %}
+            <div class="wrapperheader-right">
+              {% if user.is_authenticated %}
+                <a href="{% url 'user_page' %}" class="username_main">{{ user }}</a>
+              {% endif %}
+              <form class="input-search" role="search">
+                <input type="search" class="form-control" placeholder="Поиск по тексту..." aria-label="Search">
+              </form>
+              {% if user.is_authenticated %}
+                {% block user %}
+                  <div class="btn">
+                    <a href="{% url 'logout' %}"><button class="btn-login">Выйти</button></a>
+                  </div>
+                {% endblock user %}
+              {% else %}
                 <div class="btn">
-                  <a href="{% url 'logout' %}"><button class="btn-login">Выйти</button></a>
+                  <a href="{% url 'login' %}"><button class="btn-login" >Войти</button></a>
                 </div>
-              {% endblock user %}
-            {% else %}
-              <div class="btn">
-                <a href="{% url 'login' %}"><button class="btn-login" >Войти</button></a>
-              </div>
-            {% endif %}
+              {% endif %}
+            </div>
           </div>
         </div>
       {% endblock header %}
@@ -57,7 +59,7 @@
                 <li><a class="main-word" href="#">Авторы</a></li>
                 <li><a class="main-word" href="{% url 'news' %}">Новости</a></li>
                 {% if user.is_authenticated %}
-                  <li><a class="main-word" href="#">Мои публикации</a></li>
+                  <li><a class="main-word" href="{% url 'my_articles' %}">Мои публикации</a></li>
                 {% endif %}
               </ul>
               {% if user.is_authenticated %}

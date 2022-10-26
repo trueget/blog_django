@@ -69,6 +69,7 @@ def register_user(request):
 
 '''авторизация'''
 def Login(request):
+    error = None
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -78,8 +79,9 @@ def Login(request):
             messages.success(request, f' Добро пожаловать, {username} !!')
             return redirect('/')
         else:
-            messages.info(request, f'нет такой учетной записи!')
-            return render(request, 'register/login.html')
+            form = AuthenticationForm()
+            error = 'Нет такой учетной записи!'
+            return render(request, 'register/login.html', {'form':form, 'title':'войти', 'error': error})
     else:
         form = AuthenticationForm()
         return render(request, 'register/login.html', {'form':form, 'title':'войти'})

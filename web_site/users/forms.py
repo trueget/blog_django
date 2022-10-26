@@ -11,4 +11,5 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
+        app_label = 'Пользователи'
         fields = ['username', 'email', 'password1', 'password2', 'phone_no']

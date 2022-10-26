@@ -7,12 +7,19 @@
 
 
 {% block print_state %}
-    {% if all_articles.count > 0 %}
-        {% for article in all_articles %}
+    {% if my_articles.count > 0 %}
+        {% for article in my_articles %}
             <div class="window-bot">
                 <div id="{{ article.id }}" class="articles-list">
                 <div class="avtor-date">
-                    <a href="#"><p class="avtor">{% block avtor %}{{ article.nick_name }}{% endblock avtor %}</p></a>
+                    <!-- <div class="avatar-width">
+                        {% if img %}
+                            <img class="user-avatar-article" src="{{ img.url }}">
+                        {% else %}
+                            <img class="user-avatar-article" src="/media/imgusers/avatar.jpg">
+                        {% endif %}
+                    </div> -->
+                    <a href="#"><p class="avtor">{% block avtor %}{{ article.username }}{% endblock avtor %}</p></a>
                     <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
                     <div class="delete_article">
                         <a href="delete/{{ article.id }}">Удалить статью</a>
@@ -36,7 +43,7 @@
         {% endfor %}
     {% else %}
         <div class="window-bot">
-            <h2>статтей пока нет!</h2>
+            <center><h3>Вы еще не опубликовали ни одной статьи!</h3></center>
         </div>
     {% endif %}
 {% endblock print_state %}
