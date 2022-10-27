@@ -18,7 +18,7 @@
                         <a href="delete/{{ article.id }}">Удалить статью</a>
                     </div>
                 </div>
-                <p class="article-title" "><h2>{% block name-state %}{{ article.name_article }}{% endblock name-state %}</h2></>
+                <p class="article-title" "><h2>{% block name-state %}{{ article.name_article }}{% endblock name-state %}</h2></p>
                 </div>
 
                 <div>
@@ -30,7 +30,11 @@
                 </div>
 
                 <div>
-                    {% block article_text %}{{ article.text_article }}{% endblock article_text %}
+                    {% block article_text %}
+                        {% for string in article.text_article %}
+                            <p>{{ string }}</p>
+                        {% endfor %}
+                    {% endblock article_text %}
                 </div>
             </div>
         {% endfor %}

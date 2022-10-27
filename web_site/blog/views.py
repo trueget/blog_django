@@ -9,6 +9,8 @@ from user_page.models import UserProfile
 плучение данных из бд и выгрузка на главную страницу'''
 def articles(request):
     all_articles = Articles.objects.order_by('-create_date')
+    for i in all_articles:
+        i.text_article = i.text_article.replace('\r', '').split('\n')
     return render(request, 'blog/articles.html', {'all_articles': all_articles})
 
 
@@ -58,6 +60,8 @@ def my_articles(request):
     user = User.objects.get(username=request.user.username)
     user_profile = UserProfile.objects.get(user=user)
     articles = Articles.objects.filter(username=user)
+    for i in articles:
+        i.text_article = i.text_article.replace('\r', '').split('\n')
     return render(request, 'blog/my_articles.html', {'my_articles': articles, 'img': user_profile.user_avatar})
 
 
