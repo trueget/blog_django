@@ -18,7 +18,7 @@
                         <a href="delete/{{ article.id }}">Удалить статью</a>
                     </div>
                 </div>
-                <p class="article-title" "><h2>{% block name-state %}{{ article.name_article }}{% endblock name-state %}</h2></p>
+                <a href="{% url 'one_article' article.id %}"><p class="article-title"><h2>{% block name-state %}{{ article.name_article }}{% endblock name-state %}</h2></p></a>
                 </div>
 
                 <div>
@@ -32,8 +32,12 @@
                 <div>
                     {% block article_text %}
                         {% for string in article.text_article %}
-                            <p>{{ string }}</p>
+                            {% if forloop.counter0 < 10 %}
+                                <p>{{ string }}</p>
+                            {% endif %}
                         {% endfor %}
+                        <p>...</p>
+                        <a href="{% url 'one_article' article.id %}"><button class="btn-register">Читать статью дальше</button></a>
                     {% endblock article_text %}
                 </div>
             </div>

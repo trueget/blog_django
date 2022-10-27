@@ -14,6 +14,14 @@ def articles(request):
     return render(request, 'blog/articles.html', {'all_articles': all_articles})
 
 
+'''каждая статья отдельно'''
+def one_article(request, id):
+    article = Articles.objects.get(id=id)
+    article.text_article = article.text_article.replace('\r', '').split('\n')
+    return render(request, 'blog/one_article.html', {'article': article})
+
+
+
 '''главная страница'''
 def index_page(request):
     return render(request, 'blog/index.html')
@@ -59,7 +67,7 @@ def delete(request, id):
 def my_articles(request):
     user = User.objects.get(username=request.user.username)
     user_profile = UserProfile.objects.get(user=user)
-    articles = Articles.objects.filter(username=user)
+    articles = Articles.objects.filter(username=user).order_by('-create_date')
     for i in articles:
         i.text_article = i.text_article.replace('\r', '').split('\n')
     return render(request, 'blog/my_articles.html', {'my_articles': articles, 'img': user_profile.user_avatar})

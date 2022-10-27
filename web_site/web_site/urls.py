@@ -18,6 +18,7 @@ urlpatterns = [
 
     path('articles/', blog_views.articles, name='articles'),
     path('my_articles/', blog_views.my_articles, name='my_articles'),
+    path(r'article/id/<int:id>', blog_views.one_article, name='one_article'),
     path(r'articles/delete/<int:id>', blog_views.delete),
 
     path('authors/', blog_views.all_authors, name='authors'),
@@ -27,7 +28,7 @@ urlpatterns = [
     path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
     path('activation/', user_views.activation_user, name='activation'),
 
-    path('user_page/', user_page_views.update_profile, name='user_page'),
+    path('my_page/', user_page_views.update_profile, name='user_page'),
 
     # path('user/<int:user_id>/', user_page_views.update_profile, name='get_profile'),
 

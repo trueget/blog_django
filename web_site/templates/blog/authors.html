@@ -14,7 +14,7 @@
                     <a href="#"><p class="avtor">{% block avtor %}{{ author.username }}{% endblock avtor %}</p></a>
                     <p class="date">{% block datepublished %}{{ author.create_date }}{% endblock datepublished %}</p>
                 </div>
-                <p class="article-title">{% block name-state %}{{ author.name_article }}{% endblock name-state %}</>
+                <a href="{% url 'one_article' author.id %}"><p class="article-title">{% block name-state %}{{ author.name_article }}{% endblock name-state %}</p></a>
             </div>
         </div>
     {% endfor %}

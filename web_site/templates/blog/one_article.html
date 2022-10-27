@@ -1,0 +1,39 @@
+<!-- все статьи которые храняться в бд -->
+{% extends 'blog/base.html' %}
+
+{% block title %}
+{{ article.name_article }}
+{% endblock title %}
+
+
+{% block print_state %}
+    <div class="window-bot">
+        <div id="{{ article.id }}" class="articles-list">
+        <div class="avtor-date">
+            <a href="#"><p class="avtor">{% block avtor %}{{ article.username }}{% endblock avtor %}</p></a>
+            <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
+            <div class="delete_article">
+                <a href="delete/{{ article.id }}">Удалить статью</a>
+            </div>
+        </div>
+        <p class="article-title"><h2>{% block name-state %}{{ article.name_article }}{% endblock name-state %}</h2></p>
+        </div>
+
+        <div>
+            {% block image_article %}
+                {% if article.img_article %}
+                    <img class="img_article" src="{{ article.img_article.url }}">
+                {% endif %}
+            {% endblock image_article %}
+        </div>
+
+        <div>
+            {% block article_text %}
+                {% for string in article.text_article %}
+                    <p>{{ string }}</p>
+                {% endfor %}
+            {% endblock article_text %}
+        </div>
+    </div>
+
+{% endblock print_state %}
