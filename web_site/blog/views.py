@@ -53,9 +53,14 @@ def delete(request, id):
         return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
 
 
-'''мои публикации'''
+'''публикации пользователя'''
 def my_articles(request):
     user = User.objects.get(username=request.user.username)
     user_profile = UserProfile.objects.get(user=user)
     articles = Articles.objects.filter(username=user)
     return render(request, 'blog/my_articles.html', {'my_articles': articles, 'img': user_profile.user_avatar})
+
+
+def all_authors(request):
+    authors = Articles.objects.all()
+    return render(request, 'blog/authors.html', {'authors': authors})

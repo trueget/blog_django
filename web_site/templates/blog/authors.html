@@ -7,36 +7,15 @@
 
 
 {% block print_state %}
-    {% if all_articles.count > 0 %}
-        {% for article in all_articles %}
-            <div class="window-bot">
-                <div id="{{ article.id }}" class="articles-list">
-                <div class="avtor-date">
-                    <a href="#"><p class="avtor">{% block avtor %}{{ article.nick_name }}{% endblock avtor %}</p></a>
-                    <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
-                    <div class="delete_article">
-                        <a href="delete/{{ article.id }}">Удалить статью</a>
-                    </div>
-                </div>
-                <p class="article-title" "><h2>{% block name-state %}{{ article.name_article }}{% endblock name-state %}</h2></>
-                </div>
-
-                <div>
-                    {% block image_article %}
-                        {% if article.img_article %}
-                            <img class="img_article" src="{{ article.img_article.url }}">
-                        {% endif %}
-                    {% endblock image_article %}
-                </div>
-
-                <div>
-                    {% block article_text %}{{ article.text_article }}{% endblock article_text %}
-                </div>
-            </div>
-        {% endfor %}
-    {% else %}
+    {% for author in authors %}
         <div class="window-bot">
-            <h2>статтей пока нет!</h2>
+            <div id="{{ author.id }}" class="articles-list">
+                <div class="avtor-date">
+                    <a href="#"><p class="avtor">{% block avtor %}{{ author.username }}{% endblock avtor %}</p></a>
+                    <p class="date">{% block datepublished %}{{ author.create_date }}{% endblock datepublished %}</p>
+                </div>
+                <p class="article-title">{% block name-state %}{{ author.name_article }}{% endblock name-state %}</>
+            </div>
         </div>
-    {% endif %}
+    {% endfor %}
 {% endblock print_state %}

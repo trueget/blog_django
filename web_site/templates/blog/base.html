@@ -56,7 +56,7 @@
             <div class="container-window-top">
               <ul class="nav navi">
                 <li><a class="main-word" href="{% url 'articles' %}">Статьи</a></li>
-                <li><a class="main-word" href="#">Авторы</a></li>
+                <li><a class="main-word" href="{% url 'authors' %}">Авторы</a></li>
                 <li><a class="main-word" href="{% url 'news' %}">Новости</a></li>
                 {% if user.is_authenticated %}
                   <li><a class="main-word" href="{% url 'my_articles' %}">Мои публикации</a></li>

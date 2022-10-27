@@ -20,6 +20,8 @@ urlpatterns = [
     path('my_articles/', blog_views.my_articles, name='my_articles'),
     path(r'articles/delete/<int:id>', blog_views.delete),
 
+    path('authors/', blog_views.all_authors, name='authors'),
+
     path('register/', user_views.register_user, name='register'),
     path('login/', user_views.Login, name='login'),
     path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
