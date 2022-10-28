@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" type="text/css">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,57 +47,78 @@
             </div>
           </div>
         </div>
+        <div class="right-container">
+
+        </div>
+      </div>
       {% endblock header %}
     </header>
 
      <main>
-      <div class="container">
-      {% block window-top %}
-        <div class="window-top">
-            <div class="container-window-top">
-              <ul class="nav navi">
-                <li><a class="main-word" href="{% url 'articles' %}">Статьи</a></li>
-                <li><a class="main-word" href="{% url 'authors' %}">Авторы</a></li>
-                <li><a class="main-word" href="{% url 'news' %}">Новости</a></li>
-                {% if user.is_authenticated %}
-                  <li><a class="main-word" href="{% url 'my_articles' %}">Мои публикации</a></li>
-                {% endif %}
-              </ul>
-              {% if user.is_authenticated %}
-                <ul class="nav navi">
-                  <li><a class="c" href="{% url 'create_article' %}">Опубликовать статью</a></li>
-                </ul>
-              {% endif %}
+        <div class="container">
+          {% block window-top %}
+            <div class="window-top">
+                <div class="container-window-top">
+                  <ul class="nav navi">
+                    <li><a class="main-word" href="{% url 'articles' %}">Статьи</a></li>
+                    <li><a class="main-word" href="{% url 'authors' %}">Авторы</a></li>
+                    <li><a class="main-word" href="{% url 'news' %}">Новости</a></li>
+                    {% if user.is_authenticated %}
+                      <li><a class="main-word" href="{% url 'my_articles' %}">Мои публикации</a></li>
+                    {% endif %}
+                  </ul>
+                  {% if user.is_authenticated %}
+                    <ul class="nav navi">
+                      <li><a class="c" href="{% url 'create_article' %}">Опубликовать статью</a></li>
+                    </ul>
+                  {% endif %}
+                </div>
+                <hr>
+              </div>
+            {% endblock window-top %}
+          <div class="two-windows">
+            <div class="two-windos-left">
+              {% block main_page %}{% endblock main_page %}
+
+              <!-- блок распечатки статтей -->
+              {% block print_state %}{% endblock print_state %}
+
+              <!-- блок создания статьи -->
+              {% block create_state %}{% endblock create_state %}
+
+              <!-- блок подтверждения регистрации, самой регистрации, аутентификации -->
+              {% block register_login_logout_email %}{% endblock register_login_logout_email %}
+
+              <!-- блок подтверждения успешной регистрации -->
+              {% block success_register %}{% endblock success_register %}
+
+              <!-- блок данных пользователя -->
+              {% block data_user %}{% endblock data_user %}
+
+              <!-- страница новостей -->
+              {% block news_page %}{% endblock news_page %}
             </div>
-            <hr>
+            {% block window-right %}
+              <div class="two-windos-right">
+                <div class="window-bot">
+                  {% if user.is_authenticated %}
+                    <p>Вы авторизованы</p>
+                  {% else %}
+                    <p>Вы не <a class="login-main-page" href="{% url 'login' %}">авторизованы!</a></p>
+                  {% endif %}
+                </div>
+              </div>
+            {% endblock window-right %}
           </div>
-          {% endblock window-top %}
-
-          <!-- блок распечатки статтей -->
-          {% block print_state %}{% endblock print_state %}
-
-          <!-- блок создания статьи -->
-          {% block create_state %}{% endblock create_state %}
-
-          <!-- блок подтверждения регистрации, самой регистрации, аутентификации -->
-          {% block register_login_logout_email %}{% endblock register_login_logout_email %}
-
-          <!-- блок подтверждения успешной регистрации -->
-          {% block success_register %}{% endblock success_register %}
-
-          <!-- блок данных пользователя -->
-          {% block data_user %}{% endblock data_user %}
-
-          <!-- страница новостей -->
-          {% block news_page %}{% endblock news_page %}
 
 
         
         </div>
      </main>
       
-
-    <center><div class="footer">{% block footer %}подвал страницы{% endblock footer %}</div></center>
+    {% block footer %}
+        <div class="footer">подвал страницы</div>
+    {% endblock footer %}
 
 </body>
 </html>

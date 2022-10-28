@@ -1,46 +1,49 @@
 <!-- страница регистрации -->
-{% extends 'blog/base.html' %}
 {% load static %}
-
-{% block title %}
-{{title}}
-{% endblock title %}
-{% block header %}{% endblock header %}
-
-{% block window-top %}{% endblock window-top %}
-
-{% block register_login_logout_email %}
-    <div class="register-lofin-lable">
-        <p class="text-lable text-lable-left p-register">My</p>
-        <div><img class="text-lable-middle" src="{% static 'images/logo-green.png' %}" height="40" width="40" alt=""></div>
-        <p class="text-lable p-register">log</p>
-    </div>
-    <div class="authenticate">
-        <div>
-            <form method="POST">
-            {% csrf_token %}
-                <div class="item-register-form">
-                    <div class="register-form">
-                        <p class="title-register-form p-register">Регистрация</p>
-                        <p class="p-register">Ник</p>
-                        <div class="input-register">{{ form.username }}</div>
-                        <p class="p-register">Email</p>
-                        <div class="input-register">{{ form.email }}</div>
-                        <p class="p-register">Пароль</p>
-                        <div class="input-register">{{ form.password1 }}</div>
-                        <div class="wrapper-i">
-                            <img class="i-png" src="{% static 'images/i.png' %}" alt="">
-                            <p class="mini-text-i-png register-text-login">не менее 6 символов</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" type="text/css">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <title>Регистрация</title>
+</head>
+<body>
+    <div class="register-login-aktivation">
+        <div class="register-lofin-lable">
+            <p class="text-lable text-lable-left p-register">My</p>
+            <div><img class="text-lable-middle" src="{% static 'images/logo-green.png' %}" height="40" width="40" alt=""></div>
+            <p class="text-lable p-register">log</p>
+        </div>
+        <div class="authenticate">
+            <div>
+                <form method="POST">
+                {% csrf_token %}
+                    <div class="item-register-form">
+                        <div class="register-form">
+                            <p class="title-register-form p-register">Регистрация</p>
+                            <p class="p-register">Ник</p>
+                            <div class="input-register">{{ form.username }}</div>
+                            <p class="p-register">Email</p>
+                            <div class="input-register">{{ form.email }}</div>
+                            <p class="p-register">Пароль</p>
+                            <div class="input-register">{{ form.password1 }}</div>
+                            <div class="wrapper-i">
+                                <img class="i-png" src="{% static 'images/i.png' %}" alt="">
+                                <p class="mini-text-i-png register-text-login">не менее 6 символов</p>
+                            </div>
+                            <p class="p-register">Повторите пароль</p>
+                            <div class="input-register">{{ form.password2 }}</div>
                         </div>
-                        <p class="p-register">Повторите пароль</p>
-                        <div class="input-register">{{ form.password2 }}</div>
+                        <button class="btn-register" type="submit" >Зарегистрироваться</button>
+                        <p class="register-text-login">У вас уже есть аккаунт? <a class="register-login" href="{% url 'login' %}">Войти</a></p>
                     </div>
-                    <button class="btn-register" type="submit" >Зарегистрироваться</button>
-                    <p class="register-text-login">У вас уже есть аккаунт? <a class="register-login" href="{% url 'login' %}">Войти</a></p>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-{% endblock register_login_logout_email %}
-
-{% block footer %}{% endblock footer %}
+</body>
+</html>

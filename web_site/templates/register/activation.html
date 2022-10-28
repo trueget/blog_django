@@ -1,41 +1,44 @@
 <!-- страница подтверждения регистрации -->
-{% extends 'blog/base.html' %}
 {% load static %}
-
-{% block title %}
-страница спасибо
-{% endblock title %}
-
-
-{% block window-top %}{% endblock window-top %}
-
-{% block register_login_logout_email %}
-    <div class="wrapper-activation">
-        <div class="register-lofin-lable">
-            <p class="text-lable text-lable-left p-register">My</p>
-            <div><img class="text-lable-middle" src="{% static 'images/logo-green.png' %}" height="40" width="40" alt=""></div>
-            <p class="text-lable p-register">log</p>
-        </div>
-        <div class="authenticate">
-            {% if user.is_authenticated %}
-                <h2>Регистрация прошла успешно!</h2>
-            {% else %}
-                <form method="POST">
-                {% csrf_token %}
-                    <p class="title-register-form p-register">Введите код</p>
-                    <div class="item-register-form">
-                        <p class="p-register"></p>
-                        <center><div class="input-register"><input name="code_on_page" class="activation" type="number"></div></center>
-                            <div class="wrapper-i">
-                                <img class="i-png" src="{% static 'images/i.png' %}" alt="">
-                                <p class="mini-text-i-png register-text-login">код был выслан на указанную Вами почту</p>
-                            </div>
-                        <button class="btn-register" type="submit" >Отправить</button>
-                    </div>
-                </form>
-            {% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" type="text/css">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <title>Активация</title>
+</head>
+<body>
+    <div class="register-login-aktivation">
+        <div class="wrapper-activation">
+            <div class="register-lofin-lable">
+                <p class="text-lable text-lable-left p-register">My</p>
+                <div><img class="text-lable-middle" src="{% static 'images/logo-green.png' %}" height="40" width="40" alt=""></div>
+                <p class="text-lable p-register">log</p>
+            </div>
+            <div class="authenticate">
+                {% if user.is_authenticated %}
+                    <h2>Регистрация прошла успешно!</h2>
+                {% else %}
+                    <form method="POST">
+                    {% csrf_token %}
+                        <p class="title-register-form p-register">Введите код</p>
+                        <div class="item-register-form">
+                            <p class="p-register"></p>
+                            <center><div class="input-register"><input name="code_on_page" class="activation" type="number"></div></center>
+                                <div class="wrapper-i">
+                                    <img class="i-png" src="{% static 'images/i.png' %}" alt="">
+                                    <p class="mini-text-i-png register-text-login">код был выслан на указанную Вами почту</p>
+                                </div>
+                            <button class="btn-register" type="submit" >Отправить</button>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
         </div>
     </div>
-{% endblock register_login_logout_email %}
-
-{% block footer %}{% endblock footer %}
+</body>
+</html>

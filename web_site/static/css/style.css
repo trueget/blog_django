@@ -1,59 +1,3 @@
-h1, h2, h3, h4, h5, h6, p, ul[class], ol, li, figure, figcaption, blockquote, dl, dd, a {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    text-decoration: none;
-}
-
-
-html{
-    box-sizing: border-box;
-}
-
-html, body{
-    height: 100%;
-}
-
-
-*, ::after, ::before {
-    box-sizing: border-box;
-}
-
-:active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
-}
-
-input[type="search"]{
-    color: #000;
-}
-
-input::-moz-placeholder { color: black; }
-input::-webkit-input-placeholder { color: black; }
-
-body{
-    margin: 0px;
-    padding: 50px 0 0 0 ;
-    font-size: 16px;
-    min-width: 320px;
-    position: relative;
-    line-height: 1.65;
-    overflow-x: hidden;
-    opacity: 1;
-    background-color: #DCDCDC;
-    /* font-family: sans-serif; */
-    font-family: Arial,sans-serif;
-    letter-spacing: 0.5px;
-    /* font-family: Andale Mono, monospace; */
-}
-
-header{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #7dab1f;
-}
-
 .wrapper-header, .nav{
     display: flex;
 }
@@ -80,23 +24,8 @@ header{
     margin-right: 25px;
 }
 
-a{
-    text-decoration: none;
-    color: #000;
-    transition: 0.5s;
-}
-
-h2{
-    margin-top: 5px;
-    margin-bottom: 0px;
-}
-
 .main-word a:hover{
     color: #1017dc;
-}
-
-a:hover{
-    color: #0066c0;
 }
 
 .nav li a{
@@ -113,6 +42,19 @@ a:hover{
 .container{
     margin: 0 auto;
     max-width: 1100px;
+}
+
+.two-windows{
+    display: flex;
+}
+
+.two-windos-left{
+    width: 80%;
+    margin-right: 5px;
+}
+
+.two-windos-right{
+    width: 20%;
 }
 
 .logo-home{
@@ -153,25 +95,14 @@ a:hover{
     margin-right: 10px;
 }
 
-main{
-    margin-top: 25px;
-}
-
 .window-top, .window-bot{
     padding: 15px 20px;
     border: 1px solid #dedede;
     background-color: #fff;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border: 1px solid #7dab1f;
     border-radius: 4px;
 }
-
-hr {
-    border: none; /* Убираем границу */
-    background-color: #1017dc; /* Цвет линии */
-    color: #000; /* Цвет линии для IE6-7 */
-    height: 2px; /* Толщина линии */
-   }
 
 .container-window-top{
     display: flex;
@@ -218,12 +149,18 @@ image .form_article{
     width: 100%;
 }
 
+.img-article{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .delete_article{
     margin-left: auto;
 }
 
 .img_article{
-    width: 1058px;
+    width: 100%;
 }
 
 .footer{
@@ -237,9 +174,6 @@ image .form_article{
     color: black;
     margin-left: auto;
 }
-
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 
 .username_main{
     font-size: 20px;
@@ -391,7 +325,7 @@ input[type='number']::-webkit-inner-spin-button {-webkit-appearance: none;}
 }
 .article-title{
     font-family: Monospace;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
 }
 
@@ -399,4 +333,20 @@ p.register-text-login-nick{
     margin: 0;
     color: #0066c0;
     margin-top: 2px;
+}
+
+.login-main-page{
+    color: #0066c0;
+}
+
+[name=code_on_page]{
+    margin-top: 10px;
+}
+
+.register-login-aktivation{
+    margin-top: 40px;
+}
+
+.footer{
+    background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
 }

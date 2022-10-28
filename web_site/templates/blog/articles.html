@@ -18,10 +18,10 @@
                         <a href="delete/{{ article.id }}">Удалить статью</a>
                     </div>
                 </div>
-                <a href="{% url 'one_article' article.id %}"><p class="article-title"><h2>{% block name-state %}{{ article.name_article }}{% endblock name-state %}</h2></p></a>
+                <a href="{% url 'one_article' article.id %}"><p class="article-title">{% block name-state %}{{ article.name_article }}{% endblock name-state %}</p></a>
                 </div>
 
-                <div>
+                <div class="img-article">
                     {% block image_article %}
                         {% if article.img_article %}
                             <img class="img_article" src="{{ article.img_article.url }}">
