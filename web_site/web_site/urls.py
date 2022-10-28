@@ -13,6 +13,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', blog_views.index_page, name='index'),
+    path('help/', blog_views.help_page, name='help'),
 
     path('create_article/', blog_views.create_article, name='create_article'),
 

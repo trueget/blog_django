@@ -21,10 +21,14 @@ def one_article(request, id):
     return render(request, 'blog/one_article.html', {'article': article})
 
 
-
 '''главная страница'''
 def index_page(request):
     return render(request, 'blog/index.html')
+
+
+'''страница помощи'''
+def help_page(request):
+    return render(request, 'blog/help.html')
 
 
 '''запись данных из формы в бд'''

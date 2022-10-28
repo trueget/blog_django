@@ -62,6 +62,10 @@
     align-items: center;
 }
 
+.logo-home:hover{
+    transform: scale(1.1);
+}
+
 .form-control, .btn-login{
     border: 1px solid #1017dc;
     border-radius: 0.375rem;
@@ -349,4 +353,9 @@ p.register-text-login-nick{
 
 .footer{
     background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+}
+
+.help{
+    font-style: italic;
+    color: #0066c0;
 }
