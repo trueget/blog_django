@@ -1,17 +1,13 @@
 <!-- страница регистрации -->
+{% extends 'blog/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/global.css' %}" type="text/css">
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-    <title>Регистрация</title>
-</head>
-<body>
+{% block title %}
+{{title}}
+{% endblock title %}
+{% block header %}{% endblock header %}
+{% block window-top %}{% endblock window-top %}
+
+{% block register_login_logout_email %}
     <div class="register-login-aktivation">
         <div class="register-lofin-lable">
             <p class="text-lable text-lable-left p-register">My</p>
@@ -45,5 +41,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock register_login_logout_email %}
+{% block window-right %}{% endblock window-right %}

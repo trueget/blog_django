@@ -12,16 +12,17 @@
 </head>
 <body>
 
-    <header>
-      {% block header %}
+    
+    {% block header %}
+      <header>
         <div class="container">
           <div class="wrapper-header">
             <ul class="nav published-button">
               <li>
-                <a href="/" class="logo-home"><img src="{% static 'images/logo.png' %}" height="40" width="40" alt=""></a>
+                <a href="{% url 'about_blog' %}" class="logo-home"><img src="{% static 'images/logo.png' %}" height="40" width="40" alt=""></a>
               </li>
               <li><a class="main-word" href="#">Функции</a></li>
-              <li><a class="main-word" href="#">Помощь</a></li>
+              <li><a class="main-word" href="{% url 'help_page' %}">Помощь</a></li>
               <li><a class="main-word" href="#"></a></li>
               <li><a class="main-word" href="#"></a></li>
             </ul>
@@ -46,13 +47,11 @@
             </div>
           </div>
         </div>
-        <div class="right-container">
-
-        </div>
-      </div>
-      {% endblock header %}
-    </header>
-
+      </header>
+    {% endblock header %}
+    
+      <!-- блок регистрации, авторизации, активации -->
+      {% block register_login_logout_email %}{% endblock register_login_logout_email %}
      <main>
         <div class="container">
           {% block window-top %}
@@ -68,7 +67,7 @@
                   </ul>
                   {% if user.is_authenticated %}
                     <ul class="nav navi">
-                      <li><a class="c" href="{% url 'create_article' %}">Опубликовать статью</a></li>
+                      <li><a href="{% url 'create_article' %}">Опубликовать статью</a></li>
                     </ul>
                   {% endif %}
                 </div>
@@ -85,9 +84,6 @@
 
               <!-- блок создания статьи -->
               {% block create_state %}{% endblock create_state %}
-
-              <!-- блок подтверждения регистрации, самой регистрации, аутентификации -->
-              {% block register_login_logout_email %}{% endblock register_login_logout_email %}
 
               <!-- блок подтверждения успешной регистрации -->
               {% block success_register %}{% endblock success_register %}
@@ -110,15 +106,13 @@
               </div>
             {% endblock window-right %}
           </div>
-
-
-        
         </div>
      </main>
-      
-    {% block footer %}
-        <div class="footer">подвал страницы</div>
-    {% endblock footer %}
-
+  {% block footer %}
+      <div class="line-footer"></div>
+      <div class="footer">
+        <p>подвал</p>
+      </div>
+  {% endblock footer %}
 </body>
 </html>

@@ -49,7 +49,7 @@ def register_user(request):
 
                 if user and user.is_active:
                     login(request, user)
-                    return redirect('index')
+                    return redirect('articles')
                 else:
                     '''сохраняем переменные в сессии'''
                     request.session['code'] = code
@@ -64,7 +64,7 @@ def register_user(request):
             return render(request, 'register/register.html', {'form': 
             UserRegisterForm()})
     else:
-        return redirect('index')
+        return redirect('articles')
 
 
 '''авторизация'''
@@ -77,10 +77,10 @@ def Login(request):
         if user is not None:
             form = login(request, user)
             messages.success(request, f' Добро пожаловать, {username} !!')
-            return redirect('/')
+            return redirect('articles')
         else:
             form = AuthenticationForm()
-            error = 'Нет такой учетной записи!'
+            error = 'Неверный ник или пароль!'
             return render(request, 'register/login.html', {'form':form, 'title':'войти', 'error': error})
     else:
         form = AuthenticationForm()

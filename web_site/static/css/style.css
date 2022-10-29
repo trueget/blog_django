@@ -290,6 +290,7 @@ image .form_article{
 .register-text-login{
     font-size: 12px;
     font-style: italic;
+    padding-left: 2px;
 }
 
 .register-lofin-lable{
@@ -351,11 +352,31 @@ p.register-text-login-nick{
     margin-top: 40px;
 }
 
+.line-footer{
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: -webkit-linear-gradient(to right,#dcdcdc30,#7dab1f,#dcdcdc30);
+    background: linear-gradient(to right,#dcdcdc30,#7dab1f,#dcdcdc30);
+}
+
 .footer{
-    background: linear-gradient(to bottom,rgba(0,0,0,.14),rgba(0,0,0,.03) 3px,transparent);
+    height: 120px;
 }
 
 .help{
     font-style: italic;
     color: #0066c0;
+}
+
+.error{
+    font-style: italic;
+    color: red;
+    font-size: 13px;
+    padding-left: 2px;
+}
+
+.befor-footer{
+    margin-bottom: 150px;
 }

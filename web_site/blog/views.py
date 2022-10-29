@@ -21,14 +21,17 @@ def one_article(request, id):
     return render(request, 'blog/one_article.html', {'article': article})
 
 
-'''главная страница'''
-def index_page(request):
+def index(request):
     return render(request, 'blog/index.html')
+
+'''главная о блоге'''
+def about_blog(request):
+    return render(request, 'blog/about_blog.html')
 
 
 '''страница помощи'''
 def help_page(request):
-    return render(request, 'blog/help.html')
+    return render(request, 'blog/help_page.html')
 
 
 '''запись данных из формы в бд'''
@@ -62,7 +65,7 @@ def delete(request, id):
     try:
         article = Articles.objects.get(id=id)
         article.delete()
-        return render(request, 'blog/index.html')
+        return render(request, 'blog/articles.html')
     except Articles.DoesNotExist:
         return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
 
