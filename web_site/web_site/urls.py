@@ -30,9 +30,8 @@ urlpatterns = [
     path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
     path('activation/', user_views.activation_user, name='activation'),
 
-    path('my_page/', user_page_views.update_profile, name='user_page'),
-
-    # path('user/<int:user_id>/', user_page_views.update_profile, name='get_profile'),
+    path('my_page/', user_page_views.update_profile, name='my_page'),
+    path(r'user/id/<int:user_id>/', user_page_views.user_page, name='user_page'),
 
     path('news/', news_views.news, name='news'),
     path('page_finance/', news_views.page_finance, name='page_finance'),

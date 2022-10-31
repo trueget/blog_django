@@ -11,7 +11,14 @@
         <div class="window-bot">
             <div id="{{ author.id }}" class="articles-list">
                 <div class="avtor-date">
-                    <a href="#"><p class="avtor">{% block avtor %}{{ author.username }}{% endblock avtor %}</p></a>
+                    {% block avtor %}
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'user_page' author.username_id %}"><p class="avtor">{{ author.username }}</p></a>
+                        {% else %}
+                            <p class="avtor-not-link">{{ author.username }}</p>
+                        {% endif %}
+                    {% endblock avtor %}
+                    
                     <p class="date">{% block datepublished %}{{ author.create_date }}{% endblock datepublished %}</p>
                 </div>
                 <a href="{% url 'one_article' author.id %}"><p class="article-title">{% block name-state %}{{ author.name_article }}{% endblock name-state %}</p></a>

@@ -8,33 +8,33 @@
 
 {% block data_user %}
 <div class="window-bot">
-    <center><h2>Ваши персональные данные!</h2></center>
+    <center><h2>Страница пользователя {{ user_profile.user }}!</h2></center>
     <div class="data_user">
         <div class="left-data-user">
-            <p>Ваша фотография</p>
-            {% if data_user.user_avatar %}
-                <img class="user_avatar" src="{{ data_user.user_avatar.url }}">
+            <p>Фотография {{ user_profile.user }}</p>
+            {% if user_profile.user_avatar %}
+                <img class="user_avatar" src="{{ user_profile.user_avatar.url }}">
             {% else %}
                 <img class="user_avatar" src="/media/imgusers/avatar.jpg">
             {% endif %}
         </div>
         <div class="right-data-user">
-            <p>Мой ник - {{ data_user.user }}</p>
-            <p>{{ user.date_joined }} был зарегистрирован</p>
-            <p>Моё имя - {{ user.first_name }}</p>
-            <p>Моя фамилия - {{ user.last_name }}</p>
-            <p>Мой email - {{ user.email }}</p>
-            <p>Мой номер телефона - {{ user.phone_no }}</p>
-            <p>Обо мне - {{ data_user.about_me }}</p>
+            <p>Пользователь - {{ user_profile.user }}</p>
+            <p>Был зарегистрирован - {{ user_profile.date_change }}</p>
+            {% if user.first_name %}
+                <p>Имя пользователя - {{ user.first_name }}</p>
+            {% endif %}
+            {% if user.last_name %}
+                <p>Фамилия пользователя - {{ user.last_name }}</p>
+            {% endif %}
+            <p>Email пользователя- {{ user.email }}</p>
+            {% if user.phone_no %}
+                <p>Номер телефона пользователя- {{ user.phone_no }}</p>
+            {% endif %}
+            {% if user_profile.about_me %}
+                <p>О пользователе - {{ user_profile.about_me }}</p>
+            {% endif %}
         </div>
     </div>
-    <br>
-    <center><form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <p>{{ form.user_avatar }}</p>
-        <p>{{ form.about_me }}</p>
-        <p>{{ error }}</p>
-        <button type="submit">Сохранить изменения!</button><br>
-    </form></center>
 </div>
 {% endblock data_user %}

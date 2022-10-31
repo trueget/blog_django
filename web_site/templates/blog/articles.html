@@ -12,7 +12,7 @@
             <div class="window-bot">
                 <div id="{{ article.id }}" class="articles-list">
                 <div class="avtor-date">
-                    <a href="#"><p class="avtor">{% block avtor %}{{ article.username }}{% endblock avtor %}</p></a>
+                    <a href="{% url 'user_page' article.username_id %}"><p class="avtor">{% block avtor %}{{ article.username }}{% endblock avtor %}</p></a>
                     <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
                 </div>
                 <a href="{% url 'one_article' article.id %}"><p class="article-title">{% block name-state %}{{ article.name_article }}{% endblock name-state %}</p></a>

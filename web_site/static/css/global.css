@@ -22,8 +22,8 @@ html, body{
     outline-offset: 0;
 }
 
-input[type="search"]{
-    color: #000;
+input[type="text"]{
+    color: #000!important;
 }
 
 input::-moz-placeholder { color: black; }

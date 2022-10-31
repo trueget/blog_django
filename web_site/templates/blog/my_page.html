@@ -1,0 +1,48 @@
+<!-- страница данных пользователя -->
+{% extends 'blog/base.html' %}
+
+{% block title %}
+{{ user }}
+{% endblock title %}
+
+
+{% block data_user %}
+<div class="window-bot">
+    <center><h2>Ваши персональные данные!</h2></center>
+    <div class="data_user">
+        <div class="left-data-user">
+            <p>Ваша фотография</p>
+            {% if data_user.user_avatar %}
+                <img class="user_avatar" src="{{ data_user.user_avatar.url }}">
+            {% else %}
+                <img class="user_avatar" src="/media/imgusers/avatar.jpg">
+            {% endif %}
+        </div>
+        <div class="right-data-user">
+            <p>Мой ник - {{ data_user.user }}</p>
+            <p>{{ user.date_joined }} был зарегистрирован</p>
+            {% if user.first_name %}
+                <p>Моё имя - {{ user.first_name }}</p>
+            {% endif %}
+            {% if user.last_name %}
+                <p>Моя фамилия - {{ user.last_name }}</p>
+            {% endif %}
+            <p>Мой email - {{ user.email }}</p>
+            {% if user.phone_no %}
+                <p>Мой номер телефона - {{ user.phone_no }}</p>
+            {% endif %}
+            {% if data_user.about_me %}
+                <p>Обо мне - {{ data_user.about_me }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+    <center><form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.user_avatar }}</p>
+        <p>{{ form.about_me }}</p>
+        <p>{{ error }}</p>
+        <button type="submit">Сохранить изменения!</button><br>
+    </form></center>
+</div>
+{% endblock data_user %}

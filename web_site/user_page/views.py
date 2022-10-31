@@ -20,12 +20,18 @@ def update_profile(request):
             user_profile.user_avatar = form.cleaned_data['user_avatar']
             user_profile.save()
 
-            return render(request, 'blog/user_page.html', {'form': form})
+            return render(request, 'blog/my_page.html', {'form': form})
         else:
             error = 'Форма не валидна'
-            return render(request, 'blog/user_page.html', {'form': form})
+            return render(request, 'blog/my_page.html', {'form': form})
     else:
         form = UserProfileForm()
         user = User.objects.get(username=request.user.username)
         data_user, created = UserProfile.objects.get_or_create(user=user)
-        return render(request, 'blog/user_page.html', {'form': form, 'data_user': data_user, 'user': user,  'error': error })
+        return render(request, 'blog/my_page.html', {'form': form, 'data_user': data_user, 'user': user,  'error': error })
+
+
+def user_page(request, user_id):
+    user = User.objects.get(id=user_id)
+    user_profile = UserProfile.objects.get(user=user)
+    return render(request, 'blog/user_page.html', {'user_profile': user_profile, 'user': user})
