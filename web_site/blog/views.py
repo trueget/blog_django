@@ -1,8 +1,10 @@
+from xml.etree.ElementTree import Comment
 from django.shortcuts import render, redirect
-from .forms import ArticlesForm
-from .models import Articles
+from .forms import ArticlesForm, CommentsForm
+from .models import Articles, Comments
 from django.contrib.auth.models import User
 from user_page.models import UserProfile
+from django.views.generic.detail import DetailView
 
 
 '''страница статтей
@@ -83,3 +85,33 @@ def my_articles(request):
 def all_authors(request):
     authors = Articles.objects.all()
     return render(request, 'blog/authors.html', {'authors': authors})
+
+
+
+
+class BlogDetail(DetailView):
+    template_name = 'one_article.html'
+    model = Articles
+
+    def get_context_data(self , **kwargs):
+        data = super().get_context_data(**kwargs)
+        connected_comments = Comments.objects.filter(which_article=self.get_object())
+        number_of_comments = connected_comments.count()
+        data['comments'] = connected_comments
+        data['no_of_comments'] = number_of_comments
+        data['comment_form'] = CommentsForm()
+        return data
+
+    def post(self , request , *args , **kwargs):
+        if self.request.method == 'POST':
+            print('-------------------------------------------------------------------------------Reached here')
+            comment_form = CommentsForm(self.request.POST)
+            if comment_form.is_valid():
+                content = comment_form.cleaned_data['content']
+                try:
+                    parent = comment_form.cleaned_data['parent']
+                except:
+                    parent=None
+            new_comment = Comments(content=content , author=self.request.user , which_article=self.get_object() , parent=parent)
+            new_comment.save()
+            return redirect(self.request.path_info)

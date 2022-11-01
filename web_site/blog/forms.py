@@ -1,10 +1,11 @@
-from .models import Articles
+from pyexpat import model
+from tkinter import Widget
+from .models import Articles, Comments
 from django.forms import ModelForm, TextInput, Textarea, ClearableFileInput
 
 
-
-
 class ArticlesForm(ModelForm):
+
     class Meta:
         model = Articles
         fields = ['name_article', 'img_article', 'text_article']
@@ -22,3 +23,17 @@ class ArticlesForm(ModelForm):
                 'placeholder': 'Текст статьи'
             }),
         }
+
+
+class CommentsForm(ModelForm):
+
+    class Meta:
+        model = Comments
+        fields = ['content', 'parent']
+
+        # widgets = {
+        #     'content': TextInput(attrs={
+        #         'class': 'form_content_comment',
+        #         'placeholder': 'Текст коммента'
+        #     }),
+        # }
