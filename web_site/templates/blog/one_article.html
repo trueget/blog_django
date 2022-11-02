@@ -29,7 +29,7 @@
 
         <div>
             {% block article_text %}
-                {% for string in article.text_article %}
+                {% for string in text_article %}
                     <p>{{ string }}</p>
                 {% endfor %}
             {% endblock article_text %}
@@ -41,11 +41,13 @@
         <h2> Комментарии </h2>
 
         {% if user.is_authenticated %}
-         <form action="" method="POST" id="main_form" class="comment_form">
-            <div>
-                <label for="comment">Введите комментарий здесь</label>
-                {{ comment_form.content }} {% csrf_token %} <input type="submit" value="Post"></div>
+         <form method="POST">
+            {% csrf_token %}
+            <label>Введите комментарий здесь</label>
+            <div class="input-register">
+                {{ comment_form }}
             </div>
+            <input class="btn-register" type="submit" value="Отправить">
          </form>
          {% else %} <h2>Вам нужно авторизоваться!</h2> 
          {% endif %}

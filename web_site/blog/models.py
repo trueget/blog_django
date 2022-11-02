@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
 
 # Create your models here.
 
@@ -23,18 +22,20 @@ class Articles(models.Model):
 
 class Comments(models.Model):
     '''комментарии'''
-    which_article = models.ForeignKey(Articles, on_delete=models.CASCADE)
-    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    which_article = models.ForeignKey(Articles, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
     date_joined = models.DateTimeField(auto_now_add=True)
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
 
 
     class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
         ordering = ['-date_joined']
 
     def __str__(self):
-        return str(self.author)
+        return str(self.content)[:100]
 
     @property
     def children(self):

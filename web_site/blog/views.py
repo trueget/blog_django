@@ -1,4 +1,4 @@
-from xml.etree.ElementTree import Comment
+from gc import get_objects
 from django.shortcuts import render, redirect
 from .forms import ArticlesForm, CommentsForm
 from .models import Articles, Comments
@@ -11,16 +11,16 @@ from django.views.generic.detail import DetailView
 плучение данных из бд и выгрузка на главную страницу'''
 def articles(request):
     all_articles = Articles.objects.order_by('-create_date')
-    for i in all_articles:
-        i.text_article = i.text_article.replace('\r', '').split('\n')
+    for article in all_articles:
+        article.text_article = article.text_article.replace('\r', '').split('\n')
     return render(request, 'blog/articles.html', {'all_articles': all_articles})
 
 
-'''каждая статья отдельно'''
-def one_article(request, id):
-    article = Articles.objects.get(id=id)
-    article.text_article = article.text_article.replace('\r', '').split('\n')
-    return render(request, 'blog/one_article.html', {'article': article})
+# '''каждая статья отдельно'''
+# def one_article(request, id):
+#     article = Articles.objects.get(id=id)
+#     article.text_article = article.text_article.replace('\r', '').split('\n')
+#     return render(request, 'blog/one_article.html', {'article': article})
 
 
 def index(request):
@@ -77,8 +77,8 @@ def my_articles(request):
     user = User.objects.get(username=request.user.username)
     user_profile = UserProfile.objects.get(user=user)
     articles = Articles.objects.filter(username=user).order_by('-create_date')
-    for i in articles:
-        i.text_article = i.text_article.replace('\r', '').split('\n')
+    for article in articles:
+        article.text_article = article.text_article.replace('\r', '').split('\n')
     return render(request, 'blog/my_articles.html', {'my_articles': articles, 'img': user_profile.user_avatar})
 
 
@@ -90,28 +90,53 @@ def all_authors(request):
 
 
 class BlogDetail(DetailView):
-    template_name = 'one_article.html'
     model = Articles
+    template_name = 'blog/one_article.html'
+    context_object_name = 'article'
 
     def get_context_data(self , **kwargs):
-        data = super().get_context_data(**kwargs)
-        connected_comments = Comments.objects.filter(which_article=self.get_object())
-        number_of_comments = connected_comments.count()
-        data['comments'] = connected_comments
-        data['no_of_comments'] = number_of_comments
-        data['comment_form'] = CommentsForm()
-        return data
+        context = super().get_context_data(**kwargs)
+        article_object = Articles.objects.get(name_article=context['article'])
+        context['text_article'] = article_object.text_article.replace('\r', '').split('\n')
+        context['comment_form'] = CommentsForm()
+        return context
 
-    def post(self , request , *args , **kwargs):
-        if self.request.method == 'POST':
-            print('-------------------------------------------------------------------------------Reached here')
-            comment_form = CommentsForm(self.request.POST)
-            if comment_form.is_valid():
-                content = comment_form.cleaned_data['content']
-                try:
-                    parent = comment_form.cleaned_data['parent']
-                except:
-                    parent=None
-            new_comment = Comments(content=content , author=self.request.user , which_article=self.get_object() , parent=parent)
-            new_comment.save()
-            return redirect(self.request.path_info)
+
+
+
+
+    #     data = super().get_context_data(**kwargs)
+    #     print('='*100)
+    #     # print(data)
+    #     # print(self)
+    #     # print('object', data['object'])
+    #     print('article', data)
+    #     # c = data['article']
+    #     # print(c)
+
+    #     # print('view', data['view'])
+    #     print('='*100)
+    #     data['comment_form'] = CommentsForm(instance=self.get_object())
+
+        # connected_comments = Comments.objects.filter(which_article=self.get_object())
+        # number_of_comments = connected_comments.count()
+        # data['comments'] = connected_comments
+        # data['no_of_comments'] = number_of_comments
+        # data['comment_form'] = CommentsForm()
+        # data['article'] =
+
+        # return data
+
+    # def post(self , request , *args , **kwargs):
+    #     if self.request.method == 'POST':
+    #         print('-------------------------------------------------------------------------------Reached here')
+    #         comment_form = CommentsForm(self.request.POST)
+    #         if comment_form.is_valid():
+    #             content = comment_form.cleaned_data['content']
+    #             try:
+    #                 parent = comment_form.cleaned_data['parent']
+    #             except:
+    #                 parent=None
+    #         new_comment = Comments(content=content , author=self.request.user , which_article=self.get_object() , parent=parent)
+    #         new_comment.save()
+    #         return redirect(self.request.path_info)

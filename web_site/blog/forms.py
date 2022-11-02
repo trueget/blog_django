@@ -1,7 +1,8 @@
-from pyexpat import model
-from tkinter import Widget
 from .models import Articles, Comments
 from django.forms import ModelForm, TextInput, Textarea, ClearableFileInput
+from django.utils.translation import gettext_lazy as _
+
+
 
 
 class ArticlesForm(ModelForm):
@@ -29,11 +30,15 @@ class CommentsForm(ModelForm):
 
     class Meta:
         model = Comments
-        fields = ['content', 'parent']
 
-        # widgets = {
-        #     'content': TextInput(attrs={
-        #         'class': 'form_content_comment',
-        #         'placeholder': 'Текст коммента'
-        #     }),
-        # }
+        fields = ['content',]
+
+        labels = {
+            'content': _(''),
+        }
+
+        widgets = {
+            'content' : TextInput(
+                attrs={'class': 'form-control-comment'}
+            ),
+        }

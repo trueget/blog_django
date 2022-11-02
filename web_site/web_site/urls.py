@@ -20,7 +20,11 @@ urlpatterns = [
 
     path('articles/', blog_views.articles, name='articles'),
     path('my_articles/', blog_views.my_articles, name='my_articles'),
-    path(r'article/id/<int:id>', blog_views.one_article, name='one_article'),
+    # path(r'article/id/<int:id>', blog_views.one_article, name='one_article'),
+    # path(r'article/id/<int:id>', blog_views.BlogDetail.as_view(), name='one_article'),
+    path(r'article/id/<slug:pk>', blog_views.BlogDetail.as_view(), name='one_article'),
+
+
     path(r'articles/delete/<int:id>', blog_views.delete),
 
     path('authors/', blog_views.all_authors, name='authors'),
