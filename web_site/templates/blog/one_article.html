@@ -35,34 +35,31 @@
             {% endblock article_text %}
         </div>
 
-
-
-
-        <h2> Комментарии </h2>
-
+        <hr class="hr-comments">
         {% if user.is_authenticated %}
          <form method="POST">
             {% csrf_token %}
-            <label>Введите комментарий здесь</label>
-            <div class="input-register">
-                {{ comment_form }}
+            <div class="form-comment">
+                <div class="input-register">
+                    {{ comment_form }}
+                </div>
+                <button class="btn-comment" type="submit">Отправить</button>
+                <!-- <input class="btn-comment" type="submit" value="Отправить"> -->
             </div>
-            <input class="btn-register" type="submit" value="Отправить">
          </form>
          {% else %} <h2>Вам нужно авторизоваться!</h2> 
          {% endif %}
    
          {% for comment in comments %}
             {% if comment.is_parent %}
-            <h3> <b>{{ comment.author }} : </b> {{ comment.content }}</h3> 
+            <img src="{{ comment.author. }}" alt="">
+            <p> <b>{{ comment.author }} : </b> {{ comment.content }} : </b> <p class="date">{{ comment.date_joined }}</p></p>
+            <img src="{{ comment.author.user_profile }}" alt=""> 
             {% endif %} 
             {% for replies in comment.children %}
                <h3><b>{{ comment.author }} : </b> {{ replies.content }}</h3>
             {% endfor %}
-         {% endfor %}
-
-
-
+         {% endfor %} 
 
     </div>
 

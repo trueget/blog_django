@@ -1,4 +1,3 @@
-from gc import get_objects
 from django.shortcuts import render, redirect
 from .forms import ArticlesForm, CommentsForm
 from .models import Articles, Comments
@@ -97,46 +96,21 @@ class BlogDetail(DetailView):
     def get_context_data(self , **kwargs):
         context = super().get_context_data(**kwargs)
         article_object = Articles.objects.get(name_article=context['article'])
+        comments = Comments.objects.filter(which_article=article_object)
         context['text_article'] = article_object.text_article.replace('\r', '').split('\n')
         context['comment_form'] = CommentsForm()
+        context['comments'] = comments
         return context
 
-
-
-
-
-    #     data = super().get_context_data(**kwargs)
-    #     print('='*100)
-    #     # print(data)
-    #     # print(self)
-    #     # print('object', data['object'])
-    #     print('article', data)
-    #     # c = data['article']
-    #     # print(c)
-
-    #     # print('view', data['view'])
-    #     print('='*100)
-    #     data['comment_form'] = CommentsForm(instance=self.get_object())
-
-        # connected_comments = Comments.objects.filter(which_article=self.get_object())
-        # number_of_comments = connected_comments.count()
-        # data['comments'] = connected_comments
-        # data['no_of_comments'] = number_of_comments
-        # data['comment_form'] = CommentsForm()
-        # data['article'] =
-
-        # return data
-
-    # def post(self , request , *args , **kwargs):
-    #     if self.request.method == 'POST':
-    #         print('-------------------------------------------------------------------------------Reached here')
-    #         comment_form = CommentsForm(self.request.POST)
-    #         if comment_form.is_valid():
-    #             content = comment_form.cleaned_data['content']
-    #             try:
-    #                 parent = comment_form.cleaned_data['parent']
-    #             except:
-    #                 parent=None
-    #         new_comment = Comments(content=content , author=self.request.user , which_article=self.get_object() , parent=parent)
-    #         new_comment.save()
-    #         return redirect(self.request.path_info)
+    def post(self , request , *args , **kwargs):
+        if self.request.method == 'POST':
+            comment_form = CommentsForm(self.request.POST)
+            if comment_form.is_valid():
+                content = comment_form.cleaned_data['content']
+                try:
+                    parent = comment_form.cleaned_data['parent']
+                except:
+                    parent=None
+            new_comment = Comments(content=content , author=self.request.user , which_article=self.get_object() , parent=parent)
+            new_comment.save()
+            return redirect(self.request.path_info)

@@ -1,8 +1,5 @@
 from .models import Articles, Comments
 from django.forms import ModelForm, TextInput, Textarea, ClearableFileInput
-from django.utils.translation import gettext_lazy as _
-
-
 
 
 class ArticlesForm(ModelForm):
@@ -34,11 +31,12 @@ class CommentsForm(ModelForm):
         fields = ['content',]
 
         labels = {
-            'content': _(''),
+            'content': (''),
         }
 
         widgets = {
             'content' : TextInput(
-                attrs={'class': 'form-control-comment'}
+                attrs={'class': 'form-control-comment', 
+                'placeholder': 'Комментировать'}
             ),
         }

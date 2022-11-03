@@ -381,3 +381,36 @@ p.register-text-login-nick{
 .befor-footer{
     margin-bottom: 150px;
 }
+
+.hr-comments{
+    margin: 20px 0 20px 0;
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: -webkit-linear-gradient(to right,#dcdcdc30,#7dab1f,#dcdcdc30);
+    background: linear-gradient(to right,#dcdcdc30,#7dab1f,#dcdcdc30);
+}
+
+.form-control-comment{
+    width: 100%;
+}
+
+.form-control-comment::placeholder{
+    color: #777;
+}
+
+.btn-comment{
+    width: 100px;
+    height: 30px;
+    background-color: #7dab1f;
+    border: 1px solid #a6a6a6;
+    border-radius: 2px;
+}
+
+.form-comment{
+    display: flex;
+}
+
+.input-register{
+    width: 100%;
+}

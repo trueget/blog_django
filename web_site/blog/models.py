@@ -22,8 +22,8 @@ class Articles(models.Model):
 
 class Comments(models.Model):
     '''комментарии'''
-    which_article = models.ForeignKey(Articles, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    which_article = models.ForeignKey(Articles, on_delete=models.CASCADE, related_name='comments_articles', blank = True, null = True )
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments_user', blank = True, null = True )
     content = models.TextField()
     date_joined = models.DateTimeField(auto_now_add=True)
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
