@@ -106,11 +106,14 @@ class BlogDetail(DetailView):
         if self.request.method == 'POST':
             comment_form = CommentsForm(self.request.POST)
             if comment_form.is_valid():
+                user = User.objects.get(username=self.request.user)
+                profile = UserProfile.objects.get(user_id=user.id)
+                print(profile.user_avatar)
                 content = comment_form.cleaned_data['content']
                 try:
                     parent = comment_form.cleaned_data['parent']
                 except:
-                    parent=None
-            new_comment = Comments(content=content , author=self.request.user , which_article=self.get_object() , parent=parent)
+                    parent = None
+            new_comment = Comments(content=content , author=self.request.user , which_article=self.get_object() , parent=parent, link_img=profile)
             new_comment.save()
             return redirect(self.request.path_info)

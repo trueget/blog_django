@@ -9,14 +9,14 @@
 {% block print_state %}
     <div class="window-bot">
         <div id="{{ article.id }}" class="articles-list">
-        <div class="avtor-date">
-            <a href="#"><p class="avtor">{% block avtor %}{{ article.username }}{% endblock avtor %}</p></a>
-            <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
-            <div class="delete_article">
-                <a href="delete/{{ article.id }}">Удалить статью</a>
+            <div class="avtor-date">
+                <a href="#"><p class="avtor">{% block avtor %}{{ article.username }}{% endblock avtor %}</p></a>
+                <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
+                <div class="delete_article">
+                    <a href="delete/{{ article.id }}">Удалить статью</a>
+                </div>
             </div>
-        </div>
-        <p class="article-title">{% block name-state %}{{ article.name_article }}{% endblock name-state %}</p>
+            <p class="article-title">{% block name-state %}{{ article.name_article }}{% endblock name-state %}</p>
         </div>
 
         <div>
@@ -44,21 +44,37 @@
                     {{ comment_form }}
                 </div>
                 <button class="btn-comment" type="submit">Отправить</button>
-                <!-- <input class="btn-comment" type="submit" value="Отправить"> -->
             </div>
          </form>
-         {% else %} <h2>Вам нужно авторизоваться!</h2> 
+         {% else %} 
+            <h2>Вам нужно авторизоваться!</h2> 
          {% endif %}
-   
+
          {% for comment in comments %}
             {% if comment.is_parent %}
-            <img src="{{ comment.author. }}" alt="">
-            <p> <b>{{ comment.author }} : </b> {{ comment.content }} : </b> <p class="date">{{ comment.date_joined }}</p></p>
-            <img src="{{ comment.author.user_profile }}" alt=""> 
+            <p>{{ comment. }}</p>
+
+            <div class="item-comment">
+                <div class="item-img-comment">
+                    {% if comment.link_img.user_avatar %}
+                        <img class="img-comment" src="{{ comment.link_img.user_avatar.url }}" alt="">
+                    {% else %}
+                        <img class="img-comment" class="user_avatar" src="/media/imgusers/avatar.jpg">
+                    {% endif %}
+                </div>
+                <div>
+                    <div class="top-comment">
+                        <p class="author-comment">{{ comment.author }}</p>
+                        <p class="date date-comment">{{ comment.date_joined }}</p>
+                    </div>
+                    <p>{{ comment.content }}</p>
+                </div>
+            </div>
+             
             {% endif %} 
-            {% for replies in comment.children %}
+            <!-- {% for replies in comment.children %}
                <h3><b>{{ comment.author }} : </b> {{ replies.content }}</h3>
-            {% endfor %}
+            {% endfor %} -->
          {% endfor %} 
 
     </div>

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from user_page.models import UserProfile
 # Create your models here.
 
 
@@ -25,6 +26,7 @@ class Comments(models.Model):
     which_article = models.ForeignKey(Articles, on_delete=models.CASCADE, related_name='comments_articles', blank = True, null = True )
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments_user', blank = True, null = True )
     content = models.TextField()
+    link_img = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='comments_userprofile', blank = True, null = True )
     date_joined = models.DateTimeField(auto_now_add=True)
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
 
