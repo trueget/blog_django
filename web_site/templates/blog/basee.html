@@ -11,43 +11,6 @@
     <title>{% block title %}шаблон{% endblock title %}</title>
 </head>
 <body>
-    <div class="container">
-        <div class="left-item">
-            <img src="{% static '/images/under_user.jpg' %}" alt="">
-        </div>
-        <div class="right-item">
-            <header>
-                <div class="header">
-                    <div class="left-header">
-                        <a class="link-header" href="#"><p class="text-header">ГЛАВНАЯ</p></a>
-                        <a class="link-header" href="#">
-                            <div class="link-header button-articles text-header">
-                                <p class="link-article">СТАТЬИ</p>
-                                <img class="img-down" src="{% static '/images/down.svg' %}" alt="">
-                            </div>
-                        </a>
-                        <a class="link-header" href="#"><p class="text-header">ОБО МНЕ</p></a>
-                    </div>
-                    <div class="right-header">
-                        <a class="link-header" href="#"><p class="text-header">ПРОФИЛЬ</p></a>
-                        <input type="search" class="serch-text" placeholder="Поиск по блогу" aria-label="Search">
-                    </div>
-                </div>
-            </header>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-<!--     
     {% block header %}
       <header>
         <div class="container">
@@ -85,7 +48,7 @@
       </header>
     {% endblock header %}
 
-      блок регистрации, авторизации, активации
+      <!-- блок регистрации, авторизации, активации -->
       {% block register_login_logout_email %}{% endblock register_login_logout_email %}
      <main>
         <div class="container">
@@ -111,22 +74,22 @@
             {% endblock window-top %}
           <div class="two-windows">
             <div class="two-windos-left">
-              блок главной страницы
+              <!-- блок главной страницы -->
               {% block main_page %}{% endblock main_page %}
 
-              блок распечатки статтей
+              <!-- блок распечатки статтей -->
               {% block print_state %}{% endblock print_state %}
 
-              блок создания статьи
+              <!-- блок создания статьи -->
               {% block create_state %}{% endblock create_state %}
 
-              блок подтверждения успешной регистрации
+              <!-- блок подтверждения успешной регистрации -->
               {% block success_register %}{% endblock success_register %}
 
-              блок данных пользователя
+              <!-- блок данных пользователя -->
               {% block data_user %}{% endblock data_user %}
 
-              страница новостей
+              <!-- страница новостей -->
               {% block news_page %}{% endblock news_page %}
             </div>
             {% block window-right %}
@@ -150,6 +113,6 @@
         <a href="#">Watsapp</a>
         <a href="#">blog-django@gmail.com</a>
      </div>
-  {% endblock footer %} -->
+  {% endblock footer %}
 </body>
 </html>
