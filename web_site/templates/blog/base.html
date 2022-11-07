@@ -14,6 +14,20 @@
     <div class="container">
         <div class="left-item">
             <img src="{% static '/images/under_user.jpg' %}" alt="">
+            <div class="info-about-me">
+              <div class="my-avatar">
+                <img class="img-my-avatar" src="{% static '/images/avatar.jpeg' %}" alt="">
+              </div>
+              <div><p>fhjgbdfjlg</p></div>
+              <hr>
+              <div><p>rbskerjb</p></div>
+              <hr>
+              <div class="two-buttons">
+                <a href="#"><div class="red-button">Мои работы</div></a>
+                <a href="#"><div class="blue-button">Написать мне</div></a>
+              </div>
+
+            </div>
         </div>
         <div class="right-item">
             <header>
@@ -33,123 +47,87 @@
                         <input type="search" class="serch-text" placeholder="Поиск по блогу" aria-label="Search">
                     </div>
                 </div>
-            </header>
+              </header>
+              <div class="my-4-articles">
+                <div class="my-4-articles-center">
+                  <a href="#" class="article-img-link">
+                    <div class="item-img-4-articles">
+                      <p class="name-state">Название статьи</p>
+                      <p class="date-state">11.11.2022</p>
+                      <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
+                    </div>
+                  </a>
+                  <a href="#" class="article-img-link">
+                    <div class="item-img-4-articles">
+                      <p class="name-state">Название статьи</p>
+                      <p class="date-state">11.11.2022</p>
+                      <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
+                    </div>
+                  </a>
+                  <a href="#" class="article-img-link">
+                    <div class="item-img-4-articles">
+                      <p class="name-state">Название статьи</p>
+                      <p class="date-state">11.11.2022</p>
+                      <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
+                    </div>
+                  </a>
+                  <a href="#" class="article-img-link">
+                    <div class="item-img-4-articles">
+                      <p class="name-state">Название статьи</p>
+                      <p class="date-state">11.11.2022</p>
+                      <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="create-article">
+                <div class="create-article-two-items">
+                  <div class="left-create-article">
+                    <input class="input-create-article" type="text" placeholder="Текст статьи ...">
+                  </div>
+                  <div class="right-create-article">
+                    <a href="#">
+                      <div class="article-inside-img article-inside-img-left">
+                        <img class="items-in-circle-left" src="{% static '/images/camera.svg' %}" alt="">
+                      </div>
+                    </a>
+                    <a href="#">
+                      <div class="article-inside-img article-inside-img-right">
+                        <img class="items-in-circle-right" src="{% static '/images/vector.svg' %}" alt="">
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="window-print-article">
+                <div class="item-window-article">
+                  <div class="img-full-article">
+                    <img class="img-article" src="{% static '/images/avto.jpeg' %}" alt="">
+                  </div>
+                  <div class="article-information">
+                    <p class="name-article">Название статьи</p>
+                    <p class="text-article">такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи</p>
+                    <div class="bottom-info">
+                      <div class="mini-info">
+                        <p class="date-create-article">11.11.2022</p>
+                        <p class="date-create-article">раздел статьи</p>
+                      </div>
+                      <a class="read-all" href="#">читать</a>
+                    </divсдфыы>
+                  </div>
+                </div>
+              </div>
+              <div class="pagination">
+                <div class="pages">
+                  <a class="lin-page" href="#"><div class="page"><</div></a>
+                  <a class="lin-page" href="#"><div class="page">1</div></a>
+                  <a class="lin-page" href="#"><div class="page">2</div></a>
+                  <a class="lin-page" href="#"><div class="page">3</div></a>
+                  <a class="lin-page" href="#"><div class="page">></div></a>
+                </div>
+              </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-<!--     
-    {% block header %}
-      <header>
-        <div class="container">
-          <div class="wrapper-header">
-            <ul class="nav published-button">
-              <li>
-                <a href="{% url 'about_blog' %}" class="logo-home"><img src="{% static 'images/logo.png' %}" height="40" width="40" alt=""></a>
-              </li>
-              <li><a class="main-word" href="#">Функции</a></li>
-              <li><a class="main-word" href="{% url 'help_page' %}">Помощь</a></li>
-              <li><a class="main-word" href="#"></a></li>
-              <li><a class="main-word" href="#"></a></li>
-            </ul>
-            <div class="wrapperheader-right">
-              {% if user.is_authenticated %}
-                <a href="{% url 'my_page' %}" class="username_main">{{ request.user.username }}</a>
-              {% endif %}
-              <form class="input-search" role="search">
-                <input type="search" class="form-control" placeholder="Поиск по тексту..." aria-label="Search">
-              </form>
-              {% if user.is_authenticated %}
-                {% block user %}
-                  <div class="btn">
-                    <a href="{% url 'logout' %}"><button class="btn-login">Выйти</button></a>
-                  </div>
-                {% endblock user %}
-              {% else %}
-                <div class="btn">
-                  <a href="{% url 'login' %}"><button class="btn-login" >Войти</button></a>
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </header>
-    {% endblock header %}
-
-      блок регистрации, авторизации, активации
-      {% block register_login_logout_email %}{% endblock register_login_logout_email %}
-     <main>
-        <div class="container">
-          {% block window-top %}
-            <div class="window-top">
-                <div class="container-window-top">
-                  <ul class="nav navi">
-                    <li><a class="main-word" href="{% url 'articles' %}">Статьи</a></li>
-                    <li><a class="main-word" href="{% url 'authors' %}">Авторы</a></li>
-                    <li><a class="main-word" href="{% url 'news' %}">Новости</a></li>
-                    {% if user.is_authenticated %}
-                      <li><a class="main-word" href="{% url 'my_articles' %}">Мои публикации</a></li>
-                    {% endif %}
-                  </ul>
-                  {% if user.is_authenticated %}
-                    <ul class="nav navi">
-                      <li><a href="{% url 'create_article' %}">Опубликовать статью</a></li>
-                    </ul>
-                  {% endif %}
-                </div>
-                <hr>
-              </div>
-            {% endblock window-top %}
-          <div class="two-windows">
-            <div class="two-windos-left">
-              блок главной страницы
-              {% block main_page %}{% endblock main_page %}
-
-              блок распечатки статтей
-              {% block print_state %}{% endblock print_state %}
-
-              блок создания статьи
-              {% block create_state %}{% endblock create_state %}
-
-              блок подтверждения успешной регистрации
-              {% block success_register %}{% endblock success_register %}
-
-              блок данных пользователя
-              {% block data_user %}{% endblock data_user %}
-
-              страница новостей
-              {% block news_page %}{% endblock news_page %}
-            </div>
-            {% block window-right %}
-              <div class="two-windos-right">
-                <div class="window-bot">
-                  {% if user.is_authenticated %}
-                    <p>Вы авторизованы</p>
-                  {% else %}
-                    <p>Вы не <a class="login-main-page" href="{% url 'login' %}">авторизованы!</a></p>
-                  {% endif %}
-                </div>
-              </div>
-            {% endblock window-right %}
-          </div>
-        </div>
-     </main>
-  {% block footer %}
-     <hr class="line-footer">
-     <div class="footer">
-        <a href="#">телеграм</a>
-        <a href="#">Watsapp</a>
-        <a href="#">blog-django@gmail.com</a>
-     </div>
-  {% endblock footer %} -->
 </body>
 </html>
