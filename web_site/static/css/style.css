@@ -47,7 +47,7 @@ a.link-header:hover{
     width: 10px;
 }
 .link-article{
-    margin-right: 3px;
+    margin-right: 4px;
 }
 .my-4-articles{
     margin-top: 60px;
@@ -148,7 +148,6 @@ a.link-header:hover{
 }
 .item-window-article{
     width: 607px;
-    align-items: center;
     margin: 0 auto;
     border-radius: 5px;
     background-color: #202020;
@@ -255,4 +254,57 @@ input.input-create-article::placeholder{
 }
 .blue-button{
     background: #3137C9;
+}
+.my-avatar{
+    width: 150px;
+    height: 150px;
+}
+.img-my-avatar{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-top: -75px;
+}
+.item-img{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.margin-65{
+    margin-top: -60px;
+}
+.my-name{
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+.short-info{
+    color: #DEDEDE;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 5px;
+}
+.social-imgs{
+    margin: 20px 0 20px 15px;
+    display: flex;
+    justify-content: center;
+}
+.social-img{
+    margin-right: 15px;
+}
+.item-text-about-me{
+    width: 260px;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.text-about-me{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 30px 0 30px 0;
 }

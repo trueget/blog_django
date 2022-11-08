@@ -15,39 +15,56 @@
         <div class="left-item">
             <img src="{% static '/images/under_user.jpg' %}" alt="">
             <div class="info-about-me">
-              <div class="my-avatar">
-                <img class="img-my-avatar" src="{% static '/images/avatar.jpeg' %}" alt="">
-              </div>
-              <div><p>fhjgbdfjlg</p></div>
-              <hr>
-              <div><p>rbskerjb</p></div>
-              <hr>
-              <div class="two-buttons">
-                <a href="#"><div class="red-button">Мои работы</div></a>
-                <a href="#"><div class="blue-button">Написать мне</div></a>
+              <div class="item-img">
+                <div class="my-avatar">
+                  <img class="img-my-avatar" src="{% static '/images/avatar.jpeg' %}" alt="">
+                </div>
               </div>
 
+              <div class="margin-65">
+
+                <div>
+                  <p class="my-name">Высян Николаев</p>
+                  <p class="short-info">блог шарамыги</p>
+                  <div class="social-imgs">
+                    <a href=""><img class="social-img" src="{% static '/images/vk.svg' %}" alt=""></a>
+                    <a href=""><img class="social-img" src="{% static '/images/inst.svg' %}" alt=""></a>
+                    <a href=""><img class="social-img" src="{% static '/images/pint.svg' %}" alt=""></a>
+                  </div>
+                </div>
+                <hr>
+                <div class="item-text-about-me">
+                  <p class="text-about-me">Back-end шарамыгин. Создаю свой блог. Работал в нескольких ИТ компаниях и наработал более 10 000 часов.</p>
+                </div>
+                <hr>
+                <div class="two-buttons">
+                  <a href="#"><div class="red-button">Мои работы</div></a>
+                  <a href="#"><div class="blue-button">Написать мне</div></a>
+                </div>
+              </div>
             </div>
         </div>
         <div class="right-item">
-            <header>
-                <div class="header">
-                    <div class="left-header">
-                        <a class="link-header" href="#"><p class="text-header">ГЛАВНАЯ</p></a>
-                        <a class="link-header" href="#">
-                            <div class="link-header button-articles text-header">
-                                <p class="link-article">СТАТЬИ</p>
-                                <img class="img-down" src="{% static '/images/down.svg' %}" alt="">
-                            </div>
-                        </a>
-                        <a class="link-header" href="#"><p class="text-header">ОБО МНЕ</p></a>
-                    </div>
-                    <div class="right-header">
-                        <a class="link-header" href="#"><p class="text-header">ПРОФИЛЬ</p></a>
-                        <input type="search" class="serch-text" placeholder="Поиск по блогу" aria-label="Search">
-                    </div>
-                </div>
+            {% block header %}
+              <header>
+                  <div class="header">
+                      <div class="left-header">
+                          <a class="link-header" href="#"><p class="text-header">ГЛАВНАЯ</p></a>
+                          <a class="link-header" href="#">
+                              <div class="link-header button-articles text-header">
+                                  <p class="link-article">СТАТЬИ</p>
+                                  <img class="img-down" src="{% static '/images/down.svg' %}" alt="">
+                              </div>
+                          </a>
+                          <a class="link-header" href="#"><p class="text-header">ОБО МНЕ</p></a>
+                      </div>
+                      <div class="right-header">
+                          <a class="link-header" href="#"><p class="text-header">ПРОФИЛЬ</p></a>
+                          <input type="search" class="serch-text" placeholder="Поиск по блогу" aria-label="Search">
+                      </div>
+                  </div>
               </header>
+            {% endblock header %}
               <div class="my-4-articles">
                 <div class="my-4-articles-center">
                   <a href="#" class="article-img-link">
@@ -114,7 +131,7 @@
                         <p class="date-create-article">раздел статьи</p>
                       </div>
                       <a class="read-all" href="#">читать</a>
-                    </divсдфыы>
+                    </div>
                   </div>
                 </div>
               </div>
