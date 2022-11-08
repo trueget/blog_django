@@ -37,6 +37,6 @@ class CommentsForm(ModelForm):
         widgets = {
             'content' : TextInput(
                 attrs={'class': 'form-control-comment', 
-                'placeholder': 'Комментировать'}
+                'placeholder': 'Текст комментария...'}
             ),
         }
