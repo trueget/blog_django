@@ -12,43 +12,56 @@
 </head>
 <body>
     <div class="container">
-        <div class="left-item">
-            <img src="{% static '/images/under_user.jpg' %}" alt="">
-            <div class="info-about-me">
-              <div class="item-img">
-                <div class="my-avatar">
-                  <img class="img-my-avatar" src="{% static '/images/avatar.jpeg' %}" alt="">
-                </div>
-              </div>
+        {% block user-profile %}
+          <div class="left-item">
+              <img src="{% static '/images/under_user.jpg' %}" alt="">
+              <div class="info-about-me">
+                {% if user.is_authenticated %}
+                  {% block user-img %}
+                    <div class="item-img">
+                      <div class="my-avatar">
+                        <img class="img-my-avatar" src="{% static '/images/avatar.jpeg' %}" alt="">
+                      </div>
+                    </div>
+                  {% endblock user-img %}
+                {% endif %}
 
-              <div class="margin-65">
+                <div class="margin-65">
 
-                <div class="name-user">
-                  <p class="my-name">Высян Николаев</p>
-                  <div class="social-imgs">
-                    <a href=""><img class="social-img" src="{% static '/images/vk.svg' %}" alt=""></a>
-                    <a href=""><img class="social-img" src="{% static '/images/inst.svg' %}" alt=""></a>
-                    <a href=""><img class="social-img" src="{% static '/images/pint.svg' %}" alt=""></a>
+                  <div class="name-user">
+                    <p class="my-name">Высян Николаев</p>
+                    <div class="social-imgs">
+                      <a href=""><img class="social-img" src="{% static '/images/vk.svg' %}" alt=""></a>
+                      <a href=""><img class="social-img" src="{% static '/images/inst.svg' %}" alt=""></a>
+                      <a href=""><img class="social-img" src="{% static '/images/pint.svg' %}" alt=""></a>
+                    </div>
                   </div>
-                </div>
-                <hr>
-                <div class="item-text-about-me">
-                  <p class="text-about-me">Back-end шарамыгин. Создаю свой блог. Работал в нескольких ИТ компаниях и наработал более 10 000 часов.</p>
-                </div>
-                <hr>
-                <div class="two-buttons">
-                  <a href="#"><div class="btn red-button">Мои работы</div></a>
-                  <a href="#"><div class="btn blue-button">Написать мне</div></a>
+                  <hr>
+                  <div class="item-text-about-me">
+                    <p class="text-about-me">Back-end шарамыгин. Создаю свой блог. Работал в нескольких ИТ компаниях и наработал более 10 000 часов.</p>
+                  </div>
+                  <hr>
+                  {% if user.is_authenticated %}
+                    <div class="two-buttons">
+                      <a href="#"><div class="btn red-button">Мои работы</div></a>
+                      <a href="#"><div class="btn blue-button">Написать мне</div></a>
+                    </div>
+                  {% else %}
+                    <div class="two-buttons">
+                      <a href="#"><div class="btn red-button">Sign in</div></a>
+                      <a href="#"><div class="btn blue-button">Sign up</div></a>
+                    </div>
+                  {% endif %}
                 </div>
               </div>
-            </div>
-        </div>
+          </div>
+        {% endblock user-profile %}
         <div class="right-item">
             {% block header %}
               <header>
                   <div class="header">
                       <div class="left-header">
-                          <a class="link-header" href="#"><p class="text-header">ГЛАВНАЯ</p></a>
+                          <a class="link-header" href="/"><p class="text-header">ГЛАВНАЯ</p></a>
                           <a class="link-header" href="#">
                               <div class="link-header button-articles text-header">
                                   <p class="link-article">СТАТЬИ</p>
@@ -58,12 +71,14 @@
                           <a class="link-header" href="#"><p class="text-header">ОБО МНЕ</p></a>
                       </div>
                       <div class="right-header">
-                          <a class="link-header" href="#"><p class="text-header">ПРОФИЛЬ</p></a>
+                          <a class="link-header" href="{% url 'my_page' %}"><p class="text-header">ПРОФИЛЬ</p></a>
                           <input type="search" class="serch-text" placeholder="Поиск по блогу" aria-label="Search">
                       </div>
                   </div>
               </header>
             {% endblock header %}
+
+            {% block my_profile %}{% endblock my_profile %}
 
             {% block print_state %}{% endblock print_state %}
 
@@ -125,24 +140,35 @@
             {% endblock create_article %}
 
             {% block print_articles %}
-              <div class="window-print-article">
-                <div class="item-window-article">
-                  <div class="img-full-article-main">
-                    <img class="img-article" src="{% static '/images/avto.jpeg' %}" alt="">
-                  </div>
-                  <div class="article-information">
-                    <p class="names-article">Название статьи</p>
-                    <p class="text-article">такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи такст статьи</p>
-                    <div class="bottom-info">
-                      <div class="mini-info">
-                        <p class="date-create-article">11.11.2022</p>
-                        <p class="date-create-article">раздел статьи</p>
+              {% for article in all_articles %}
+                <div id="{{ article.id }}" class="window-print-article">
+                  <div class="item-window-article">
+                    <div class="img-full-article-main">
+                      {% if article.img_article %}
+                      <img class="img-article" src="{{ article.img_article.url }}" alt="">
+                      {% endif %}
+                    </div>
+                    <div class="article-information">
+                      <p class="names-article">{{ article.name_article }}</p>
+
+
+                      {% for string in article.text_article %}
+                        {% if forloop.counter0 < 5 %}
+                          <p class="text-article">{{ string }}</p>
+                        {% endif %}
+                      {% endfor %}
+                      <p>...</p>
+                      <div class="bottom-info">
+                        <div class="mini-info">
+                          <p class="date-create-article">{{ article.create_date }}</p>
+                          <p class="date-create-article">раздел статьи</p>
+                        </div>
+                        <a class="read-all" href="{% url 'one_article' article.id %}">читать</a>
                       </div>
-                      <a class="read-all" href="#">читать</a>
                     </div>
                   </div>
                 </div>
-              </div>
+              {% endfor %}
             {% endblock print_articles %}
 
             {% block pagination %}

@@ -86,7 +86,7 @@ a.link-header:hover{
     z-index: 2;
     position: absolute;
     top: 175px;
-    left: 70px;
+    right: 10px;
     font-size: 11px;
 }
 .create-article{
@@ -167,7 +167,7 @@ a.link-header:hover{
     border-radius: 5px 5px 0 0;
 }
 .article-information{
-    padding: 25px;
+    padding: 25px 25px 15px 25px;
 }
 .name-article, .names-article{
     font-weight: 500;
@@ -271,8 +271,8 @@ a.share:hover .text-share{
     background: #3137C9;
 }
 .my-avatar{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
 }
 .img-my-avatar{
     width: 100%;
@@ -280,10 +280,10 @@ a.share:hover .text-share{
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid white;
-    margin-top: -75px;
+    margin-top: -56px;
 }
 .margin-65{
-    margin-top: -60px;
+    margin-top: -34px;
 }
 .info-about-me{
     display: flex;
@@ -297,7 +297,7 @@ a.share:hover .text-share{
 }
 .two-buttons{
     display: flex;
-    margin-top: 20px;
+    padding: 20px 0 50px 0;
 }
 .btn{
     margin: 0 5px;
@@ -362,7 +362,7 @@ a.share:hover .text-share{
 }
 .discuss{
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     margin: 20px 25px 0 25px;
 }
 .form-comment{
@@ -387,4 +387,89 @@ a.share:hover .text-share{
 button.btn-comment:hover{
     font-size: 12.3px;
     transition: 0.5s;
+}
+.wrapper-img-comments{
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+.img-comment{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.comments{
+    padding: 20px 25px 25px 25px;
+}
+.author-comment{
+    display: flex;
+}
+.name-author-comment{
+    font-size: 13px;
+    font-weight: 400;
+}
+.date-create-comment{
+    margin-top: 5px;
+    font-size: 12px;
+    color: #757575;
+}
+.text-comment{
+    font-size: 12px;
+    margin: 8px 0 25px 0;
+    font-weight: 300;
+    line-height: 14px;
+    letter-spacing: 0.6px;
+}
+.my_profile{
+    padding: 60px 50px 0 50px;
+}
+.text-profile{
+    font-size: 21px;
+    font-weight: 400;
+}
+.form-profile{
+    width: 340px;
+    margin-top: 20px;
+}
+.profile-user-about-me{
+    height: 26px;
+    width: 100%;
+    background: #181818;
+    color: #fff;
+    border: 0;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+}
+textarea.profile-user-about-me::placeholder{
+    color: #828282;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.8px;
+    font-size: 12px;
+    font-weight: 300;
+}
+hr.hr-profile{
+    margin: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #3F3F3F;
+    border: #3F3F3F;
+}
+.mini-containrer{
+    border-bottom: 1px solid #3F3F3F;
+    margin-bottom: 16px;
+}
+.text-mini-container{
+    font-size: 12px;
+    color: #fff;
+    padding: 9px 0;
+    letter-spacing: 0.7px;
+}
+.btn-profile{
+    margin-top: 9px;
+}
+.date-register{
+    text-align: right;
+    margin-right: 0;
 }

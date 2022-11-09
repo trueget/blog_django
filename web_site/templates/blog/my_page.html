@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+главная страница
+{% endblock title %}
+
+{% block four_articles %}{% endblock four_articles %}
+{% block create_article %}{% endblock create_article %}
+{% block print_articles %}{% endblock print_articles %}
+{% block pagination %}{% endblock pagination %}
+
+{% block my_profile %}
+    <div class="my_profile">
+        <p class="text-profile">Профиль</p>
+        <div class="form-profile">
+            <p class="date-register date-create-article">зарегистрирован {{ user.date_joined }}</p>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+
+                    <div class="mini-containrer">
+                        <p class="text-mini-container">{{ data_user.user }}</p>
+                    </div>
+                    {% if user.first_name %}
+                        <div class="mini-containrer">
+                            <p class="text-mini-container">{{ user.first_name }} {{ user.last_name }}</p>
+                        </div>
+                    {% endif %}
+                    {% if user.phone_no %}
+                        <div class="mini-containrer">
+                            <p class="text-mini-container">{{ user.phone_no }}</p>
+                        </div>
+                    {% endif %}
+                    <div class="mini-containrer">
+                        <p class="text-mini-container">{{ user.email }}</p>
+                    </div>
+                    <div class="mini-containrer">
+                        {{ form.about_me }}
+                    </div>
+
+                <!-- {{ form.user_avatar }}
+                <hr class="hr-profile">
+                <input type="text">
+                {{ form.about_me }}
+                <hr class="hr-profile">
+                <input type="text">
+                <hr class="hr-profile">
+                <input type="text">
+                <hr class="hr-profile">
+                <input type="text">
+                <hr class="hr-profile"> -->
+            </form>
+        </div>
+        <div></div>
+        <button class="btn-profile btn-comment" type="submit">Обновить</button>
+
+    </div>
+{% endblock my_profile %}

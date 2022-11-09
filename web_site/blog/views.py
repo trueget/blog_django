@@ -15,6 +15,13 @@ def articles(request):
     return render(request, 'blog/articles.html', {'all_articles': all_articles})
 
 
+def index(request):
+    all_articles = Articles.objects.order_by('-create_date')
+    for article in all_articles:
+        article.text_article = article.text_article.replace('\r', '').split('\n')
+    return render(request, 'blog/index.html', {'all_articles': all_articles})
+
+
 # '''каждая статья отдельно'''
 # def one_article(request, id):
 #     article = Articles.objects.get(id=id)
@@ -22,8 +29,8 @@ def articles(request):
 #     return render(request, 'blog/one_article.html', {'article': article})
 
 
-def index(request):
-    return render(request, 'blog/index.html')
+# def index(request):
+#     return render(request, 'blog/index.html')
 
 '''главная о блоге'''
 def about_blog(request):

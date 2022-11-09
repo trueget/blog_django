@@ -37,9 +37,6 @@
             {% endfor %}
         </div>
         <hr>
-
-
-        <!-- =============== -->
         <p class="discuss">Обсуждение</p>
         {% if user.is_authenticated %}
             <form method="POST">
@@ -60,24 +57,28 @@
                 {% endif %}
                 <div class="item-comment">
                     <div class="item-img-comment">
-                        {% if comment.link_img.user_avatar %}
-                            <img class="img-comment" src="{{ comment.link_img.user_avatar.url }}" alt="">
-                        {% else %}
-                            <img class="img-comment" class="user_avatar" src="/media/imgusers/avatar.jpg">
-                        {% endif %}
-                    </div>
-                    <div>
-                        <div class="top-comment">
-                            <p class="author-comment">{{ comment.author }}</p>
-                            <p class="date">{{ comment.date_joined }}</p>
+                        <div class="author-comment">
+                            <div>
+                            {% if comment.link_img.user_avatar %}
+                                <div class="wrapper-img-comments">
+                                    <img class="img-comment" src="{{ comment.link_img.user_avatar.url }}" alt="">
+                                </div>
+                            {% else %}
+                                <div class="wrapper-img-comments">
+                                    <img class="img-comment" class="user_avatar" src="/media/imgusers/avatar.jpg">
+                                </div>
+                            {% endif %}
+                            </div>
+                            <div>
+                                <p class="name-author-comment">{{ comment.author }}</p>
+                                <p class="date-create-comment">{{ comment.date_joined }}</p>
+                            </div>
                         </div>
-                        <p>{{ comment.content }}</p>
                     </div>
+                    <p class="text-comment">{{ comment.content }}</p>
                 </div>
             {% endfor %}
         </div>
-
-
     </div>
 </div>
 {% endblock print_state %}
@@ -89,81 +90,3 @@
 {% block print_articles %}{% endblock print_articles %}
 
 {% block pagination %}{% endblock pagination %}
-
-
-
-
-
-
-<!-- 
-    <div class="window-bot">
-        <div id="{{ article.id }}" class="articles-list">
-            <div class="avtor-date">
-                <a href="#"><p class="avtor">{% block avtor %}{{ article.username }}{% endblock avtor %}</p></a>
-                <p class="date">{% block datepublished %}{{ article.create_date }}{% endblock datepublished %}</p>
-                <div class="delete_article">
-                    <a href="delete/{{ article.id }}">Удалить статью</a>
-                </div>
-            </div>
-            <p class="article-title">{% block name-state %}{{ article.name_article }}{% endblock name-state %}</p>
-        </div>
-
-        <div>
-            {% block image_article %}
-                {% if article.img_article %}
-                    <img class="img_article" src="{{ article.img_article.url }}">
-                {% endif %}
-            {% endblock image_article %}
-        </div>
-
-        <div>
-            {% block article_text %}
-                {% for string in text_article %}
-                    <p>{{ string }}</p>
-                {% endfor %}
-            {% endblock article_text %}
-        </div>
-
-        <hr class="hr-comments">
-        {% if user.is_authenticated %}
-         <form method="POST">
-            {% csrf_token %}
-            <div class="form-comment">
-                <div class="input-register">
-                    {{ comment_form }}
-                </div>
-                <button class="btn-comment" type="submit">Отправить</button>
-            </div>
-         </form>
-         {% else %} 
-            <h2>Вам нужно авторизоваться!</h2> 
-         {% endif %}
-
-         {% for comment in comments %}
-            {% if comment.is_parent %}
-            <p>{{ comment. }}</p>
-
-            <div class="item-comment">
-                <div class="item-img-comment">
-                    {% if comment.link_img.user_avatar %}
-                        <img class="img-comment" src="{{ comment.link_img.user_avatar.url }}" alt="">
-                    {% else %}
-                        <img class="img-comment" class="user_avatar" src="/media/imgusers/avatar.jpg">
-                    {% endif %}
-                </div>
-                <div>
-                    <div class="top-comment">
-                        <p class="author-comment">{{ comment.author }}</p>
-                        <p class="date">{{ comment.date_joined }}</p>
-                    </div>
-                    <p>{{ comment.content }}</p>
-                </div>
-            </div>
-             
-            {% endif %} 
-            {% for replies in comment.children %}
-               <h3><b>{{ comment.author }} : </b> {{ replies.content }}</h3>
-            {% endfor %}
-         {% endfor %} 
-
-    </div> -->
