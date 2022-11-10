@@ -13,7 +13,8 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             'user_avatar': forms.ClearableFileInput(attrs={
                 'class': 'profile-user-avatar',
-                'label': 'ваша фотография'
+                'htmlFor': 'choice-img',
+                'title': ' '
             }),
             'about_me': forms.Textarea(attrs={
                 'class': 'profile-user-about-me',
