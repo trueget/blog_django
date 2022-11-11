@@ -24,14 +24,13 @@ urlpatterns = [
     # path(r'article/id/<int:id>', blog_views.BlogDetail.as_view(), name='one_article'),
     path(r'article/id/<slug:pk>', blog_views.BlogDetail.as_view(), name='one_article'),
 
-
     path(r'articles/delete/<int:id>', blog_views.delete),
 
     path('authors/', blog_views.all_authors, name='authors'),
 
     path('register/', user_views.register_user, name='register'),
     path('login/', user_views.Login, name='login'),
-    path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
+    path('logout/', auth.LogoutView.as_view(template_name='blog/my_page.html'), name='logout'),
     path('activation/', user_views.activation_user, name='activation'),
 
     path('my_page/', user_page_views.update_profile, name='my_page'),

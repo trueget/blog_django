@@ -26,34 +26,17 @@
                                 <p class="text-mini-container">{{ user.first_name }} {{ user.last_name }}</p>
                             </div>
                         {% endif %}
-                        {% if user.phone_no %}
-                            <div class="mini-containrer">
-                                <p class="text-mini-container">{{ user.phone_no }}</p>
-                            </div>
-                        {% endif %}
                         <div class="mini-containrer">
                             <p class="text-mini-container">{{ user.email }}</p>
                         </div>
                         <div class="mini-containrer">
                             {{ form.about_me }}
                         </div>
-
-                    <!-- {{ form.user_avatar }}
-                    <hr class="hr-profile">
-                    <input type="text">
-                    {{ form.about_me }}
-                    <hr class="hr-profile">
-                    <input type="text">
-                    <hr class="hr-profile">
-                    <input type="text">
-                    <hr class="hr-profile">
-                    <input type="text">
-                    <hr class="hr-profile"> -->
                 </form>
             </div>
         </div>
         <div class="right-item-profile">
-            <a href="#"><div class='wrapper-quit-btn'>выйти</div></a>
+            <a href="{% url 'logout' %}"><div class='wrapper-quit-btn'>выйти</div></a>
             <div class="container-img-profile">
             {% if data_user.user_avatar %}
                 <img class="img-profile" src="{{ data_user.user_avatar.url }}">

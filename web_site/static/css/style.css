@@ -142,7 +142,7 @@ a.link-header:hover{
     letter-spacing: 1px;
 }
 .window-print-article{
-    margin: 30px 0 80px 0;
+    margin: 30px 0 40px 0;
 }
 .item-window-article{
     width: 607px;
@@ -194,6 +194,7 @@ input.input-create-article::placeholder{
 .pagination{
     height: 130px;
     margin-bottom: 20px;
+    padding-top: 40px;
 }
 .pages{
     width: 607px;
@@ -496,7 +497,7 @@ hr.hr-profile{
     font-weight: 300;
     color: #107EFF;
 }
- label.change-input-btn input[type='file']{
+label.change-input-btn input[type='file']{
     display: none;
     opacity: 0;
 }
@@ -516,4 +517,41 @@ hr.hr-profile{
 }
 .wrapper-quit-btn:hover{
     font-size: 15px;
+}
+.text-mini-container > input:focus .mini-containrer{
+    border-bottom: 2px solid #107EFF;
+}
+.not-authenticated{
+    margin-top: 50px;
+    border-top: 1px solid #1C1C1C;
+    text-align: center;
+}
+.text-not-authenticated{
+    padding: 30px 0;
+    font-size: 16px;
+    font-weight: 300;
+}
+.container-register{
+    align-content: center;
+    width: 280px;
+    text-align: center;
+}
+.wrapper-container-register{
+    margin: 60px 0;
+    display: flex;
+    justify-content: center;
+}
+.text-mini-container input{
+    width: 100%;
+    background-color: #181818;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+.text-log-reg{
+    font-size: 19px;
+    font-weight: 400;
+    margin-bottom: 20px;
 }

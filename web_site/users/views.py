@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserLoginForm
 from web_site.settings import EMAIL_HOST_USER
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -61,8 +61,7 @@ def register_user(request):
             else:
                 return render(request, 'register/register.html', {'form': form})
         else:
-            return render(request, 'register/register.html', {'form': 
-            UserRegisterForm()})
+            return render(request, 'register/register.html', {'form': UserRegisterForm()})
     else:
         return redirect('articles')
 
@@ -79,11 +78,13 @@ def Login(request):
             messages.success(request, f' Добро пожаловать, {username} !!')
             return redirect('articles')
         else:
-            form = AuthenticationForm()
+            # form = AuthenticationForm()
+            form = UserLoginForm()
             error = 'Неверный ник или пароль!'
             return render(request, 'register/login.html', {'form':form, 'title':'войти', 'error': error})
     else:
-        form = AuthenticationForm()
+        # form = AuthenticationForm()
+        form = UserLoginForm()
         return render(request, 'register/login.html', {'form':form, 'title':'войти'})
 
 

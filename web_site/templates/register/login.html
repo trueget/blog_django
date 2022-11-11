@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+войти
+{% endblock title %}
+
+{% block four_articles %}{% endblock four_articles %}
+{% block create_article %}{% endblock create_article %}
+{% block print_articles %}{% endblock print_articles %}
+{% block pagination %}{% endblock pagination %}
+
+{% block register_login_activation %}
+<div class="wrapper-container-register">
+    <div class="container-register">
+        <p class="text-log-reg">Вход</p>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-register">
+                <div class="mini-containrer">
+                    <p class="text-mini-container">{{ form.username }}</p>
+                </div>
+                <div class="mini-containrer">
+                    <p class="text-mini-container">{{ form.password }}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock register_login_activation %}

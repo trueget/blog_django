@@ -28,18 +28,29 @@
 
                 <div class="margin-65">
 
-                  <div class="name-user">
-                    <p class="my-name">Высян Николаев</p>
-                    <div class="social-imgs">
-                      <a href=""><img class="social-img" src="{% static '/images/vk.svg' %}" alt=""></a>
-                      <a href=""><img class="social-img" src="{% static '/images/inst.svg' %}" alt=""></a>
-                      <a href=""><img class="social-img" src="{% static '/images/pint.svg' %}" alt=""></a>
+                  {% if user.is_ruthenticated %}
+                    <div class="name-user">
+                      <p class="my-name">Высян Николаев</p>
+                      <div class="social-imgs">
+                        <a href=""><img class="social-img" src="{% static '/images/vk.svg' %}" alt=""></a>
+                        <a href=""><img class="social-img" src="{% static '/images/inst.svg' %}" alt=""></a>
+                        <a href=""><img class="social-img" src="{% static '/images/pint.svg' %}" alt=""></a>
+                      </div>
                     </div>
-                  </div>
-                  <hr>
-                  <div class="item-text-about-me">
-                    <p class="text-about-me">Back-end шарамыгин. Создаю свой блог. Работал в нескольких ИТ компаниях и наработал более 10 000 часов.</p>
-                  </div>
+                    <hr>
+                  {% else %}
+                  
+                  {% endif %}
+
+                  {% if user.is_authenticated %}
+                    <div class="item-text-about-me">
+                      <p class="text-about-me">Back-end шарамыгин. Создаю свой блог. Работал в нескольких ИТ компаниях и наработал более 10 000 часов.</p>
+                    </div>
+                  {% else %}
+                    <div class="not-authenticated">
+                      <p class="text-not-authenticated">Вы не авторизованы!</p>
+                    </div>
+                  {% endif %}
                   <hr>
                   {% if user.is_authenticated %}
                     <div class="two-buttons">
@@ -48,8 +59,8 @@
                     </div>
                   {% else %}
                     <div class="two-buttons">
-                      <a href="#"><div class="btn red-button">Sign in</div></a>
-                      <a href="#"><div class="btn blue-button">Sign up</div></a>
+                      <a href="{% url 'login' %}"><div class="btn red-button">Войти</div></a>
+                      <a href="{% url 'register' %}"><div class="btn blue-button">Регистриция</div></a>
                     </div>
                   {% endif %}
                 </div>
@@ -68,10 +79,14 @@
                                   <img class="img-down" src="{% static '/images/down.svg' %}" alt="">
                               </div>
                           </a>
-                          <a class="link-header" href="#"><p class="text-header">ОБО МНЕ</p></a>
+                          {% if user.is_authenticated %}
+                            <a class="link-header" href="#"><p class="text-header">ОБО МНЕ</p></a>
+                          {% endif %}
                       </div>
                       <div class="right-header">
-                          <a class="link-header" href="{% url 'my_page' %}"><p class="text-header">ПРОФИЛЬ</p></a>
+                          {% if user.is_authenticated %}
+                            <a class="link-header" href="{% url 'my_page' %}"><p class="text-header">ПРОФИЛЬ</p></a>
+                          {% endif %}
                           <input type="search" class="serch-text" placeholder="Поиск по блогу" aria-label="Search">
                       </div>
                   </div>
@@ -79,65 +94,69 @@
             {% endblock header %}
 
             {% block my_profile %}{% endblock my_profile %}
-
             {% block print_state %}{% endblock print_state %}
+            {% block register_login_activation %}{% endblock register_login_activation %}
 
-            {% block four_articles %}
-              <div class="my-4-articles">
-                <div class="my-4-articles-center">
-                  <a href="#" class="article-img-link">
-                    <div class="item-img-4-articles">
-                      <p class="name-state">Название статьи</p>
-                      <p class="date-state">11.11.2022</p>
-                      <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
-                    </div>
-                  </a>
-                  <a href="#" class="article-img-link">
-                    <div class="item-img-4-articles">
-                      <p class="name-state">Название статьи</p>
-                      <p class="date-state">11.11.2022</p>
-                      <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
-                    </div>
-                  </a>
-                  <a href="#" class="article-img-link">
-                    <div class="item-img-4-articles">
-                      <p class="name-state">Название статьи</p>
-                      <p class="date-state">11.11.2022</p>
-                      <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
-                    </div>
-                  </a>
-                  <a href="#" class="article-img-link">
-                    <div class="item-img-4-articles">
-                      <p class="name-state">Название статьи</p>
-                      <p class="date-state">11.11.2022</p>
-                      <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
-                    </div>
-                  </a>
-                </div>
-              </div>
-            {% endblock four_articles %}
-
-            {% block create_article %}
-              <div class="create-article">
-                <div class="create-article-two-items">
-                  <div class="left-create-article">
-                    <input class="input-create-article" type="text" placeholder="Текст статьи ...">
-                  </div>
-                  <div class="right-create-article">
-                    <a href="#">
-                      <div class="article-inside-img article-inside-img-left">
-                        <img class="items-in-circle-left" src="{% static '/images/camera.svg' %}" alt="">
+            {% if user.is_authenticated %}
+              {% block four_articles %}
+                <div class="my-4-articles">
+                  <div class="my-4-articles-center">
+                    <a href="#" class="article-img-link">
+                      <div class="item-img-4-articles">
+                        <p class="name-state">Название статьи</p>
+                        <p class="date-state">11.11.2022</p>
+                        <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
                       </div>
                     </a>
-                    <a href="#">
-                      <div class="article-inside-img article-inside-img-right">
-                        <img class="items-in-circle-right" src="{% static '/images/vector.svg' %}" alt="">
+                    <a href="#" class="article-img-link">
+                      <div class="item-img-4-articles">
+                        <p class="name-state">Название статьи</p>
+                        <p class="date-state">11.11.2022</p>
+                        <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
+                      </div>
+                    </a>
+                    <a href="#" class="article-img-link">
+                      <div class="item-img-4-articles">
+                        <p class="name-state">Название статьи</p>
+                        <p class="date-state">11.11.2022</p>
+                        <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
+                      </div>
+                    </a>
+                    <a href="#" class="article-img-link">
+                      <div class="item-img-4-articles">
+                        <p class="name-state">Название статьи</p>
+                        <p class="date-state">11.11.2022</p>
+                        <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
                       </div>
                     </a>
                   </div>
                 </div>
-              </div>
-            {% endblock create_article %}
+              {% endblock four_articles %}
+            {% endif %}
+
+            {% if user.is_authenticated %}
+              {% block create_article %}
+                <div class="create-article">
+                  <div class="create-article-two-items">
+                    <div class="left-create-article">
+                      <input class="input-create-article" type="text" placeholder="Текст статьи ...">
+                    </div>
+                    <div class="right-create-article">
+                      <a href="#">
+                        <div class="article-inside-img article-inside-img-left">
+                          <img class="items-in-circle-left" src="{% static '/images/camera.svg' %}" alt="">
+                        </div>
+                      </a>
+                      <a href="#">
+                        <div class="article-inside-img article-inside-img-right">
+                          <img class="items-in-circle-right" src="{% static '/images/vector.svg' %}" alt="">
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              {% endblock create_article %}
+            {% endif %}
 
             {% block print_articles %}
               {% for article in all_articles %}
@@ -150,8 +169,6 @@
                     </div>
                     <div class="article-information">
                       <p class="names-article">{{ article.name_article }}</p>
-
-
                       {% for string in article.text_article %}
                         {% if forloop.counter0 < 5 %}
                           <p class="text-article">{{ string }}</p>
