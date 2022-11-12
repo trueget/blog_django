@@ -39,10 +39,6 @@ class UserLoginForm(AuthenticationForm):
 
 
 
-
-
-
-
         # labels = {
         #     'password1': ('пароль'),
         # }
@@ -58,3 +54,12 @@ class UserLoginForm(AuthenticationForm):
         #     'password1' : forms.PasswordInput(attrs={'value':'Пароль', 'class': 'user-form-pass1'}),
         #     'password2' : forms.PasswordInput(attrs={'placeholder':'Подтвердите пароль', 'class': 'user-form-pass2'}),
         # }
+
+
+class ActivationForm(forms.Form):
+    code_activation = forms.IntegerField(required=True, max_value=999999, min_value=100000, label='', widget=forms.NumberInput(attrs={
+        'placeholder': 'ваш код',
+        'class': 'activation',
+        'name': 'code_on_page'
+    }))
+    # username = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'}))

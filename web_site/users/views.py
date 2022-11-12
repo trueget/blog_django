@@ -14,8 +14,9 @@ from django.core.mail import send_mail
 
 '''код подтверждения'''
 def generate_code():
-    random.seed()
-    return str(random.randint(100000, 999999))
+    string = [chr(i) for i in range(97, 123)] + [str(i) for i in range(10)]
+    code = ''.join([random.choice(string) for i in range(6)])
+    return code
 
 
 '''регистрация'''
@@ -76,7 +77,7 @@ def Login(request):
         if user is not None:
             form = login(request, user)
             messages.success(request, f' Добро пожаловать, {username} !!')
-            return redirect('articles')
+            return redirect('index')
         else:
             # form = AuthenticationForm()
             form = UserLoginForm()
@@ -123,3 +124,39 @@ def activation_user(request):
 
     else:
         return render(request, 'register/activation.html', {'form': form})
+
+
+
+
+
+
+'''активация через форму'''
+    # if request.method == 'POST':
+    #     code = request.POST['code_on_page']
+    #     code_session = request.session.get('code', ' ')
+    #     user_session = request.session.get('username', ' ')
+    #     pass_session = request.session.get('password', ' ')
+    #     if code == code_session:
+    #         user_active = User.objects.get(username=user_session)
+    #         user_active.is_active = True
+    #         user_active.save()
+
+    #         user = authenticate(request, username=user_session, password=pass_session)
+
+    #         UserProfile.objects.create(user=user, user_avatar=None, about_me=None)
+
+    #         if user:
+    #             login(request, user)
+    #             return render(request, 'blog/index.html')
+    #         else:
+    #             error = 'Пользователь не найден'
+    #             return render(request, 'register/activation.html', {'form': form, 'error': error})
+
+    #     else:
+    #         form = ActivationForm()
+    #         error = 'неверный код'
+    #         return render(request, 'register/activation.html', {'form': form, 'error': error})
+
+    # else:
+    #     form = ActivationForm()
+    #     return render(request, 'register/activation.html', {'form': form})

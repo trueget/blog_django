@@ -16,10 +16,14 @@
         <form method="POST">
             {% csrf_token %}
             <div class="form-register">
-                <div class="mini-containrer">
-                    <p class="text-mini-container"><input name="code_on_page" class="activation" type="number"></p>
+                <div class="mini-containrer wrapper-code-activation">
+                    <!-- {{ form }} -->
+                    <p class="text-mini-container input-code-activation"><input maxlength="6" name="code_on_page" placeholder="введите ваш код" class="activation" type="text"></p>
                 </div>
             </div>
+            <p class="text-activation">Вам на почту был выслан код активации</p>
+            <button class="wrapper-btn-comment" type="submit" >Активировать</button>
+            <!-- <a href="#"><div class="wrapper-btn-comment">Активироовать</div></a> -->
         </form>
     </div>
 </div>

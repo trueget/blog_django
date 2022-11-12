@@ -30,7 +30,7 @@ urlpatterns = [
 
     path('register/', user_views.register_user, name='register'),
     path('login/', user_views.Login, name='login'),
-    path('logout/', auth.LogoutView.as_view(template_name='blog/my_page.html'), name='logout'),
+    path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
     path('activation/', user_views.activation_user, name='activation'),
 
     path('my_page/', user_page_views.update_profile, name='my_page'),
