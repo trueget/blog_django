@@ -4,22 +4,30 @@ from .models import Articles, Comments
 from django.contrib.auth.models import User
 from user_page.models import UserProfile
 from django.views.generic.detail import DetailView
+from django.core.paginator import Paginator
 
 
 '''страница статтей
 плучение данных из бд и выгрузка на главную страницу'''
-def articles(request):
-    all_articles = Articles.objects.order_by('-create_date')
-    for article in all_articles:
-        article.text_article = article.text_article.replace('\r', '').split('\n')
-    return render(request, 'blog/articles.html', {'all_articles': all_articles})
+# def articles(request):
+#     all_articles = Articles.objects.order_by('-create_date')
+#     for article in all_articles:
+#         article.text_article = article.text_article.replace('\r', '').split('\n')
+#     return render(request, 'blog/articles.html', {'all_articles': all_articles})
 
 
+'''главная'''
 def index(request):
     all_articles = Articles.objects.order_by('-create_date')
     for article in all_articles:
         article.text_article = article.text_article.replace('\r', '').split('\n')
-    return render(request, 'blog/index.html', {'all_articles': all_articles})
+
+    paginator = Paginator(all_articles, 10)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+        # return render(request, 'blog/index.html', {'all_articles': all_articles})
+    return render(request, 'blog/index.html', {'page_object': page_object})
+
 
 
 # '''каждая статья отдельно'''
@@ -94,7 +102,7 @@ def all_authors(request):
 
 
 
-
+'''страница статьи с комментами'''
 class BlogDetail(DetailView):
     model = Articles
     template_name = 'blog/one_article.html'

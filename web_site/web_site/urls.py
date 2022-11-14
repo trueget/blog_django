@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('create_article/', blog_views.create_article, name='create_article'),
 
-    path('articles/', blog_views.articles, name='articles'),
+    # path('articles/', blog_views.articles, name='articles'),
     path('my_articles/', blog_views.my_articles, name='my_articles'),
     # path(r'article/id/<int:id>', blog_views.one_article, name='one_article'),
     # path(r'article/id/<int:id>', blog_views.BlogDetail.as_view(), name='one_article'),
@@ -30,7 +30,7 @@ urlpatterns = [
 
     path('register/', user_views.register_user, name='register'),
     path('login/', user_views.Login, name='login'),
-    path('logout/', auth.LogoutView.as_view(template_name='blog/index.html'), name='logout'),
+    path('logout/', auth.LogoutView.as_view(template_name='register/login.html', next_page='index'), name='logout'),
     path('activation/', user_views.activation_user, name='activation'),
 
     path('my_page/', user_page_views.update_profile, name='my_page'),

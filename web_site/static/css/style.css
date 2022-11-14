@@ -213,7 +213,10 @@ input.input-create-article::placeholder{
     border-radius: 5px;
     margin-right: 10px;
 }
-.page:hover{
+.page-blue{
+    background: #3137C9!important;
+}
+a>.page:hover{
     background: #3137C9;
 }
 .date-create-article, .text-share{

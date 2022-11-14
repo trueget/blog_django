@@ -38,7 +38,7 @@
                       </div>
                     </div>
                     <hr>
-                  <!-- {% else %} -->
+                  {% else %}
                   
                   {% endif %}
 
@@ -159,7 +159,7 @@
             {% endif %}
 
             {% block print_articles %}
-              {% for article in all_articles %}
+              {% for article in page_object %}
                 <div id="{{ article.id }}" class="window-print-article">
                   <div class="item-window-article">
                     <div class="img-full-article-main">
@@ -189,18 +189,28 @@
             {% endblock print_articles %}
 
             {% block pagination %}
-              <div class="pagination">
-                <div class="pages">
-                  <a class="lin-page" href="#"><div class="page"><</div></a>
-                  <a class="lin-page" href="#"><div class="page">1</div></a>
-                  <a class="lin-page" href="#"><div class="page">2</div></a>
-                  <a class="lin-page" href="#"><div class="page">3</div></a>
-                  <a class="lin-page" href="#"><div class="page">></div></a>
-                </div>
+            <div class="pagination">
+              <div class="pages">
+                {% if page_object.has_previous %}
+                  <a class="lin-page" href="?page={{ page_object.previous_page_number }}"><div class="page"><</div></a>
+                  <!-- <a class="lin-page" href="?page={{ page_object.previous_page_number }}"><div class="page">{{ page_object.previous_page_number }}</div></a> -->
+                {% else %}
+                <div class="page"><</div>
+                <!-- <div class="page">1</div> -->
+                {% endif %}
+                <a class="lin-page" href="#"><div class="page page-blue">{{ page_object.number }}</div></a>
+                {% if page_object.has_next %}
+                  <!-- <a class="lin-page" href="?page={{ page_object.next_page_number }}"><div class="page">{{ page_object.next_page_number }}</div></a> -->
+                  <a class="lin-page" href="?page={{ page_object.next_page_number }}"><div class="page">></div></a>
+                {% else %}
+                  <div class="page">></div>
+                {% endif %}
               </div>
-            {% endblock pagination %}
+            </div>
+          {% endblock pagination %}
 
         </div>
     </div>
+
 </body>
 </html>
