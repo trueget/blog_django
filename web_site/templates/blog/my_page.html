@@ -10,29 +10,27 @@
 {% block pagination %}{% endblock pagination %}
 
 {% block my_profile %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="my_profile">
         <div class="left-item-profile">
             <p class="text-profile">Профиль</p>
             <div class="form-profile">
                 <p class="date-register date-create-article">зарегистрирован {{ user.date_joined }}</p>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-
+                    <div class="mini-containrer">
+                        <p class="text-mini-container">{{ data_user.user }}</p>
+                    </div>
+                    {% if user.first_name %}
                         <div class="mini-containrer">
-                            <p class="text-mini-container">{{ data_user.user }}</p>
+                            <p class="text-mini-container">{{ user.first_name }} {{ user.last_name }}</p>
                         </div>
-                        {% if user.first_name %}
-                            <div class="mini-containrer">
-                                <p class="text-mini-container">{{ user.first_name }} {{ user.last_name }}</p>
-                            </div>
-                        {% endif %}
-                        <div class="mini-containrer">
-                            <p class="text-mini-container">{{ user.email }}</p>
-                        </div>
-                        <div class="mini-containrer">
-                            {{ form.about_me }}
-                        </div>
-                </form>
+                    {% endif %}
+                    <div class="mini-containrer">
+                        <p class="text-mini-container">  {{ user.email }}</p>
+                    </div>
+                    <div class="mini-containrer">
+                        {{ form.about_me }}
+                    </div>
             </div>
         </div>
         <div class="right-item-profile">
@@ -53,4 +51,5 @@
         </div>
     </div>
     <button class="btn-profile btn-comment" type="submit">Обновить</button>
+</form>
 {% endblock my_profile %}

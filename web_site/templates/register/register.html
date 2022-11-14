@@ -9,6 +9,12 @@
 {% block print_articles %}{% endblock print_articles %}
 {% block pagination %}{% endblock pagination %}
 
+{% block two-buttons %}
+<div class="two-buttons">
+  <a href="{% url 'login' %}"><div class="btn red-button">Войти</div></a>
+</div>
+{% endblock two-buttons %}
+
 {% block register_login_activation %}
 <div class="wrapper-container-register">
     <div class="container-register">

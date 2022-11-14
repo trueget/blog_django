@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="container">
+
         {% block user-profile %}
           <div class="left-item">
               <img src="{% static '/images/under_user.jpg' %}" alt="">
@@ -20,7 +21,11 @@
                   {% block user-img %}
                     <div class="item-img">
                       <div class="my-avatar">
-                        <img class="img-my-avatar" src="{% static '/images/avatar.jpeg' %}" alt="">
+                        {% if data_user.user_avatar %}
+                          <img class="img-my-avatar" src="{{ data_user.user_avatar.url }}" alt="">
+                        {% else %}
+                          <img class="img-my-avatar" src="/media/imgusers/avatar.jpg">
+                        {% endif %}
                       </div>
                     </div>
                   {% endblock user-img %}
@@ -30,7 +35,10 @@
 
                   {% if user.is_authenticated %}
                     <div class="name-user">
-                      <p class="my-name">Высян Николаев</p>
+                      <p class="my-name">{{ user.username }}</p>
+                      {% if user.firs_name %}
+                        <p class="my-name">{{ user.firs_name }} {{ user.last_name }}</p>
+                      {% endif %}
                       <div class="social-imgs">
                         <a href=""><img class="social-img" src="{% static '/images/vk.svg' %}" alt=""></a>
                         <a href=""><img class="social-img" src="{% static '/images/inst.svg' %}" alt=""></a>
@@ -43,9 +51,11 @@
                   {% endif %}
 
                   {% if user.is_authenticated %}
-                    <div class="item-text-about-me">
-                      <p class="text-about-me">Back-end шарамыгин. Создаю свой блог. Работал в нескольких ИТ компаниях и наработал более 10 000 часов.</p>
-                    </div>
+                    {% if data_user.about_me %}
+                      <div class="item-text-about-me">
+                        <p class="text-about-me">{{ data_user.about_me }}</p>
+                      </div>
+                    {% endif %}
                   {% else %}
                     <div class="not-authenticated">
                       <p class="text-not-authenticated">Вы не авторизованы!</p>
@@ -58,15 +68,18 @@
                       <a href="#"><div class="btn blue-button">Написать мне</div></a>
                     </div>
                   {% else %}
-                    <div class="two-buttons">
-                      <a href="{% url 'login' %}"><div class="btn red-button">Войти</div></a>
-                      <a href="{% url 'register' %}"><div class="btn blue-button">Регистриция</div></a>
-                    </div>
+                    {% block two-buttons %}
+                      <div class="two-buttons">
+                        <a href="{% url 'login' %}"><div class="btn red-button">Войти</div></a>
+                        <a href="{% url 'register' %}"><div class="btn blue-button">Регистриция</div></a>
+                      </div>
+                    {% endblock two-buttons %}
                   {% endif %}
                 </div>
               </div>
           </div>
         {% endblock user-profile %}
+
         <div class="right-item">
             {% block header %}
               <header>
@@ -99,62 +112,52 @@
 
             {% if user.is_authenticated %}
               {% block four_articles %}
-                <div class="my-4-articles">
-                  <div class="my-4-articles-center">
-                    <a href="#" class="article-img-link">
-                      <div class="item-img-4-articles">
-                        <p class="name-state">Название статьи</p>
-                        <p class="date-state">11.11.2022</p>
-                        <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
-                      </div>
-                    </a>
-                    <a href="#" class="article-img-link">
-                      <div class="item-img-4-articles">
-                        <p class="name-state">Название статьи</p>
-                        <p class="date-state">11.11.2022</p>
-                        <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
-                      </div>
-                    </a>
-                    <a href="#" class="article-img-link">
-                      <div class="item-img-4-articles">
-                        <p class="name-state">Название статьи</p>
-                        <p class="date-state">11.11.2022</p>
-                        <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
-                      </div>
-                    </a>
-                    <a href="#" class="article-img-link">
-                      <div class="item-img-4-articles">
-                        <p class="name-state">Название статьи</p>
-                        <p class="date-state">11.11.2022</p>
-                        <img class="img-4-articles" src="{% static '/images/article-1.jpeg' %}" alt="">
-                      </div>
-                    </a>
+                {% if articles.count > 0 %}
+                  <div class="my-4-articles">
+                    <div class="my-4-articles-center">
+                      {% for article in articles %}
+                        <a href="{% url 'one_article' article.id %}" class="article-img-link">
+                          <div class="item-img-4-articles">
+                            <p class="name-state">{{ article.name_article }}</p>
+                            <p class="date-state">{{ article.create_date }}</p>
+                            <img class="img-4-articles" src="{{ article.img_article.url }}" alt="">
+                          </div>
+                        </a>
+                      {% endfor %}
+
+                    </div>
                   </div>
-                </div>
+                {% endif %}
               {% endblock four_articles %}
             {% endif %}
 
             {% if user.is_authenticated %}
               {% block create_article %}
-                <div class="create-article">
-                  <div class="create-article-two-items">
-                    <div class="left-create-article">
-                      <input class="input-create-article" type="text" placeholder="Текст статьи ...">
-                    </div>
-                    <div class="right-create-article">
-                      <a href="#">
-                        <div class="article-inside-img article-inside-img-left">
-                          <img class="items-in-circle-left" src="{% static '/images/camera.svg' %}" alt="">
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div class="article-inside-img article-inside-img-right">
-                          <img class="items-in-circle-right" src="{% static '/images/vector.svg' %}" alt="">
-                        </div>
-                      </a>
+                <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="create-article">
+                    <div class="create-article-two-items">
+                      <div class="left-create-article">
+                        <div class="item-text-input">{{ data.form.name_article }}</div>
+                        <div class="item-text-input">{{ data.form.text_article }}</div>
+                        <!-- <input class="input-create-article" type="text" placeholder="Текст статьи ..."> -->
+                      </div>
+                      <div class="right-create-article">
+                        <a href="#">
+                          <div class="article-inside-img article-inside-img-left">
+                            <label class="change-input-btn" htmlFor="choice-img">
+                              {{ data.form.img_article }}
+                              <img class="items-in-circle-left" src="{% static '/images/camera.svg' %}" alt="">
+                            </label>
+                          </div>
+                        </a>
+                        <button class="submit-create-article article-inside-img article-inside-img-right" type="submit">
+                              <img class="items-in-circle-right" src="{% static '/images/vector.svg' %}" alt="">
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </form>
               {% endblock create_article %}
             {% endif %}
 

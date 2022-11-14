@@ -16,9 +16,12 @@ def update_profile(request):
         if form.is_valid():
             user = User.objects.get(username=request.user.username)
             user_profile, created = UserProfile.objects.get_or_create(user=user)
-            user_profile.about_me = form.cleaned_data['about_me']
-            user_profile.user_avatar = form.cleaned_data['user_avatar']
-            user_profile.save()
+            if form.cleaned_data['about_me']:
+                user_profile.about_me = form.cleaned_data['about_me']
+            if form.cleaned_data['user_avatar']:
+                user_profile.user_avatar = form.cleaned_data['user_avatar']
+            if form.cleaned_data['about_me'] or form.cleaned_data['user_avatar']:
+                user_profile.save()
 
             return render(request, 'blog/my_page.html', {'form': form})
         else:

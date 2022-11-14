@@ -7,6 +7,58 @@ from django.views.generic.detail import DetailView
 from django.core.paginator import Paginator
 
 
+'''главная'''
+def index(request):
+    '''все статьи разбитые построчно'''
+    all_articles = Articles.objects.order_by('-create_date')
+    for article in all_articles:
+        article.text_article = article.text_article.replace('\r', '').split('\n')
+
+    '''пагинация'''
+    paginator = Paginator(all_articles, 10)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+
+    '''форма создания статьи и запись в бд'''
+    try:
+        user = User.objects.get(username=request.user.username)
+    except:
+        user = None
+
+    error = ''
+    if request.method == 'POST':
+        form = ArticlesForm(request.POST, request.FILES)
+        if form.is_valid():
+            made_article = Articles.objects.create(username=user)
+            made_article.name_article = form.cleaned_data['name_article']
+            if form.cleaned_data['img_article']:
+                made_article.img_article = form.cleaned_data['img_article']
+            made_article.text_article = form.cleaned_data['text_article']
+            made_article.save()
+            return redirect('/')
+        else:
+            error = 'Форма не валидна'
+    form = ArticlesForm()
+    data = {
+        'form': form,
+        'error': error
+    }
+    data_user, created = UserProfile.objects.get_or_create(user=user)
+
+    '''4 статьи пользователя'''
+    articles = Articles.objects.filter(username=user).order_by('-create_date')[:4]
+        # return render(request, 'blog/index.html', {'all_articles': all_articles})
+
+    return render(request, 'blog/index.html', {
+        'user': user, 
+        'page_object': page_object, 
+        'data': data, 
+        'articles': articles,
+        'data_user': data_user
+        })
+
+
+
 '''страница статтей
 плучение данных из бд и выгрузка на главную страницу'''
 # def articles(request):
@@ -14,20 +66,6 @@ from django.core.paginator import Paginator
 #     for article in all_articles:
 #         article.text_article = article.text_article.replace('\r', '').split('\n')
 #     return render(request, 'blog/articles.html', {'all_articles': all_articles})
-
-
-'''главная'''
-def index(request):
-    all_articles = Articles.objects.order_by('-create_date')
-    for article in all_articles:
-        article.text_article = article.text_article.replace('\r', '').split('\n')
-
-    paginator = Paginator(all_articles, 10)
-    page_number = request.GET.get('page')
-    page_object = paginator.get_page(page_number)
-        # return render(request, 'blog/index.html', {'all_articles': all_articles})
-    return render(request, 'blog/index.html', {'page_object': page_object})
-
 
 
 # '''каждая статья отдельно'''
@@ -50,30 +88,30 @@ def help_page(request):
     return render(request, 'blog/help_page.html')
 
 
-'''запись данных из формы в бд'''
-def create_article(request):
-    user = User.objects.get(username=request.user.username)
-    print(user)
-    error = ''
-    if request.method == 'POST':
-        form = ArticlesForm(request.POST, request.FILES)
-        if form.is_valid():
-            made_article = Articles.objects.create(username=user)
-            made_article.name_article = form.cleaned_data['name_article']
-            made_article.img_article = form.cleaned_data['img_article']
-            made_article.text_article = form.cleaned_data['text_article']
-            made_article.save()
-            return redirect('/')
-        else:
-            error = 'Форма была неверной!'
+# '''создание статьи и запись данных из формы в бд'''
+# def create_article(request):
+#     user = User.objects.get(username=request.user.username)
+#     print(user)
+#     error = ''
+#     if request.method == 'POST':
+#         form = ArticlesForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             made_article = Articles.objects.create(username=user)
+#             made_article.name_article = form.cleaned_data['name_article']
+#             made_article.img_article = form.cleaned_data['img_article']
+#             made_article.text_article = form.cleaned_data['text_article']
+#             made_article.save()
+#             return redirect('/')
+#         else:
+#             error = 'Форма была неверной!'
 
-    form = ArticlesForm()
+#     form = ArticlesForm()
 
-    data = {
-        'form': form,
-        'error': error
-    }
-    return render(request, 'blog/create_article.html', data)
+#     data = {
+#         'form': form,
+#         'error': error
+#     }
+#     return render(request, 'blog/create_article.html', data)
 
 
 '''удаление статтей из бд'''
@@ -102,7 +140,7 @@ def all_authors(request):
 
 
 
-'''страница статьи с комментами'''
+'''страница одной статьи с комментами'''
 class BlogDetail(DetailView):
     model = Articles
     template_name = 'blog/one_article.html'
@@ -115,6 +153,15 @@ class BlogDetail(DetailView):
         context['text_article'] = article_object.text_article.replace('\r', '').split('\n')
         context['comment_form'] = CommentsForm()
         context['comments'] = comments
+
+        try:
+            user = User.objects.get(username=self.request.user.username)
+        except:
+            user = None
+        data_user, created = UserProfile.objects.get_or_create(user=user)
+        context['data_user'] = data_user
+        context['user'] = user
+        
         return context
 
     def post(self , request , *args , **kwargs):

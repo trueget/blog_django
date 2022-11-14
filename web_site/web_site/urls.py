@@ -16,7 +16,7 @@ urlpatterns = [
     path('about_blog/', blog_views.about_blog, name='about_blog'),
     path('help_page/', blog_views.help_page, name='help_page'),
 
-    path('create_article/', blog_views.create_article, name='create_article'),
+    # path('create_article/', blog_views.create_article, name='create_article'),
 
     # path('articles/', blog_views.articles, name='articles'),
     path('my_articles/', blog_views.my_articles, name='my_articles'),

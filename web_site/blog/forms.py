@@ -10,15 +10,16 @@ class ArticlesForm(ModelForm):
 
         widgets = {
             'name_article': TextInput(attrs={
-                'class': 'form_article',
-                'placeholder': 'Название статьи'
+                'class': 'input-create-article',
+                'placeholder': 'Название статьи...'
             }),
             'img_article': ClearableFileInput(attrs={
-                'class': 'form_article'
+                'class': 'img-form_article'
             }),
             'text_article': Textarea(attrs={
-                'class': 'form_article form_text_article',
-                'placeholder': 'Текст статьи'
+                'class': 'form_text_article input-create-article',
+                'placeholder': 'Текст статьи...',
+                'rows': 1
             }),
         }
 
