@@ -79,12 +79,10 @@ def Login(request):
             messages.success(request, f' Добро пожаловать, {username} !!')
             return redirect('index')
         else:
-            # form = AuthenticationForm()
             form = UserLoginForm()
             error = 'Неверный ник или пароль!'
             return render(request, 'register/login.html', {'form':form, 'title':'войти', 'error': error})
     else:
-        # form = AuthenticationForm()
         form = UserLoginForm()
         return render(request, 'register/login.html', {'form':form, 'title':'войти'})
 
@@ -124,39 +122,3 @@ def activation_user(request):
 
     else:
         return render(request, 'register/activation.html', {'form': form})
-
-
-
-
-
-
-'''активация через форму'''
-    # if request.method == 'POST':
-    #     code = request.POST['code_on_page']
-    #     code_session = request.session.get('code', ' ')
-    #     user_session = request.session.get('username', ' ')
-    #     pass_session = request.session.get('password', ' ')
-    #     if code == code_session:
-    #         user_active = User.objects.get(username=user_session)
-    #         user_active.is_active = True
-    #         user_active.save()
-
-    #         user = authenticate(request, username=user_session, password=pass_session)
-
-    #         UserProfile.objects.create(user=user, user_avatar=None, about_me=None)
-
-    #         if user:
-    #             login(request, user)
-    #             return render(request, 'blog/index.html')
-    #         else:
-    #             error = 'Пользователь не найден'
-    #             return render(request, 'register/activation.html', {'form': form, 'error': error})
-
-    #     else:
-    #         form = ActivationForm()
-    #         error = 'неверный код'
-    #         return render(request, 'register/activation.html', {'form': form, 'error': error})
-
-    # else:
-    #     form = ActivationForm()
-    #     return render(request, 'register/activation.html', {'form': form})

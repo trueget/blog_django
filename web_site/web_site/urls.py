@@ -22,7 +22,7 @@ urlpatterns = [
     path('my_articles/', blog_views.my_articles, name='my_articles'),
     # path(r'article/id/<int:id>', blog_views.one_article, name='one_article'),
     # path(r'article/id/<int:id>', blog_views.BlogDetail.as_view(), name='one_article'),
-    path(r'article/id/<slug:pk>', blog_views.BlogDetail.as_view(), name='one_article'),
+    path(r'articles/id=<slug:pk>', blog_views.BlogDetail.as_view(), name='one_article'),
 
     path(r'articles/delete/<int:id>', blog_views.delete),
 
@@ -34,7 +34,7 @@ urlpatterns = [
     path('activation/', user_views.activation_user, name='activation'),
 
     path('my_page/', user_page_views.update_profile, name='my_page'),
-    path(r'user/id/<int:user_id>/', user_page_views.user_page, name='user_page'),
+    path(r'users/id=<int:user_id>/', user_page_views.user_page, name='user_page'),
 
     path('news/', news_views.news, name='news'),
     path('page_finance/', news_views.page_finance, name='page_finance'),

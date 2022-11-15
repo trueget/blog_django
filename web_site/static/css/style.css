@@ -133,13 +133,13 @@ a.link-header:hover{
     justify-content: center;
     margin-right: 20px;
 }
-.items-in-circle-left:hover{
-    width: 24px;
-    height: 24px;
+.article-inside-img:hover > .change-input-btn > img{
+    cursor: pointer;
+    transform: scale(1.1);
 }
-.items-in-circle-right:hover{
-    width: 20px;
-    height: 20px;
+.article-inside-img-right:hover > img{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 .article-inside-img-left{
     background: #EBEBEB;
@@ -325,6 +325,7 @@ a.share:hover .text-share{
 }
 .two-buttons{
     display: flex;
+    justify-content: center;
     padding: 20px 0 50px 0;
 }
 .btn{
@@ -553,6 +554,7 @@ label.change-input-btn input[type='file']{
     margin-top: 7px;
 }
 .submit-create-article{
+    cursor: pointer;
     border: none;
 }
 .wrapper-quit-btn{
@@ -601,7 +603,7 @@ label.change-input-btn input[type='file']{
     letter-spacing: 1px;
     font-weight: 300;
 }
-.text-mini-container input::placeholder{
+.text-mini-container input::placeholder, .input-create-article::placeholder{
     font-family: 'Lato', sans-serif;
     font-size: 11px;
 }
@@ -611,13 +613,5 @@ label.change-input-btn input[type='file']{
     margin-bottom: 20px;
 }
 .form-register{
-    /* display: flex; */
     justify-content: center;
 }
-/* .text-activation{
-    color: #828282;
-    font-family: 'Lato', sans-serif;
-    letter-spacing: 0.8px;
-    font-size: 12px;
-    font-weight: 300;
-} */

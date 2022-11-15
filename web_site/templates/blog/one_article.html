@@ -10,7 +10,7 @@
 <div class="window-print-article">
     <div class="item-window-article">
         <div class="up-article">
-            <a href="#"><p class="name-author-article">@{{ article.username }}</p></a>
+            <a href="{% url 'user_page' article.username_id %}"><p class="name-author-article">@{{ article.username }}</p></a>
             <a class="share" href="">
                 <p class="text-share">поделиться</p>
                 <img class="img-share" src="{% static '/images/share.svg' %}" alt="">

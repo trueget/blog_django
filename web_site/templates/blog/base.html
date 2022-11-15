@@ -18,7 +18,7 @@
               <img src="{% static '/images/under_user.jpg' %}" alt="">
               <div class="info-about-me">
                 {% if user.is_authenticated %}
-                  {% block user-img %}
+                  {% block user_img %}
                     <div class="item-img">
                       <div class="my-avatar">
                         {% if data_user.user_avatar %}
@@ -28,7 +28,7 @@
                         {% endif %}
                       </div>
                     </div>
-                  {% endblock user-img %}
+                  {% endblock user_img %}
                 {% endif %}
 
                 <div class="margin-65">
@@ -85,20 +85,20 @@
               <header>
                   <div class="header">
                       <div class="left-header">
-                          <a class="link-header" href="/"><p class="text-header">ГЛАВНАЯ</p></a>
+                          <a class="link-header" href="/"><p class="text-header">главная</p></a>
                           <a class="link-header" href="#">
                               <div class="link-header button-articles text-header">
-                                  <p class="link-article">СТАТЬИ</p>
+                                  <p class="link-article">статьи</p>
                                   <img class="img-down" src="{% static '/images/down.svg' %}" alt="">
                               </div>
                           </a>
                           {% if user.is_authenticated %}
-                            <a class="link-header" href="#"><p class="text-header">ОБО МНЕ</p></a>
+                            <a class="link-header" href="#"><p class="text-header">авторы</p></a>
                           {% endif %}
                       </div>
                       <div class="right-header">
                           {% if user.is_authenticated %}
-                            <a class="link-header" href="{% url 'my_page' %}"><p class="text-header">ПРОФИЛЬ</p></a>
+                            <a class="link-header" href="{% url 'my_page' %}"><p class="text-header">профиль</p></a>
                           {% endif %}
                           <input type="search" class="serch-text" placeholder="Поиск по блогу" aria-label="Search">
                       </div>

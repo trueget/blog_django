@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from .forms import UserProfileForm
 from .models import UserProfile
 from django.db import transaction
+from blog.models import Articles
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -34,7 +36,26 @@ def update_profile(request):
         return render(request, 'blog/my_page.html', {'form': form, 'data_user': data_user, 'user': user,  'error': error })
 
 
+# def user_page(request, user_id):
+#     user = User.objects.get(id=user_id)
+#     user_profile = UserProfile.objects.get(user=user)
+#     return render(request, 'blog/user_page.html', {'user_profile': user_profile, 'user': user})
+
+'''страница пользователя'''
 def user_page(request, user_id):
     user = User.objects.get(id=user_id)
     user_profile = UserProfile.objects.get(user=user)
-    return render(request, 'blog/user_page.html', {'user_profile': user_profile, 'user': user})
+    articles = Articles.objects.filter(username=user).order_by('-create_date')
+    for article in articles:
+        article.text_article = article.text_article.replace('\r', '').split('\n')
+
+    '''пагинация'''
+    paginator = Paginator(articles, 10)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+    return render(request, 'blog/user_page.html', {
+        'user_profile': user_profile, 
+        'user': user, 
+        'user_articles': articles,
+        'page_object': page_object
+        })
