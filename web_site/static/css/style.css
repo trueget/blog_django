@@ -388,6 +388,7 @@ a.share:hover .text-share{
     border: none;
     color: #fff;
     width: 100%;
+    letter-spacing: 1px;
 }
 .discuss{
     font-size: 16px;

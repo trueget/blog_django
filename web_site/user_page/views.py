@@ -36,11 +36,6 @@ def update_profile(request):
         return render(request, 'blog/my_page.html', {'form': form, 'data_user': data_user, 'user': user,  'error': error })
 
 
-# def user_page(request, user_id):
-#     user = User.objects.get(id=user_id)
-#     user_profile = UserProfile.objects.get(user=user)
-#     return render(request, 'blog/user_page.html', {'user_profile': user_profile, 'user': user})
-
 '''страница пользователя'''
 def user_page(request, user_id):
     user = User.objects.get(id=user_id)
@@ -48,6 +43,7 @@ def user_page(request, user_id):
     articles = Articles.objects.filter(username=user).order_by('-create_date')
     for article in articles:
         article.text_article = article.text_article.replace('\r', '').split('\n')
+
 
     '''пагинация'''
     paginator = Paginator(articles, 10)
@@ -59,3 +55,10 @@ def user_page(request, user_id):
         'user_articles': articles,
         'page_object': page_object
         })
+
+
+
+# def user_page(request, user_id):
+#     user = User.objects.get(id=user_id)
+#     user_profile = UserProfile.objects.get(user=user)
+#     return render(request, 'blog/user_page.html', {'user_profile': user_profile, 'user': user})

@@ -45,13 +45,13 @@
                         <a href=""><img class="social-img" src="{% static '/images/pint.svg' %}" alt=""></a>
                       </div>
                     </div>
-                    <hr>
                   {% else %}
                   
                   {% endif %}
 
                   {% if user.is_authenticated %}
                     {% if data_user.about_me %}
+                      <hr>
                       <div class="item-text-about-me">
                         <p class="text-about-me">{{ data_user.about_me }}</p>
                       </div>

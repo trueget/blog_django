@@ -6,12 +6,61 @@
 {% endblock title %}
 
 
+
+
+{% block user-profile %}
+<div class="left-item">
+    <img src="{% static '/images/under_user.jpg' %}" alt="">
+    <div class="info-about-me">
+        {% block user_img %}
+            <div class="item-img">
+                <div class="my-avatar">
+                {% if user_profile.user_avatar %}
+                    <img class="img-my-avatar" src="{{ user_profile.user_avatar.url }}" alt="">
+                {% else %}
+                    <img class="img-my-avatar" src="/media/imgusers/avatar.jpg">
+                {% endif %}
+                </div>
+            </div>
+        {% endblock user_img %}
+
+      <div class="margin-65">
+
+          <div class="name-user">
+            <p class="my-name">{{ user.username }}</p>
+            {% if user.firs_name %}
+              <p class="my-name">{{ user.firs_name }} {{ user.last_name }}</p>
+            {% endif %}
+            <div class="social-imgs">
+              <a href=""><img class="social-img" src="{% static '/images/vk.svg' %}" alt=""></a>
+              <a href=""><img class="social-img" src="{% static '/images/inst.svg' %}" alt=""></a>
+              <a href=""><img class="social-img" src="{% static '/images/pint.svg' %}" alt=""></a>
+            </div>
+          </div>
+          <hr>
+
+          {% if user_profile.about_me %}
+            <div class="item-text-about-me">
+              <p class="text-about-me">{{ user_profile.about_me }}</p>
+            </div>
+          {% endif %}
+        <hr>
+          <div class="two-buttons">
+            <a href="#"><div class="btn blue-button">Написать @{{ user.username }}</div></a>
+          </div>
+      </div>
+    </div>
+</div>
+{% endblock user-profile %}
+
+
+
 {% block print_state %}
 <div class="window-print-article">
     <div class="item-window-article">
         <div class="up-article">
-            <a href="{% url 'user_page' article.username_id %}"><p class="name-author-article">@{{ article.username }}</p></a>
-            <a class="share" href="">
+            <a href="{% url 'user_page' user.id %}"><p class="name-author-article">@{{ article.username }}</p></a>
+            <a class="share" href="#">
                 <p class="text-share">поделиться</p>
                 <img class="img-share" src="{% static '/images/share.svg' %}" alt="">
             </a>
@@ -32,7 +81,7 @@
         {% endif %}
 
         <div class="article-information">
-            {% for string in text_article %}
+            {% for string in article.text_article %}
                 <p class="text-article">{{ string }}</p>
             {% endfor %}
         </div>
@@ -43,7 +92,7 @@
                 {% csrf_token %}
                 <div class="form-comment">
                     <div class="input-comments">
-                        {{ comment_form }}
+                        {{ form }}
                     </div>
                     <hr class="hr-coment">
                     <button class="btn-comment" type="submit">Отправить</button>

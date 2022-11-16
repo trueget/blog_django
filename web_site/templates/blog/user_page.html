@@ -39,9 +39,9 @@
               <a href=""><img class="social-img" src="{% static '/images/pint.svg' %}" alt=""></a>
             </div>
           </div>
-          <hr>
 
           {% if user_profile.about_me %}
+            <hr>
             <div class="item-text-about-me">
               <p class="text-about-me">{{ user_profile.about_me }}</p>
             </div>
@@ -68,7 +68,7 @@
                 <div class="article-information">
                     <p class="names-article">{{ article.name_article }}</p>
                     {% for string in article.text_article %}
-                        {% if forloop.counter0 < 5 %}
+                        {% if forloop.counter < 5 %}
                         <p class="text-article">{{ string }}</p>
                         {% endif %}
                     {% endfor %}
@@ -78,7 +78,7 @@
                             <p class="date-create-article">{{ article.create_date }}</p>
                             <p class="date-create-article">раздел статьи</p>
                         </div>
-                        <a class="read-all" href="{% url 'one_article' article.id %}">читать</a>
+                        <a class="read-all" href="{% url 'one_article_from_user' user_id=user.id article_id=article.id %}">читать</a>
                     </div>
                 </div>
             </div>

@@ -13,8 +13,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', blog_views.index, name='index'),
-    path('about_blog/', blog_views.about_blog, name='about_blog'),
-    path('help_page/', blog_views.help_page, name='help_page'),
+    # path('about_blog/', blog_views.about_blog, name='about_blog'),
+    # path('help_page/', blog_views.help_page, name='help_page'),
 
     # path('create_article/', blog_views.create_article, name='create_article'),
 
@@ -23,6 +23,7 @@ urlpatterns = [
     # path(r'article/id/<int:id>', blog_views.one_article, name='one_article'),
     # path(r'article/id/<int:id>', blog_views.BlogDetail.as_view(), name='one_article'),
     path(r'articles/id=<slug:pk>', blog_views.BlogDetail.as_view(), name='one_article'),
+    path(r'users/id=<int:user_id>/articles/id=<int:article_id>', blog_views.article_on_user_page , name='one_article_from_user'),
 
     path(r'articles/delete/<int:id>', blog_views.delete),
 
