@@ -6,8 +6,6 @@
 {% endblock title %}
 
 
-
-
 {% block user-profile %}
 <div class="left-item">
     <img src="{% static '/images/under_user.jpg' %}" alt="">
@@ -54,16 +52,20 @@
 {% endblock user-profile %}
 
 
-
 {% block print_state %}
 <div class="window-print-article">
     <div class="item-window-article">
         <div class="up-article">
             <a href="{% url 'user_page' user.id %}"><p class="name-author-article">@{{ article.username }}</p></a>
-            <a class="share" href="#">
-                <p class="text-share">поделиться</p>
-                <img class="img-share" src="{% static '/images/share.svg' %}" alt="">
-            </a>
+            <div class="dropdown">
+                <input type="checkbox" id="menu">
+                <label for="menu">
+                    <img class="img-share" src="{% static '/images/share.svg' %}" alt="">
+                </label>
+                <ul>
+                    <li><p class="link-share" href="#">{{ link_for_share }}</p></li>
+                </ul>
+            </div>
         </div>
         <div class="info-about-article">
             <div class="text-info-article">

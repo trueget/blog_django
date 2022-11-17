@@ -1,0 +1,28 @@
+.dropdown {
+    position: relative; /* Относительное позиционирование */
+}
+.dropdown input, .dropdown ul { display: none; /* Прячем */ }
+.dropdown label {
+    cursor: pointer; /* Вид курсора */
+    color: #828282;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+}
+.dropdown ul {
+    position: absolute; /* Абсолютное позиционирование */
+    right: 20px; top: -14px; /* Положение меню */
+    margin: 0; padding: 20px; /* Убираем отступы и поля */
+    list-style: none; /* Убираем маркеры списка */
+    background: #6a676d; /* Цвет фона */
+    border-radius: 5px;
+}
+
+.dropdown :checked ~ ul {
+    display: inline-block; /* Показываем меню */
+}
+p.link-share{
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+}

@@ -104,6 +104,7 @@ class BlogDetail(DetailView):
         data_user, created = UserProfile.objects.get_or_create(user=user)
         context['data_user'] = data_user
         context['user'] = user
+        context['link_for_share'] = 'http://127.0.0.1:8000' + self.request.path
         
         return context
 
@@ -131,6 +132,7 @@ def article_on_user_page(request, **kwargs):
     user = User.objects.get(id=kwargs['user_id'])
     user_profile = UserProfile.objects.get(user=user)
     comments = Comments.objects.filter(which_article=article)
+    link_for_share = 'http://127.0.0.1:8000' + request.path
 
     if request.method == 'POST':
         form = CommentsForm(request.POST)
@@ -161,7 +163,9 @@ def article_on_user_page(request, **kwargs):
             'user_profile': user_profile,
             'article': article,
             'comments': comments,
-            'form': form
+            'form': form,
+            'link_for_share': link_for_share
+
         })
 
 

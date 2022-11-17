@@ -50,14 +50,13 @@ a.link-header:hover{
 }
 .my-4-articles{
     margin-top: 60px;
+    justify-content: center;
 }
 .my-4-articles-center{
-    width: 607px;
+    /* width: 607px;
+    margin: 0 auto; */
     display: flex;
-    margin: 0 auto;
-}
-.my-4-articles{
-    justify-content: center;
+    margin: 0 40px;
 }
 .item-img-4-articles{
     width: 140px;
@@ -99,11 +98,12 @@ a.link-header:hover{
 }
 .create-article-two-items{
     background: #121212;
-    width: 607px;
+    /* width: 607px;
+    margin: 0 auto; */
+    margin: 0 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
     border-radius: 5px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
@@ -123,9 +123,9 @@ a.link-header:hover{
 }
 .form_text_article{
     width: 100%;
-    max-width: 440px;
-    min-width: 440px;
-    min-height: 20px;
+    max-width: 450px;
+    min-width: 450px;
+    min-height: 21px;
 }
 .article-inside-img{
     width: 44px;
@@ -162,8 +162,9 @@ a.link-header:hover{
     margin: 30px 0 40px 0;
 }
 .item-window-article{
-    width: 607px;
-    margin: 0 auto;
+    /* width: 607px;
+    margin: 0 auto; */
+    margin: 0 40px;
     border-radius: 5px;
     background-color: #202020;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -382,6 +383,7 @@ a.share:hover .text-share{
 .img-share{
     width: 16px;
     height: 18px;
+    margin-top: 3px;
 }
 .share{
     display: flex;

@@ -22,10 +22,10 @@ urlpatterns = [
     path('my_articles/', blog_views.my_articles, name='my_articles'),
     # path(r'article/id/<int:id>', blog_views.one_article, name='one_article'),
     # path(r'article/id/<int:id>', blog_views.BlogDetail.as_view(), name='one_article'),
-    path(r'articles/id=<slug:pk>', blog_views.BlogDetail.as_view(), name='one_article'),
-    path(r'users/id=<int:user_id>/articles/id=<int:article_id>', blog_views.article_on_user_page , name='one_article_from_user'),
+    path(r'articles/id=<slug:pk>/', blog_views.BlogDetail.as_view(), name='one_article'),
+    path(r'users/id=<int:user_id>/articles/id=<int:article_id>/', blog_views.article_on_user_page , name='one_article_from_user'),
 
-    path(r'articles/delete/<int:id>', blog_views.delete),
+    path(r'articles/delete/<int:id>/', blog_views.delete),
 
     path('authors/', blog_views.all_authors, name='authors'),
 
