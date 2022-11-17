@@ -106,7 +106,7 @@
                           </div>
 
                           {% if user.is_authenticated %}
-                            <a class="link-header" href="#"><p class="text-header">авторы</p></a>
+                            <a class="link-header" href="{% url 'authors' %}"><p class="text-header">авторы</p></a>
                           {% endif %}
                       </div>
                       <div class="right-header">
@@ -122,6 +122,7 @@
             {% block my_profile %}{% endblock my_profile %}
             {% block print_state %}{% endblock print_state %}
             {% block register_login_activation %}{% endblock register_login_activation %}
+            {% block all_authors %}{% endblock all_authors %}
 
             {% if user.is_authenticated %}
               {% block four_articles %}

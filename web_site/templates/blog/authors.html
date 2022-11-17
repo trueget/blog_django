@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+авторы
+{% endblock title %}
+
+{% block four_articles %}{% endblock four_articles %}
+{% block create_article %}{% endblock create_article %}
+{% block print_articles %}{% endblock print_articles %}
+{% block pagination %}{% endblock pagination %}
+
+{% block all_authors %}
+    {% for author, author_id, amount_article in data_authors %}
+        <div class="authors-item">
+            <div class="authors-two-item">
+                <a href="{% url 'user_page' author_id %}"><p class="name-author-article">@{{ author }}</p></a>
+                <p class="date-create-article">был зарегистрирован {{ author.date_joined }}</p>
+            </div>
+
+            <div>
+                <p class="amount-rticles-authors">Публикаций пользователя - {{ amount_article }}</p>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock all_authors %}
