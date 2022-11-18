@@ -3,7 +3,6 @@ from .forms import UserRegisterForm, UserLoginForm
 from web_site.settings import EMAIL_HOST_USER
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from user_page.models import UserProfile
 import random
@@ -107,11 +106,12 @@ def activation_user(request):
 
             user = authenticate(request, username=user_session, password=pass_session)
 
-            '''создаем страницу пользователя'''
-            UserProfile.objects.create(user=user, user_avatar=None, about_me=None)
             if user:
+                '''создаем страницу пользователя'''
+                UserProfile.objects.create(user=user, user_avatar=None, about_me=None)
+
                 login(request, user)
-                return render(request, 'register/activation.html')
+                return redirect('/')
             else:
                 form = 'Пользователь не найден'
                 return render(request, 'register/activation.html', {'form': form})

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import UserProfileForm
@@ -25,7 +25,7 @@ def update_profile(request):
             if form.cleaned_data['about_me'] or form.cleaned_data['user_avatar']:
                 user_profile.save()
 
-            return render(request, 'blog/my_page.html', {'form': form})
+            return redirect('my_page')
         else:
             error = 'Форма не валидна'
             return render(request, 'blog/my_page.html', {'form': form})

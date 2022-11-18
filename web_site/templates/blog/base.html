@@ -154,7 +154,6 @@
                       <div class="left-create-article">
                         <div class="item-text-input">{{ data.form.name_article }}</div>
                         <div class="item-text-input">{{ data.form.text_article }}</div>
-                        <!-- <input class="input-create-article" type="text" placeholder="Текст статьи ..."> -->
                       </div>
                       <div class="right-create-article">
                         <a href="#">
@@ -205,26 +204,28 @@
               {% endfor %}
             {% endblock print_articles %}
 
-            {% block pagination %}
-            <div class="pagination">
-              <div class="pages">
-                {% if page_object.has_previous %}
-                  <a class="lin-page" href="?page={{ page_object.previous_page_number }}"><div class="page"><</div></a>
-                  <!-- <a class="lin-page" href="?page={{ page_object.previous_page_number }}"><div class="page">{{ page_object.previous_page_number }}</div></a> -->
-                {% else %}
-                <div class="page"><</div>
-                <!-- <div class="page">1</div> -->
-                {% endif %}
-                <a class="lin-page" href="#"><div class="page page-blue">{{ page_object.number }}</div></a>
-                {% if page_object.has_next %}
-                  <!-- <a class="lin-page" href="?page={{ page_object.next_page_number }}"><div class="page">{{ page_object.next_page_number }}</div></a> -->
-                  <a class="lin-page" href="?page={{ page_object.next_page_number }}"><div class="page">></div></a>
-                {% else %}
-                  <div class="page">></div>
-                {% endif %}
-              </div>
-            </div>
-          {% endblock pagination %}
+            {% if page_object.count > 0 %}
+              {% block pagination %}
+                <div class="pagination">
+                  <div class="pages">
+                    {% if page_object.has_previous %}
+                      <a class="lin-page" href="?page={{ page_object.previous_page_number }}"><div class="page"><</div></a>
+                      <!-- <a class="lin-page" href="?page={{ page_object.previous_page_number }}"><div class="page">{{ page_object.previous_page_number }}</div></a> -->
+                    {% else %}
+                    <div class="page"><</div>
+                    <!-- <div class="page">1</div> -->
+                    {% endif %}
+                    <a class="lin-page" href="#"><div class="page page-blue">{{ page_object.number }}</div></a>
+                    {% if page_object.has_next %}
+                      <!-- <a class="lin-page" href="?page={{ page_object.next_page_number }}"><div class="page">{{ page_object.next_page_number }}</div></a> -->
+                      <a class="lin-page" href="?page={{ page_object.next_page_number }}"><div class="page">></div></a>
+                    {% else %}
+                      <div class="page">></div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endblock pagination %}
+            {% endif %}
 
         </div>
     </div>

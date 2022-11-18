@@ -5,7 +5,7 @@ from django.utils.translation import gettext as _
 
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'}))
+    username = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'placeholder': 'Ник пользователя'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
     # first_name = forms.CharField(label='Имя', max_length = 20, required=False)
     # last_name = forms.CharField(label='Фамилия', max_length = 20, required=False)
@@ -32,7 +32,7 @@ class UserLoginForm(AuthenticationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'placeholder':_('Имя пользователя')})
+        self.fields['username'].widget.attrs.update({'placeholder':_('Ник пользователя')})
         # self.fields['email'].widget.attrs.update({'placeholder':_('Email')})
         self.fields['password'].widget.attrs.update({'placeholder':_('Пароль')})
         # self.fields['password2'].widget.attrs.update({'placeholder':_('Повторите пароль')})
@@ -57,7 +57,7 @@ class UserLoginForm(AuthenticationForm):
 
 
 class ActivationForm(forms.Form):
-    code_activation = forms.IntegerField(required=True, max_value=999999, min_value=100000, label='', widget=forms.NumberInput(attrs={
+    code_activation = forms.IntegerField(required=True, label='', widget=forms.NumberInput(attrs={
         'placeholder': 'ваш код',
         'class': 'activation',
         'name': 'code_on_page'
