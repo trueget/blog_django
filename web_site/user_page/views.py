@@ -17,7 +17,8 @@ def update_profile(request):
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             user = User.objects.get(username=request.user.username)
-            user_profile, created = UserProfile.objects.get_or_create(user=user)
+            if user:
+                user_profile, created = UserProfile.objects.get_or_create(user=user)
             if form.cleaned_data['about_me']:
                 user_profile.about_me = form.cleaned_data['about_me']
             if form.cleaned_data['user_avatar']:
@@ -32,7 +33,8 @@ def update_profile(request):
     else:
         form = UserProfileForm()
         user = User.objects.get(username=request.user.username)
-        data_user, created = UserProfile.objects.get_or_create(user=user)
+        if user:
+            data_user, created = UserProfile.objects.get_or_create(user=user)
         return render(request, 'blog/my_page.html', {'form': form, 'data_user': data_user, 'user': user,  'error': error })
 
 
@@ -55,10 +57,3 @@ def user_page(request, user_id):
         'user_articles': articles,
         'page_object': page_object
         })
-
-
-
-# def user_page(request, user_id):
-#     user = User.objects.get(id=user_id)
-#     user_profile = UserProfile.objects.get(user=user)
-#     return render(request, 'blog/user_page.html', {'user_profile': user_profile, 'user': user})

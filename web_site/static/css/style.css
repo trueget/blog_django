@@ -362,8 +362,13 @@ a.share:hover .text-share{
 }
 .up-data{
     display: flex;
+    justify-content: space-between;
+}
+.text-info-article{
+    width: 100%;
 }
 .info-about-article{
+    width: 100%;
     padding: 5px 21px 15px 21px;
     display: flex;
     justify-content: space-between;

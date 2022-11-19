@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block title %}
 главная страница
@@ -39,7 +40,7 @@
             {% if data_user.user_avatar %}
                 <img class="img-profile" src="{{ data_user.user_avatar.url }}">
             {% else %}
-                <img class="img-profile" src="/media/imgusers/avatar.jpg">
+                <img class="img-profile" src="{% static '/images/avatar.jpg' %}">
             {% endif %}
             </div>
             <div class="btn-change-data">

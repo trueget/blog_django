@@ -25,7 +25,7 @@
                         {% if data_user.user_avatar %}
                           <img class="img-my-avatar" src="{{ data_user.user_avatar.url }}" alt="">
                         {% else %}
-                          <img class="img-my-avatar" src="/media/imgusers/avatar.jpg">
+                          <img class="img-my-avatar" src="{% static '/images/avatar.jpg' %}">
                         {% endif %}
                       </div>
                     </div>
@@ -155,18 +155,21 @@
                         <div class="item-text-input">{{ data.form.name_article }}</div>
                         <div class="item-text-input">{{ data.form.text_article }}</div>
                       </div>
-                      <div class="right-create-article">
-                        <a href="#">
-                          <div class="article-inside-img article-inside-img-left">
-                            <label class="change-input-btn" htmlFor="choice-img">
-                              {{ data.form.img_article }}
-                              <img class="items-in-circle-left" src="{% static '/images/camera.svg' %}" alt="">
-                            </label>
-                          </div>
-                        </a>
-                        <button class="submit-create-article article-inside-img article-inside-img-right" type="submit">
-                              <img class="items-in-circle-right" src="{% static '/images/vector.svg' %}" alt="">
-                        </button>
+                      <div>
+                        <div class="right-create-article">
+                          <a href="#">
+                            <div class="article-inside-img article-inside-img-left">
+                              <label class="change-input-btn" htmlFor="choice-img">
+                                {{ data.form.img_article }}
+                                <img class="items-in-circle-left" src="{% static '/images/camera.svg' %}" alt="">
+                              </label>
+                            </div>
+                          </a>
+                          <button class="submit-create-article article-inside-img article-inside-img-right" type="submit">
+                                <img class="items-in-circle-right" src="{% static '/images/vector.svg' %}" alt="">
+                          </button>
+                        </div>
+                        {{ data.form.article_section }}
                       </div>
                     </div>
                   </div>

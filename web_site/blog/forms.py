@@ -1,12 +1,12 @@
 from .models import Articles, Comments
-from django.forms import ModelForm, TextInput, Textarea, ClearableFileInput
+from django.forms import ModelForm, TextInput, Textarea, ClearableFileInput, Select
 
 
 class ArticlesForm(ModelForm):
 
     class Meta:
         model = Articles
-        fields = ['name_article', 'img_article', 'text_article']
+        fields = ['name_article', 'img_article', 'text_article', 'article_section']
 
         widgets = {
             'name_article': TextInput(attrs={
@@ -21,6 +21,9 @@ class ArticlesForm(ModelForm):
                 'placeholder': 'Текст статьи...',
                 'rows': 1
             }),
+            'article_section': Select(attrs={
+                'class': 'select-article-section'
+            })
         }
 
 

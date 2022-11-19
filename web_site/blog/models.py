@@ -7,11 +7,23 @@ from user_page.models import UserProfile
 
 class Articles(models.Model):
     '''статьи'''
+    CHOICES =(
+        ('финансы', 'финансы'),
+        ('космос', 'космос'),
+        ('IT', 'IT'),
+        ('искусство', 'искусство'),
+        ('природа', 'природа'),
+        ('дизайн', 'дизайн'),
+        ('игры', 'игры'),
+        ('другое', 'другое'),
+    )
+
     username = models.ForeignKey(User,null=True, on_delete=models.CASCADE)
     name_article = models.CharField(max_length=200)
     img_article = models.ImageField(upload_to='imgarticles/', null=True, blank=True)
     text_article = models.TextField()
     create_date = models.DateTimeField(auto_now_add=True, editable=False)
+    article_section = models.CharField(max_length=10, choices=CHOICES)
 
     def __str__(self):
         return self.name_article

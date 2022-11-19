@@ -34,6 +34,7 @@ def index(request):
             if form.cleaned_data['img_article']:
                 made_article.img_article = form.cleaned_data['img_article']
             made_article.text_article = form.cleaned_data['text_article']
+            made_article.article_section = form.cleaned_data['article_section']
             made_article.save()
             return redirect('/')
         else:
@@ -110,7 +111,8 @@ class BlogDetail(DetailView):
             user = User.objects.get(username=self.request.user.username)
         except:
             user = None
-        data_user, created = UserProfile.objects.get_or_create(user=user)
+        if user:
+            data_user, created = UserProfile.objects.get_or_create(user=user)
         context['data_user'] = data_user
         context['user'] = user
         context['link_for_share'] = 'http://127.0.0.1:8000' + self.request.path
