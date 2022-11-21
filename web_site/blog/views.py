@@ -113,6 +113,8 @@ class BlogDetail(DetailView):
             user = None
         if user:
             data_user, created = UserProfile.objects.get_or_create(user=user)
+        else:
+            data_user = None
         context['data_user'] = data_user
         context['user'] = user
         context['link_for_share'] = 'http://127.0.0.1:8000' + self.request.path
@@ -158,7 +160,7 @@ def article_on_user_page(request, **kwargs):
             new_comment.save()
 
             return render(request, 'blog/user_one_article.html', {
-                'user': user,
+                'userr': user,
                 'user_profile': user_profile,
                 'article': article,
                 'comments': comments
@@ -170,7 +172,7 @@ def article_on_user_page(request, **kwargs):
     else:
         form = CommentsForm()
         return render(request, 'blog/user_one_article.html', {
-            'user': user,
+            'userr': user,
             'user_profile': user_profile,
             'article': article,
             'comments': comments,
