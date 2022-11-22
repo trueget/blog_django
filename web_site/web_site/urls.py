@@ -13,16 +13,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', blog_views.index, name='index'),
-    # path('about_blog/', blog_views.about_blog, name='about_blog'),
-    # path('help_page/', blog_views.help_page, name='help_page'),
 
-    # path('create_article/', blog_views.create_article, name='create_article'),
-
-    # path('articles/', blog_views.articles, name='articles'),
     path('my_articles/', blog_views.my_articles, name='my_articles'),
-    # path(r'article/id/<int:id>', blog_views.one_article, name='one_article'),
-    # path(r'article/id/<int:id>', blog_views.BlogDetail.as_view(), name='one_article'),
+
     path(r'articles/id=<slug:pk>/', blog_views.BlogDetail.as_view(), name='one_article'),
+
+    path(r'section/<slug:article_section>/', blog_views.ArticlesSection.as_view(), name='articles_section'),
+
     path(r'users/id=<int:user_id>/articles/id=<int:article_id>/', blog_views.article_on_user_page , name='one_article_from_user'),
 
     path(r'articles/delete/<int:id>/', blog_views.delete),
@@ -37,13 +34,13 @@ urlpatterns = [
     path('my_page/', user_page_views.update_profile, name='my_page'),
     path(r'users/id=<int:user_id>/', user_page_views.user_page, name='user_page'),
 
-    path('news/', news_views.news, name='news'),
-    path('page_finance/', news_views.page_finance, name='page_finance'),
-    path('page_europe/', news_views.page_europa, name='page_europe'),
-    path('page_dayli/', news_views.page_dayli, name='page_dayli'),
-    path('page_nature/', news_views.page_nature, name='page_nature'),
-    path('page_power/', news_views.page_power, name='page_power'),
-    path('page_sport/', news_views.page_sport, name='page_sport'),
+    # path('news/', news_views.news, name='news'),
+    # path('page_finance/', news_views.page_finance, name='page_finance'),
+    # path('page_europe/', news_views.page_europa, name='page_europe'),
+    # path('page_dayli/', news_views.page_dayli, name='page_dayli'),
+    # path('page_nature/', news_views.page_nature, name='page_nature'),
+    # path('page_power/', news_views.page_power, name='page_power'),
+    # path('page_sport/', news_views.page_sport, name='page_sport'),
 
 ]
 

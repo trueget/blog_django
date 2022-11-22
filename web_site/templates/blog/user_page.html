@@ -29,9 +29,9 @@
       <div class="margin-65">
 
           <div class="name-user">
-            <p class="my-name">{{ user.username }}</p>
-            {% if user.firs_name %}
-              <p class="my-name">{{ user.firs_name }} {{ user.last_name }}</p>
+            <p class="my-name">{{ userr.username }}</p>
+            {% if userr.firs_name %}
+              <p class="my-name">{{ userr.firs_name }} {{ userr.last_name }}</p>
             {% endif %}
             <div class="social-imgs">
               <a href=""><img class="social-img" src="{% static '/images/vk.svg' %}" alt=""></a>
@@ -48,7 +48,7 @@
           {% endif %}
         <hr>
           <div class="two-buttons">
-            <a href="#"><div class="btn blue-button">Написать @{{ user.username }}</div></a>
+            <a href="#"><div class="btn blue-button">Написать @{{ userr.username }}</div></a>
           </div>
       </div>
     </div>
@@ -78,7 +78,7 @@
                             <p class="date-create-article">{{ article.create_date }}</p>
                             <p class="date-create-article">{{ article.article_section }}</p>
                         </div>
-                        <a class="read-all" href="{% url 'one_article_from_user' user_id=user.id article_id=article.id %}">читать</a>
+                        <a class="read-all" href="{% url 'one_article_from_user' user_id=userr.id article_id=article.id %}">читать</a>
                     </div>
                 </div>
             </div>

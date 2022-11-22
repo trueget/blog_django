@@ -53,7 +53,7 @@ def user_page(request, user_id):
     page_object = paginator.get_page(page_number)
     return render(request, 'blog/user_page.html', {
         'user_profile': user_profile, 
-        'user': user, 
+        'userr': user, 
         'user_articles': articles,
         'page_object': page_object
         })

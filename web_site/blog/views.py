@@ -4,6 +4,7 @@ from .models import Articles, Comments
 from django.contrib.auth.models import User
 from user_page.models import UserProfile
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.core.paginator import Paginator
 
 
@@ -44,14 +45,16 @@ def index(request):
         'form': form,
         'error': error
     }
-    data_user, created = UserProfile.objects.get_or_create(user=user)
+    if user:
+        data_user, created = UserProfile.objects.get_or_create(user=user)
+    else:
+        data_user = None
 
     '''4 статьи пользователя'''
     articles = Articles.objects.filter(username=user).order_by('-create_date')[:4]
-        # return render(request, 'blog/index.html', {'all_articles': all_articles})
 
     return render(request, 'blog/index.html', {
-        'user': user, 
+        'userr': user, 
         'page_object': page_object, 
         'data': data, 
         'articles': articles,
@@ -90,7 +93,7 @@ def all_authors(request):
     '''все авторы с количеством статтей у каждого по отдельности'''
     authors = [(j, j.id, all_articles_authors.count(j)) for j in set(all_articles_authors)]
 
-    return render(request, 'blog/authors.html', {'data_authors':authors, 'user': user, 'data_user': data_user})
+    return render(request, 'blog/authors.html', {'data_authors':authors, 'userr': user, 'data_user': data_user})
 
 
 '''страница одной статьи с комментами'''
@@ -116,7 +119,7 @@ class BlogDetail(DetailView):
         else:
             data_user = None
         context['data_user'] = data_user
-        context['user'] = user
+        context['userr'] = user
         context['link_for_share'] = 'http://127.0.0.1:8000' + self.request.path
         
         return context
@@ -180,3 +183,46 @@ def article_on_user_page(request, **kwargs):
             'link_for_share': link_for_share
 
         })
+
+
+class ArticlesSection(ListView):
+
+    model = Articles
+    template_name = 'blog/article_section.html'
+
+    def get_context_data(self , **kwargs):
+        context = super(ArticlesSection, self).get_context_data(**kwargs)
+        section_article = {
+            'finance': 'финансы',
+            'space': 'космос',
+            'IT': 'IT',
+            'art': 'искусство',
+            'nature': 'природа',
+            'design': 'дизайн',
+            'games': 'игр',
+            'other': 'другое'
+        }
+        try:
+            articles_object = Articles.objects.filter(article_section=section_article[self.kwargs['article_section']]).order_by('-create_date')
+            for article in articles_object:
+                article.text_article = article.text_article.replace('\r', '').split('\n')
+
+        except:
+            articles_object = None
+        print(articles_object)
+
+        try:
+            user = User.objects.get(username=self.request.user.username)
+        except:
+            user = None
+
+        if user:
+            data_user, created = UserProfile.objects.get_or_create(user=user)
+        else:
+            data_user = None
+
+        context['userr'] = user
+        context['data_user'] = data_user
+        context['articles_section'] = articles_object
+
+        return context

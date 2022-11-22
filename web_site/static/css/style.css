@@ -132,7 +132,7 @@ a.link-header:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
+    margin: 0 10px;
 }
 .article-inside-img:hover > .change-input-btn > img{
     cursor: pointer;
@@ -193,6 +193,7 @@ a.link-header:hover{
     font-size: 14px;
     font-weight: 300;
     line-height: 21px;
+    letter-spacing: 0.7px;
 }
 .input-create-article{
     font-family: 'Roboto', sans-serif;
@@ -584,9 +585,11 @@ label.change-input-btn input[type='file']{
     text-align: center;
 }
 .text-not-authenticated{
+    font-family: 'Lato', sans-serif;
     padding: 30px 0;
     font-size: 16px;
     font-weight: 300;
+    letter-spacing: 1px;
 }
 .container-register{
     align-content: center;
@@ -634,4 +637,35 @@ label.change-input-btn input[type='file']{
     font-size: 14px;
     font-weight: 300;
     margin-top: 20px;
+}
+.select-article-section{
+    width: 111px;
+    margin-top: 10px;
+    color: #828282;
+    border: none;
+    background-color: #202020;
+    height: 25px;
+    border-radius: 5px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+.item-section-img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.item-no-section-articles{
+    margin: 40px;
+    background-color: #202020;
+    padding: 40px 0;
+    border-radius: 5px;
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+}
+.no-section-articles{
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    text-align: center;
 }

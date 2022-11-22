@@ -69,6 +69,7 @@ p.link-share{
     text-align: left;
     font-family: 'Roboto', sans-serif;
     font-size: 13px;
+    letter-spacing: 1px;
 }
 
 .dropdown-content a:hover {
