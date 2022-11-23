@@ -397,10 +397,42 @@ a.share:hover .text-share{
 .discuss{
     font-size: 16px;
     font-weight: 400;
-    margin: 20px 25px 0 25px;
+}
+.discuss-item{
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .form-comment{
     margin: 20px 25px 7px 25px;
+}
+.like-img{
+    width: 20px;
+}
+.view-img{
+    width: 25px;
+}
+.likes-view{
+    display: flex;
+}
+.item-view, .item-like{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 5px;
+    height: 45px;
+}
+.amount-like-view, .item-view, .item-like{
+    margin: 0 5px;
+}
+.amount-like-view{
+    color: #828282;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 .hr-coment{
     width: 100%;

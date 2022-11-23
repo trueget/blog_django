@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ArticlesForm, CommentsForm
 from .models import Articles, Comments
 from django.contrib.auth.models import User
@@ -6,6 +6,7 @@ from user_page.models import UserProfile
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 
 '''главная'''
@@ -206,10 +207,8 @@ class ArticlesSection(ListView):
             articles_object = Articles.objects.filter(article_section=section_article[self.kwargs['article_section']]).order_by('-create_date')
             for article in articles_object:
                 article.text_article = article.text_article.replace('\r', '').split('\n')
-
         except:
             articles_object = None
-        print(articles_object)
 
         try:
             user = User.objects.get(username=self.request.user.username)
@@ -226,3 +225,12 @@ class ArticlesSection(ListView):
         context['articles_section'] = articles_object
 
         return context
+
+
+@login_required
+def like_article(request, article_id):
+    article = get_object_or_404(Articles, id=article_id)
+    user = request.user
+    article.likes(user)
+    article.save()
+    return redirect('one_article')

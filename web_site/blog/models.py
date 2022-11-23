@@ -24,6 +24,8 @@ class Articles(models.Model):
     text_article = models.TextField()
     create_date = models.DateTimeField(auto_now_add=True, editable=False)
     article_section = models.CharField(max_length=10, choices=CHOICES, default='другое')
+    likes = models.ManyToManyField(User, related_name='user_likes', blank=True)
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name_article
@@ -60,3 +62,10 @@ class Comments(models.Model):
         if self.parent is None:
             return True
         return False
+
+
+# class LikesAndViews(models.Model):
+#     '''лайки, диздайки и просмотры'''
+#     likes = 
+#     dislikes = 
+#     views = 
