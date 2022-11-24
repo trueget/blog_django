@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+страница поиска
+{% endblock title %}
+
+{% block four_articles %}{% endblock four_articles %}
+
+{% block create_article %}{% endblock create_article %}
+
+{% block print_articles %}
+    {% for article in search_articles %}
+        <div id="{{ article.id }}" class="window-print-article">
+            <div class="item-window-article">
+                <div class="img-full-article-main">
+                    {% if article.img_article %}
+                        <img class="img-article" src="{{ article.img_article.url }}" alt="">
+                    {% endif %}
+                </div>
+                <div class="article-information">
+                    <p class="names-article">{{ article.name_article }}</p>
+                    {% for string in article.text_article %}
+                        {% if forloop.counter0 < 5 %}
+                            <p class="text-article">{{ string }}</p>
+                        {% endif %}
+                    {% endfor %}
+                    <p>...</p>
+                    <div class="bottom-info">
+                        <div class="mini-info">
+                            <p class="date-create-article">{{ article.create_date }}</p>
+                            <p class="date-create-article">{{ article.article_section }}</p>
+                        </div>
+                        <a class="read-all" href="{% url 'one_article' article.id %}">читать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock print_articles %}

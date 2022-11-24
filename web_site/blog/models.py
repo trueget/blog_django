@@ -62,10 +62,3 @@ class Comments(models.Model):
         if self.parent is None:
             return True
         return False
-
-
-# class LikesAndViews(models.Model):
-#     '''лайки, диздайки и просмотры'''
-#     likes = 
-#     dislikes = 
-#     views = 

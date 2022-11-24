@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 '''главная'''
@@ -63,26 +64,7 @@ def index(request):
         })
 
 
-'''удаление статтей из бд'''
-def delete(request, id):
-    try:
-        article = Articles.objects.get(id=id)
-        article.delete()
-        return render(request, 'blog/articles.html')
-    except Articles.DoesNotExist:
-        return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
-
-
-'''публикации пользователя'''
-def my_articles(request):
-    user = User.objects.get(username=request.user.username)
-    user_profile = UserProfile.objects.get(user=user)
-    articles = Articles.objects.filter(username=user).order_by('-create_date')
-    for article in articles:
-        article.text_article = article.text_article.replace('\r', '').split('\n')
-    return render(request, 'blog/my_articles.html', {'my_articles': articles, 'img': user_profile.user_avatar})
-
-
+'''все авторы с количеством статтей у каждого'''
 def all_authors(request):
     all_articles = Articles.objects.all()
     user = User.objects.get(username=request.user.username)
@@ -97,7 +79,7 @@ def all_authors(request):
     return render(request, 'blog/authors.html', {'data_authors':authors, 'userr': user, 'data_user': data_user})
 
 
-'''страница одной статьи с комментами'''
+'''статья на моей странице с комментами'''
 class BlogDetail(DetailView):
     model = Articles
     template_name = 'blog/one_article.html'
@@ -144,7 +126,7 @@ class BlogDetail(DetailView):
 
 
 
-
+'''статья с комментами на странице пользователя'''
 def article_on_user_page(request, **kwargs):
     article = Articles.objects.get(id=kwargs['article_id'])
     article.views += 1
@@ -190,6 +172,7 @@ def article_on_user_page(request, **kwargs):
         })
 
 
+'''разделы статтей'''
 class ArticlesSection(ListView):
 
     model = Articles
@@ -246,10 +229,50 @@ def like_article(request, pk):
         return redirect('/')
 
 
-# @login_required
-# def unlike_article(request, article_id):
-#     article = get_object_or_404(Articles, id=article_id)
-#     user = request.user
-#     if user in article.likes.all():
-#         article.likes.remove(user)
-#     return redirect('one_article')
+
+'''поиск'''
+class SearchResultsView(ListView):
+    model = Articles
+    template_name = 'blog/search_result.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user = User.objects.get(username=self.request.user.username)
+        if user:
+            data_user, created = UserProfile.objects.get_or_create(user=user)
+        else:
+            data_user = None
+        search_text = self.request.GET.get('search_text')
+        search_articles = Articles.objects.filter(Q(name_article__icontains=search_text) | Q(text_article__icontains=search_text))
+        for article in search_articles:
+            article.text_article = article.text_article.replace('\r', '').split('\n')
+
+        context['userr'] = user
+        context['data_user'] = data_user
+        context['search_articles'] = search_articles
+
+        return context
+
+
+
+
+'''НЕ ИСПОЛЬЗУЕМЫЕ'''
+
+# '''удаление статтей из бд'''
+# def delete(request, id):
+#     try:
+#         article = Articles.objects.get(id=id)
+#         article.delete()
+#         return render(request, 'blog/articles.html')
+#     except Articles.DoesNotExist:
+#         return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
+
+# '''публикации пользователя'''
+# def my_articles(request):
+#     user = User.objects.get(username=request.user.username)
+#     user_profile = UserProfile.objects.get(user=user)
+#     articles = Articles.objects.filter(username=user).order_by('-create_date')
+#     for article in articles:
+#         article.text_article = article.text_article.replace('\r', '').split('\n')
+#     return render(request, 'blog/my_articles.html', {'my_articles': articles, 'img': user_profile.user_avatar})

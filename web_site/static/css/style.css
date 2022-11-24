@@ -23,19 +23,25 @@
 .text-header{
     font-style: normal;
     margin: 14px 15px 13px 15px;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 11px;
     line-height: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-.serch-text{
+.search-form{
+    width: 212px;
+    background-color: #202020;
+    height: 100%;
+    display: flex;
+}
+.search-text{
     width: 212px;
     background-color: #202020;
     border: none;
     color: #fff;
 }
-.serch-text::placeholder{
+.search-text::placeholder{
     color: rgba(255, 255, 255, 0.4);
     padding-left: 15px;
     font-family: 'Lato', sans-serif;
@@ -83,6 +89,8 @@ a.link-header:hover{
     top: 8px;
     left: 9px;
     font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.6px;
 }
 .date-state{
     z-index: 2;
@@ -90,6 +98,7 @@ a.link-header:hover{
     top: 175px;
     right: 10px;
     font-size: 11px;
+    font-weight: 300;
 }
 .create-article{
     margin-top: 30px;
@@ -176,7 +185,7 @@ a.link-header:hover{
     padding: 25px 25px 15px 25px;
 }
 .name-article, .names-article{
-    font-weight: 500;
+    font-weight: 400;
     font-style: normal;
     letter-spacing: 1px;
 }
@@ -283,6 +292,8 @@ a.share:hover .text-share{
     width: 120px;
     height: 40px;
     border-radius: 25px;
+    font-weight: 300;
+    letter-spacing: 0.7px;
 }
 .blue-button:hover{
     font-size: 12.5px;
@@ -332,6 +343,7 @@ a.share:hover .text-share{
 .my-name{
     font-size: 18px;
     font-weight: 400;
+    letter-spacing: 1px;
 }
 .short-info{
     color: #DEDEDE;
@@ -355,6 +367,8 @@ a.share:hover .text-share{
     line-height: 18px;
     margin: 20px 0;
     text-align: center;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 .name-author-article{
     font-size: 13px;
@@ -681,6 +695,7 @@ label.change-input-btn input[type='file']{
     font-family: 'Lato', sans-serif;
     font-size: 13px;
     letter-spacing: 1px;
+    padding-left: 5px;
 }
 .item-section-img{
     display: flex;
