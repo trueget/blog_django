@@ -16,8 +16,9 @@ urlpatterns = [
 
     path('my_articles/', blog_views.my_articles, name='my_articles'),
 
-    path(r'articles/id=<slug:pk>/', blog_views.BlogDetail.as_view(), name='one_article'),
-    path(r'articles/like/id=<int:article_id>/', blog_views.like_article, name='like_article'),
+    path(r'articles/id=<int:pk>/', blog_views.BlogDetail.as_view(), name='one_article'),
+
+    path(r'articles/like/id=<pk>/', blog_views.like_article, name='like_article'),
 
     path(r'section/<slug:article_section>/', blog_views.ArticlesSection.as_view(), name='articles_section'),
 

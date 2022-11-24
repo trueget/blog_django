@@ -103,7 +103,7 @@ class BlogDetail(DetailView):
     template_name = 'blog/one_article.html'
     context_object_name = 'article'
 
-    def get_context_data(self , **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         article_object = Articles.objects.get(name_article=context['article'])
         comments = Comments.objects.filter(which_article=article_object)
@@ -228,9 +228,24 @@ class ArticlesSection(ListView):
 
 
 @login_required
-def like_article(request, article_id):
-    article = get_object_or_404(Articles, id=article_id)
+def like_article(request, pk):
+    article = get_object_or_404(Articles, id=pk)
     user = request.user
-    article.likes(user)
-    article.save()
-    return redirect('one_article')
+
+    if user in article.likes.all():
+        article.likes.remove(user)
+        return redirect('/')
+    else:
+
+        article.likes.add(user) 
+        article.save()
+        return redirect('/')
+
+
+# @login_required
+# def unlike_article(request, article_id):
+#     article = get_object_or_404(Articles, id=article_id)
+#     user = request.user
+#     if user in article.likes.all():
+#         article.likes.remove(user)
+#     return redirect('one_article')
