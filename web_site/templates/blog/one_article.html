@@ -48,7 +48,7 @@
             <div class="likes-view">
                 <div class="item-view">
                     <img class="view-img" src="{% static '/images/red-eye.svg' %}" alt="">
-                    <p class="amount-like-view">365</p>
+                    <p class="amount-like-view">{{ article.views }}</p>
                 </div>
                 <a href="{% url 'like_article' article.id %}">
                     <div class="item-like">

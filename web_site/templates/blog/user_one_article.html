@@ -88,7 +88,21 @@
             {% endfor %}
         </div>
         <hr>
-        <p class="discuss">Обсуждение</p>
+        <div class="discuss-item">
+            <p class="discuss">Обсуждение</p>
+            <div class="likes-view">
+                <div class="item-view">
+                    <img class="view-img" src="{% static '/images/red-eye.svg' %}" alt="">
+                    <p class="amount-like-view">{{ article.views }}</p>
+                </div>
+                <a href="{% url 'like_article' article.id %}">
+                    <div class="item-like">
+                        <img class="like-img" src="{% if request.user in article.likes.all %} {% static '/images/red-like.svg' %} {% else %} {% static '/images/black-like.svg' %} {% endif %}" alt="">
+                        <p class="amount-like-view">{{ article.likes.count }}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
         {% if user.is_authenticated %}
             <form method="POST">
                 {% csrf_token %}

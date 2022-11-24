@@ -106,6 +106,8 @@ class BlogDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         article_object = Articles.objects.get(name_article=context['article'])
+        article_object.views += 1
+        article_object.save()
         comments = Comments.objects.filter(which_article=article_object)
         context['text_article'] = article_object.text_article.replace('\r', '').split('\n')
         context['comment_form'] = CommentsForm()
@@ -145,6 +147,8 @@ class BlogDetail(DetailView):
 
 def article_on_user_page(request, **kwargs):
     article = Articles.objects.get(id=kwargs['article_id'])
+    article.views += 1
+    article.save()
     article.text_article = article.text_article.replace('\r', '').split('\n')
     user = User.objects.get(id=kwargs['user_id'])
     user_profile = UserProfile.objects.get(user=user)
