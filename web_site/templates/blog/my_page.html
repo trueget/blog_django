@@ -21,13 +21,13 @@
                     <div class="mini-containrer">
                         <p class="text-mini-container">{{ data_user.user }}</p>
                     </div>
-                    {% if user.first_name %}
+                    {% if userr.first_name %}
                         <div class="mini-containrer">
-                            <p class="text-mini-container">{{ user.first_name }} {{ user.last_name }}</p>
+                            <p class="text-mini-container">{{ userr.first_name }} {{ userr.last_name }}</p>
                         </div>
                     {% endif %}
                     <div class="mini-containrer">
-                        <p class="text-mini-container">  {{ user.email }}</p>
+                        <p class="text-mini-container">  {{ userr.email }}</p>
                     </div>
                     <div class="mini-containrer">
                         {{ form.about_me }}

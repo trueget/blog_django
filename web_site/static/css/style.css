@@ -717,3 +717,23 @@ label.change-input-btn input[type='file']{
     letter-spacing: 1.2px;
     text-align: center;
 }
+.delete-article{
+    background-color: #ED3024;
+    height: 40px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.9px;
+}
+.item-delete-article{
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+a .delete-article:hover{
+    font-size: 15px;
+}

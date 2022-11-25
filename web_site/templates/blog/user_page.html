@@ -47,9 +47,11 @@
             </div>
           {% endif %}
         <hr>
+        {% if user == userr %}
           <div class="two-buttons">
-            <a href="#"><div class="btn red-button">{% if user == userr %} Мои работы {% else %} Работы {{ userr.username }} {% endif %}</div></a>
+            <a href="#"><div class="btn red-button">Мои работы</div></a>
           </div>
+        {% endif %}
       </div>
     </div>
 </div>

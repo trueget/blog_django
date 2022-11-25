@@ -33,10 +33,8 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'user_page',
-    'news',
 ]
 
-# AUTH_USER_MODEL = 'users.Profile'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,12 +130,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-'''ссылка на стили форм'''
+# ссылка на стили форм
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-'''uni-form, bootstrap4'''
+# uni-form, bootstrap4
 
 
-'''email'''
+# email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

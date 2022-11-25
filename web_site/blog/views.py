@@ -265,16 +265,26 @@ def delete(request, id):
     try:
         article = Articles.objects.get(id=id)
         article.delete()
-        return render(request, 'blog/articles.html')
+        return redirect('my_articles')
     except Articles.DoesNotExist:
         return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
 
 
-'''публикации пользователя'''
-def user_articles(request, user_id):
-    user = User.objects.get(id=user_id)
+'''мои публикации'''
+def my_articles(request):
+    user = request.user
     user_profile = UserProfile.objects.get(user=user)
     articles = Articles.objects.filter(username=user).order_by('-create_date')
     for article in articles:
         article.text_article = article.text_article.replace('\r', '').split('\n')
-    return render(request, 'blog/user_articles.html', {'articles': articles, 'img': user_profile.user_avatar})
+
+    '''пагинация'''
+    paginator = Paginator(articles, 10)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+    return render(request, 'blog/my_articles.html', {
+        'data_user': user_profile, 
+        'userr': user, 
+        'articles': articles,
+        'page_object': page_object
+        })

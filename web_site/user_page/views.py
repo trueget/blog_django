@@ -35,7 +35,7 @@ def update_profile(request):
         user = User.objects.get(username=request.user.username)
         if user:
             data_user, created = UserProfile.objects.get_or_create(user=user)
-        return render(request, 'blog/my_page.html', {'form': form, 'data_user': data_user, 'user': user,  'error': error })
+        return render(request, 'blog/my_page.html', {'form': form, 'data_user': data_user, 'userr': user,  'error': error })
 
 
 '''страница пользователя'''
@@ -46,11 +46,11 @@ def user_page(request, user_id):
     for article in articles:
         article.text_article = article.text_article.replace('\r', '').split('\n')
 
-
     '''пагинация'''
     paginator = Paginator(articles, 10)
     page_number = request.GET.get('page')
     page_object = paginator.get_page(page_number)
+    
     return render(request, 'blog/user_page.html', {
         'user_profile': user_profile, 
         'userr': user, 

@@ -99,7 +99,15 @@
                 </div>
             {% endfor %}
         </div>
+        {% if user == article.username %}
+            <div class="item-delete-article">
+                <a href="{% url 'delete' article.id %}">
+                    <div class="delete-article">удалить статью</div>
+                </a>
+            </div>
+        {% endif %}
     </div>
+
 </div>
 {% endblock print_state %}
 

@@ -6,7 +6,6 @@ from user_page import views as user_page_views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth
-# from news import views as news_views
 
 
 urlpatterns = [
@@ -24,16 +23,9 @@ urlpatterns = [
     path('activation/', user_views.activation_user, name='activation'),
     path('my_page/', user_page_views.update_profile, name='my_page'),
     path(r'users/id=<int:user_id>/', user_page_views.user_page, name='user_page'),
-    path(r'articles/delete/<int:id>/', blog_views.delete),
-    path('user/id=<user_id>/articles', blog_views.user_articles, name='user_articles'),
+    path('delete/<int:id>', blog_views.delete, name='delete'),
+    path('my_articles/', blog_views.my_articles, name='my_articles'),
 
-    # path('news/', news_views.news, name='news'),
-    # path('page_finance/', news_views.page_finance, name='page_finance'),
-    # path('page_europe/', news_views.page_europa, name='page_europe'),
-    # path('page_dayli/', news_views.page_dayli, name='page_dayli'),
-    # path('page_nature/', news_views.page_nature, name='page_nature'),
-    # path('page_power/', news_views.page_power, name='page_power'),
-    # path('page_sport/', news_views.page_sport, name='page_sport'),
 ]
 
 if settings.DEBUG:

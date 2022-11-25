@@ -65,7 +65,7 @@
                   <hr>
                   {% if user.is_authenticated %}
                     <div class="two-buttons">
-                      <a href="{% url 'user_articles' userr.id %}"><div class="btn red-button">Мои работы</div></a>
+                      <a href="{% url 'my_articles' %}"><div class="btn red-button">Мои работы</div></a>
                     </div>
                   {% else %}
                     {% block two-buttons %}
