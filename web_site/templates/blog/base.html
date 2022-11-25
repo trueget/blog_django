@@ -36,7 +36,7 @@
 
                   {% if user.is_authenticated %}
                     <div class="name-user">
-                      <p class="my-name">{{ user.username }}</p>
+                      <p class="my-name">{{ userr.username }}</p>
                       {% if userr.firs_name %}
                         <p class="my-name">{{ userr.firs_name }} {{ userr.last_name }}</p>
                       {% endif %}
@@ -65,8 +65,7 @@
                   <hr>
                   {% if user.is_authenticated %}
                     <div class="two-buttons">
-                      <a href="#"><div class="btn red-button">Мои работы</div></a>
-                      <a href="#"><div class="btn blue-button">Написать мне</div></a>
+                      <a href="{% url 'user_articles' userr.id %}"><div class="btn red-button">Мои работы</div></a>
                     </div>
                   {% else %}
                     {% block two-buttons %}
@@ -136,7 +135,9 @@
                           <div class="item-img-4-articles">
                             <p class="name-state">{{ article.name_article }}</p>
                             <p class="date-state">{{ article.create_date }}</p>
-                            <img class="img-4-articles" src="{{ article.img_article.url }}" alt="">
+                            {% if article.img_article %}
+                              <img class="img-4-articles" src="{{ article.img_article.url }}" alt="">
+                            {% endif %}
                           </div>
                         </a>
                       {% endfor %}
@@ -209,7 +210,7 @@
               {% endfor %}
             {% endblock print_articles %}
 
-            {% if page_object.count > 10 %}
+            {% if amount_all_articles > 10 %}
               {% block pagination %}
                 <div class="pagination">
                   <div class="pages">

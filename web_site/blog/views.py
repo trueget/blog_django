@@ -55,12 +55,15 @@ def index(request):
     '''4 статьи пользователя'''
     articles = Articles.objects.filter(username=user).order_by('-create_date')[:4]
 
+    amount_all_articles = len(Articles.objects.all())
+
     return render(request, 'blog/index.html', {
         'userr': user, 
         'page_object': page_object, 
         'data': data, 
         'articles': articles,
-        'data_user': data_user
+        'data_user': data_user,
+        'amount_all_articles': amount_all_articles
         })
 
 
@@ -237,8 +240,10 @@ class SearchResultsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        user = User.objects.get(username=self.request.user.username)
+        try:
+            user = User.objects.get(username=self.request.user.username)
+        except:
+            user = None
         if user:
             data_user, created = UserProfile.objects.get_or_create(user=user)
         else:
@@ -255,24 +260,21 @@ class SearchResultsView(ListView):
         return context
 
 
+'''удаление статтей из бд'''
+def delete(request, id):
+    try:
+        article = Articles.objects.get(id=id)
+        article.delete()
+        return render(request, 'blog/articles.html')
+    except Articles.DoesNotExist:
+        return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
 
 
-'''НЕ ИСПОЛЬЗУЕМЫЕ'''
-
-# '''удаление статтей из бд'''
-# def delete(request, id):
-#     try:
-#         article = Articles.objects.get(id=id)
-#         article.delete()
-#         return render(request, 'blog/articles.html')
-#     except Articles.DoesNotExist:
-#         return HttpResponseNoteFound('<h2>Клиент не найден</h2>')
-
-# '''публикации пользователя'''
-# def my_articles(request):
-#     user = User.objects.get(username=request.user.username)
-#     user_profile = UserProfile.objects.get(user=user)
-#     articles = Articles.objects.filter(username=user).order_by('-create_date')
-#     for article in articles:
-#         article.text_article = article.text_article.replace('\r', '').split('\n')
-#     return render(request, 'blog/my_articles.html', {'my_articles': articles, 'img': user_profile.user_avatar})
+'''публикации пользователя'''
+def user_articles(request, user_id):
+    user = User.objects.get(id=user_id)
+    user_profile = UserProfile.objects.get(user=user)
+    articles = Articles.objects.filter(username=user).order_by('-create_date')
+    for article in articles:
+        article.text_article = article.text_article.replace('\r', '').split('\n')
+    return render(request, 'blog/user_articles.html', {'articles': articles, 'img': user_profile.user_avatar})

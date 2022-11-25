@@ -24,9 +24,9 @@ urlpatterns = [
     path('activation/', user_views.activation_user, name='activation'),
     path('my_page/', user_page_views.update_profile, name='my_page'),
     path(r'users/id=<int:user_id>/', user_page_views.user_page, name='user_page'),
+    path(r'articles/delete/<int:id>/', blog_views.delete),
+    path('user/id=<user_id>/articles', blog_views.user_articles, name='user_articles'),
 
-    # path(r'articles/delete/<int:id>/', blog_views.delete),
-    # path('my_articles/', blog_views.my_articles, name='my_articles'),
     # path('news/', news_views.news, name='news'),
     # path('page_finance/', news_views.page_finance, name='page_finance'),
     # path('page_europe/', news_views.page_europa, name='page_europe'),

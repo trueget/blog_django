@@ -48,7 +48,7 @@
           {% endif %}
         <hr>
           <div class="two-buttons">
-            <a href="#"><div class="btn blue-button">Написать @{{ userr.username }}</div></a>
+            <a href="#"><div class="btn red-button">{% if user == userr %} Мои работы {% else %} Работы {{ userr.username }} {% endif %}</div></a>
           </div>
       </div>
     </div>
