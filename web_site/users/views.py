@@ -98,6 +98,10 @@ def activation_user(request):
         user_session = request.session.get('username', ' ')
         pass_session = request.session.get('password', ' ')
 
+        del request.session['code']
+        del request.session['username']
+        del request.session['password']
+
         '''активируем юзера'''
         if code == code_session:
             user_active = User.objects.get(username=user_session)
