@@ -190,7 +190,7 @@ class ArticlesSection(ListView):
             'art': 'искусство',
             'nature': 'природа',
             'design': 'дизайн',
-            'games': 'игр',
+            'games': 'игры',
             'other': 'другое'
         }
         try:
