@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name_article', models.CharField(max_length=200)),
-                ('img_article', models.ImageField(blank=True, null=True, upload_to='imgarticles/')),
+                ('img_article', models.ImageField(blank=False, null=True, upload_to='imgarticles/')),
                 ('text_article', models.TextField()),
                 ('create_date', models.DateTimeField(auto_now_add=True)),
                 ('article_section', models.CharField(choices=[('финансы', 'финансы'), ('космос', 'космос'), ('IT', 'IT'), ('искусство', 'искусство'), ('природа', 'природа'), ('дизайн', 'дизайн'), ('игры', 'игры'), ('другое', 'другое')], max_length=10)),
