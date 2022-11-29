@@ -3,7 +3,7 @@
 [ссылка на готовый продукт](https://trueget.pythonanywhere.com)
 
 ### Структура проекта
-'''bash
+```
 blog_django
 ├── web_site
     ├── blog
@@ -16,7 +16,7 @@ blog_django
 ├── .gitignore
 ├── README.md
 └── requirements.txt
-'''
+```
 
 
 ### Описание приложения
