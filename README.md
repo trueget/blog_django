@@ -4,7 +4,7 @@
 
 ### Структура проекта
 '''
-blog_django
+.
 ├── web_site
     ├── blog
     ├── user_page
