@@ -3,8 +3,8 @@
 [ссылка на готовый продукт](https://trueget.pythonanywhere.com)
 
 ### Структура проекта
-'''
-.
+'''bash
+blog_django
 ├── web_site
     ├── blog
     ├── user_page
