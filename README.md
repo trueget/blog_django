@@ -1,6 +1,6 @@
 ## blog_django
 ### Первый большой проект на Django
-[ссылка на готовый продукт](https://trueget.pythonanywhere.com)
+Deploy [https://trueget.pythonanywhere.com](https://trueget.pythonanywhere.com)
 
 ### Структура проекта
 ```
